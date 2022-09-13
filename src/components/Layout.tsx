@@ -1,11 +1,9 @@
-import React, { TouchEventHandler, UIEventHandler } from "react";
+import React from "react";
 import * as style from "../styles/style.module.css";
 import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
 import { FaAngleDoubleDown } from "@react-icons/all-files/fa/FaAngleDoubleDown";
-import { FaRegWindowClose } from "@react-icons/all-files/fa/FaRegWindowClose";
-import { FaBars } from "@react-icons/all-files/fa/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
 
