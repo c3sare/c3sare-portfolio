@@ -34,6 +34,13 @@
   background-attachment: fixed;
 }
 
+.header {
+  position: fixed;
+  left: 25px;
+  top: 25px;
+  z-index: 1;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -43,6 +50,7 @@ body {
   margin: 0;
   color: white;
   font-family: "Roboto";
+  background-color: black;
 }
 
 .backgroundGradient {
@@ -53,13 +61,6 @@ body {
   );
 }
 
-.logo {
-  position: fixed;
-  left: 25px;
-  top: 25px;
-  z-index: 1;
-}
-
 .sliderMain {
   max-height: 100vh;
   overflow: hidden;
@@ -67,58 +68,6 @@ body {
 
 .sliderMain > div {
   transition: transform 0.8s;
-}
-
-.rightBar {
-  position: fixed;
-  right: 15px;
-  height: 100%;
-  top: 0;
-  display: flex;
-  align-items: center;
-}
-
-.slideButtons {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.slideButtons:hover > div > span {
-  display: initial;
-}
-
-.slideButtons:hover > div {
-  width: 130px;
-}
-
-.slideButtons > div {
-  display: flex;
-  flex-wrap: nowrap;
-  position: relative;
-  margin: 5px;
-  padding: 8px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 25px;
-  width: 30px;
-  justify-content: space-between;
-  transition: width 0.5s, background-color 0.5s, transform 0.5s;
-}
-
-.slideButtons > div > span {
-  display: none;
-  font-size: 13px;
-  min-width: 80px;
-}
-
-.slideButtons > div > svg {
-  font-size: 16px;
-}
-
-.slideButtons > div.activeSlide {
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .page {
@@ -221,4 +170,97 @@ body {
     justify-content: center;
     flex-direction: column;
   }
+
+  .rightBar {
+    position: fixed;
+    right: 15px;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .slideButtons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .slideButtons:hover > div > span {
+    display: initial;
+  }
+  
+  .slideButtons:hover > div {
+    width: 130px;
+  }
+  
+  .slideButtons > div {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    margin: 5px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 25px;
+    width: 30px;
+    justify-content: space-between;
+    transition: width 0.5s, background-color 0.5s, transform 0.5s;
+  }
+  
+  .slideButtons > div > span {
+    display: none;
+    font-size: 13px;
+    min-width: 80px;
+  }
+  
+  .slideButtons > div > svg {
+    font-size: 16px;
+  }
+  
+  .slideButtons > div.activeSlide {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    padding-top: 95px;
+  }
+
+  .header {
+    width: 100%;
+    padding: 25px;
+    left: 0;
+    height: 95px;
+    top: 0;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .copyrights {
+    display: flex;
+    justify-content: space-between;
+    position:unset;
+    background-color: black;
+    width: 100%;
+    padding: 25px;
+  }
+  
+  .closeMenu {
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+}
+
+.menuButton {
+  cursor: pointer;
+  font-size: 32px;
 }

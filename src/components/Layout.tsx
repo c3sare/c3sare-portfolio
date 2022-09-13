@@ -4,6 +4,8 @@ import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
 import { FaAngleDoubleDown } from "@react-icons/all-files/fa/FaAngleDoubleDown";
+import { FaRegWindowClose } from "@react-icons/all-files/fa/FaRegWindowClose";
+import { FaBars } from "@react-icons/all-files/fa/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
 
@@ -35,18 +37,37 @@ const Layout = (props: { pages: Page[] }) => {
   }, [currentHeight, currentWidth]);
 
   React.useEffect(() => {
+    let before:number;
     const setHeightWidth = () => {
       setCurrentHeight(window.innerHeight);
       setcurrentWidth(window.innerWidth);
     };
     setHeightWidth();
 
+    const changeSlideTouch = (event:TouchEvent) => {
+      before = event.touches[0].clientY;
+    }
+
+    const changeSlideTouchEnd = (event:TouchEvent) => {
+      if(before < event.changedTouches[0].clientY) {
+        if(currentSlide > 0) setCurrentSlide(currentSlide-1);
+      } else if(event!.changedTouches[0]!.clientY < before) {
+        if(currentSlide < pages.length-1) setCurrentSlide(currentSlide+1);
+      }
+    }
+
     window.addEventListener("resize", setHeightWidth, true);
+    if(!mobile) {
+      window.addEventListener('touchstart', changeSlideTouch, true);
+      window.addEventListener("touchend", changeSlideTouchEnd, true);
+    }
 
     return () => {
       window.removeEventListener("resize", setHeightWidth, true);
+      window.removeEventListener('touchstart', changeSlideTouch, true);
+      window.removeEventListener("touchend", changeSlideTouchEnd, true);
     };
-  }, []);
+  }, [currentSlide, mobile]);
 
   const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
     if (!blockScroll.current) {
@@ -60,7 +81,7 @@ const Layout = (props: { pages: Page[] }) => {
         if (pages.length - 1 > currentSlide) {
           setCurrentSlide(currentSlide + 1);
           blockScroll.current = true;
-          setTimeout(() => (blockScroll.current = false), 800);
+          setTimeout(() => (blockScroll.current = false), 900);
         }
       } else if (e.deltaY < 0) {
         if (e.currentTarget.scrollTop !== 0) {
@@ -69,7 +90,7 @@ const Layout = (props: { pages: Page[] }) => {
         if (currentSlide > 0) {
           setCurrentSlide(currentSlide - 1);
           blockScroll.current = true;
-          setTimeout(() => (blockScroll.current = false), 800);
+          setTimeout(() => (blockScroll.current = false), 900);
         }
       }
     }
@@ -85,14 +106,16 @@ const Layout = (props: { pages: Page[] }) => {
 
   return (
     <div className={style.background}>
-      <Link to="/" className={style.logo}>
-        <img src={logo} alt="C3sare logo" width="120px" height="39px" />
-      </Link>
+      <header className={style.header}>
+        <Link to="/">
+          <img src={logo} alt="C3sare logo" width="120px" height="39px" />
+        </Link>
+      </header>
       <div className={style.backgroundGradient}>
         <div
           className={style.sliderMain}
-          style={mobile ? { overflow: "auto" } : {}}
           ref={sliderMain}
+          style={mobile ? {overflow: "auto"} : {}}
         >
           <div
             style={{
@@ -127,8 +150,7 @@ const Layout = (props: { pages: Page[] }) => {
             ))}
           </div>
         </div>
-        {!mobile && (
-          <div className={style.rightBar}>
+        {!mobile && <div className={style.rightBar}>
             <div className={style.slideButtons}>
               {pages.map((page, index) => (
                 <div
@@ -140,32 +162,33 @@ const Layout = (props: { pages: Page[] }) => {
                 </div>
               ))}
             </div>
-          </div>
-        )}
-        <div className={style.copyrights}>
+        </div>}
+        <footer className={style.copyrights}>
           <span>Created by C3sare</span>
-          <a
-            target="_blank"
-            href="https://www.facebook.com/marcin.marciniuk.33/"
-            aria-label="C3sare - Facebook"
-          >
-            <FaFacebookF />
-          </a>
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/marcin-marciniuk-b35646220/"
-            aria-label="C3sare - Linkedin"
-          >
-            <FaLinkedinIn />
-          </a>
-          <a
-            target="_blank"
-            href="https://www.instagram.com/plc3sare/"
-            aria-label="C3sare - Instagram"
-          >
-            <FaInstagram />
-          </a>
-        </div>
+          <span>
+            <a
+              target="_blank"
+              href="https://www.facebook.com/marcin.marciniuk.33/"
+              aria-label="C3sare - Facebook"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/marcin-marciniuk-b35646220/"
+              aria-label="C3sare - Linkedin"
+            >
+              <FaLinkedinIn />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.instagram.com/plc3sare/"
+              aria-label="C3sare - Instagram"
+            >
+              <FaInstagram />
+            </a>
+          </span>
+        </footer>
       </div>
     </div>
   );
