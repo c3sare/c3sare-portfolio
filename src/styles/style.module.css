@@ -1,8 +1,9 @@
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto Regular'), local('Roboto-Regular'), url("../fonts/Roboto-Regular.ttf") format('truetype');
+  src: local("Roboto Regular"), local("Roboto-Regular"),
+    url("../fonts/Roboto-Regular.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -179,22 +180,22 @@ body {
     display: flex;
     align-items: center;
   }
-  
+
   .slideButtons {
     display: flex;
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
   }
-  
+
   .slideButtons:hover > div > span {
     display: initial;
   }
-  
+
   .slideButtons:hover > div {
     width: 130px;
   }
-  
+
   .slideButtons > div {
     display: flex;
     flex-wrap: nowrap;
@@ -208,25 +209,29 @@ body {
     justify-content: space-between;
     transition: width 0.5s, background-color 0.5s, transform 0.5s;
   }
-  
+
   .slideButtons > div > span {
     display: none;
     font-size: 13px;
     min-width: 80px;
   }
-  
+
   .slideButtons > div > svg {
     font-size: 16px;
   }
-  
+
   .slideButtons > div.activeSlide {
     background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
 @media screen and (max-width: 800px) {
-  body {
+  .backgroundGradient {
     padding-top: 95px;
+  }
+
+  .sliderMain {
+    max-height: none;
   }
 
   .header {
@@ -235,21 +240,23 @@ body {
     left: 0;
     height: 95px;
     top: 0;
-    background-color: black;
+    background: linear-gradient(to right, rgb(24 1 24), rgb(19 25 66));
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid rgb(19 25 66);
+    box-shadow: 0 0 3px black;
   }
 
   .copyrights {
     display: flex;
     justify-content: space-between;
-    position:unset;
-    background-color: black;
+    position: unset;
+    background: linear-gradient(to left, rgb(19 25 66), rgb(24 1 24));
     width: 100%;
     padding: 25px;
   }
-  
+
   .closeMenu {
     font-size: 32px;
     color: white;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { TouchEventHandler, UIEventHandler } from "react";
 import * as style from "../styles/style.module.css";
 import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
@@ -23,6 +23,33 @@ const Layout = (props: { pages: Page[] }) => {
   const [mobile, setMobile] = React.useState(false);
   const blockScroll = React.useRef<boolean>(false);
   const sliderMain = React.useRef<HTMLDivElement>(null);
+  const startTouch = React.useRef<number>(0);
+  const scrollTouchTop = React.useRef<number>(0);
+
+  const changeSlideTouch = (event: React.TouchEvent<HTMLDivElement>) => {
+    startTouch.current = event.touches[0].clientY;
+    scrollTouchTop.current = event.currentTarget.scrollTop;
+  };
+
+  const changeSlideTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (scrollTouchTop.current !== event.currentTarget.scrollTop) {
+      return;
+    }
+    if (startTouch.current < event.changedTouches[0]!.clientY) {
+      if (event.currentTarget.scrollTop !== 0) {
+        return;
+      }
+      if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
+    } else if (event!.changedTouches[0]!.clientY < startTouch.current) {
+      if (
+        event.currentTarget.scrollTop + event.currentTarget.clientHeight <
+        event.currentTarget.scrollHeight
+      ) {
+        return;
+      }
+      if (currentSlide < pages.length - 1) setCurrentSlide(currentSlide + 1);
+    }
+  };
 
   React.useEffect(() => {
     if (currentWidth < 800 && mobile === false) {
@@ -37,35 +64,16 @@ const Layout = (props: { pages: Page[] }) => {
   }, [currentHeight, currentWidth]);
 
   React.useEffect(() => {
-    let before:number;
     const setHeightWidth = () => {
       setCurrentHeight(window.innerHeight);
       setcurrentWidth(window.innerWidth);
     };
     setHeightWidth();
 
-    const changeSlideTouch = (event:TouchEvent) => {
-      before = event.touches[0].clientY;
-    }
-
-    const changeSlideTouchEnd = (event:TouchEvent) => {
-      if(before < event.changedTouches[0].clientY) {
-        if(currentSlide > 0) setCurrentSlide(currentSlide-1);
-      } else if(event!.changedTouches[0]!.clientY < before) {
-        if(currentSlide < pages.length-1) setCurrentSlide(currentSlide+1);
-      }
-    }
-
     window.addEventListener("resize", setHeightWidth, true);
-    if(!mobile) {
-      window.addEventListener('touchstart', changeSlideTouch, true);
-      window.addEventListener("touchend", changeSlideTouchEnd, true);
-    }
 
     return () => {
       window.removeEventListener("resize", setHeightWidth, true);
-      window.removeEventListener('touchstart', changeSlideTouch, true);
-      window.removeEventListener("touchend", changeSlideTouchEnd, true);
     };
   }, [currentSlide, mobile]);
 
@@ -115,7 +123,7 @@ const Layout = (props: { pages: Page[] }) => {
         <div
           className={style.sliderMain}
           ref={sliderMain}
-          style={mobile ? {overflow: "auto"} : {}}
+          style={mobile ? { overflow: "auto" } : {}}
         >
           <div
             style={{
@@ -133,6 +141,8 @@ const Layout = (props: { pages: Page[] }) => {
                     ? { minHeight: "auto", height: "auto", ...bgColor(index) }
                     : {}
                 }
+                onTouchStart={mobile ? undefined : changeSlideTouch}
+                onTouchEnd={mobile ? undefined : changeSlideTouchEnd}
                 onWheel={mobile ? undefined : handleScroll}
               >
                 {mobile ? <h2>{page.title}</h2> : <h5>{page.title}</h5>}
@@ -150,7 +160,8 @@ const Layout = (props: { pages: Page[] }) => {
             ))}
           </div>
         </div>
-        {!mobile && <div className={style.rightBar}>
+        {!mobile && (
+          <div className={style.rightBar}>
             <div className={style.slideButtons}>
               {pages.map((page, index) => (
                 <div
@@ -162,7 +173,8 @@ const Layout = (props: { pages: Page[] }) => {
                 </div>
               ))}
             </div>
-        </div>}
+          </div>
+        )}
         <footer className={style.copyrights}>
           <span>Created by C3sare</span>
           <span>
