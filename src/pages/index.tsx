@@ -57,5 +57,7 @@ export default IndexPage;
 export const Head: HeadFC = () => (
   <>
     <title>C3sare | Portfolio</title>
+    <meta name="description" content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"/>
+    <meta name="keywords" content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"/>
   </>
 );

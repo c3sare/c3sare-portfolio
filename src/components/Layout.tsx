@@ -5,7 +5,7 @@ import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
 import { FaAngleDoubleDown } from "@react-icons/all-files/fa/FaAngleDoubleDown";
 import { Link } from "gatsby";
-import logo from "../images/logo.png";
+import logo from "../images/logo.webp";
 import "@fontsource/roboto";
 
 export interface Page {
@@ -148,16 +148,22 @@ const Layout = (props: { pages: Page[] }) => {
           <a
             target="_blank"
             href="https://www.facebook.com/marcin.marciniuk.33/"
+            aria-label="C3sare - Facebook"
           >
             <FaFacebookF />
           </a>
           <a
             target="_blank"
             href="https://www.linkedin.com/in/marcin-marciniuk-b35646220/"
+            aria-label="C3sare - Linkedin"
           >
             <FaLinkedinIn />
           </a>
-          <a target="_blank" href="https://www.instagram.com/plc3sare/">
+          <a
+            target="_blank"
+            href="https://www.instagram.com/plc3sare/"
+            aria-label="C3sare - Instagram"
+          >
             <FaInstagram />
           </a>
         </div>
