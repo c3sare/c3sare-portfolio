@@ -13,6 +13,7 @@ const config: GatsbyConfig = {
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-offline",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -20,6 +21,17 @@ const config: GatsbyConfig = {
         path: "./src/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `C3sare - Portfolio`,
+        short_name: `C3sare`,
+        start_url: `/`,
+        background_color: `#000`,
+        theme_color: `#ffffff`,
+        display: `standalone`,
+      },
     },
   ],
 };
