@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Roboto";
+  font-display: sans-serif;
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
 * {
   box-sizing: border-box;
 }
@@ -34,7 +40,7 @@ img {
 body {
   margin: 0;
   color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto";
 }
 
 .backgroundGradient {

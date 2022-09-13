@@ -6,7 +6,6 @@ import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
 import { FaAngleDoubleDown } from "@react-icons/all-files/fa/FaAngleDoubleDown";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
-import "@fontsource/roboto";
 
 export interface Page {
   title: string;
