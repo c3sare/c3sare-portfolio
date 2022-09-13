@@ -65,7 +65,7 @@ body {
 .page {
   position: relative;
   overflow-y: auto;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .page h2 {
@@ -99,7 +99,8 @@ body {
 .copyrights a {
   color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
-  font-size: 18px;
+  font-size: 24px;
+  padding: 12px;
   margin: 4px;
   transition: color 0.4s;
 }

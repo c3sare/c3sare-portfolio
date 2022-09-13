@@ -134,11 +134,7 @@ const Layout = (props: { pages: Page[] }) => {
               <div
                 className={style.page}
                 key={index}
-                style={
-                  mobile
-                    ? { minHeight: "auto", height: "auto", ...bgColor(index) }
-                    : {}
-                }
+                style={mobile ? { ...bgColor(index) } : {}}
                 onTouchStart={mobile ? undefined : changeSlideTouch}
                 onTouchEnd={mobile ? undefined : changeSlideTouchEnd}
                 onWheel={mobile ? undefined : handleScroll}
