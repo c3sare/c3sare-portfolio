@@ -1,0 +1,96 @@
+.prices {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.prices > .variant {
+    display: flex;
+    margin: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.prices > .variant > .title {
+    background-color: white;
+    padding: 5px 15px;
+    color: black;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.prices > .variant:nth-child(2):after {
+    content: 'Popularny';
+    bottom: 100%;
+    left:0;
+    position: absolute;
+    width: 100%;
+    background-color: rgb(106, 0, 163);
+    color: white;
+    padding: 5px 0;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+
+.prices hr {
+    width: calc(100% - 30px);
+    margin: 0 15px;
+}
+
+.buttonsPrice {
+    margin: 15px;
+    width: calc(100% - 30px);
+}
+
+.buttonsPrice button {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.prices > .variant {
+    position: relative;
+    top: 0;
+    transition: .3s top;
+}
+
+.prices > .variant:hover {
+    top: 15px;
+}
+
+.price {
+    font-size: 28px;
+}
+
+.price > span:last-child {
+    font-size: 13px;
+}
+
+.prices > .variant > .addon {
+    padding: 10px 35px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.addon.minus {
+    color: grey;
+}
+
+.prices > .variant > .addon > svg {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.prices > .variant > .addon > span {
+    font-size: 13px;
+}

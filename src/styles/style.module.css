@@ -62,10 +62,13 @@ body {
   transition: transform 0.8s;
 }
 
-.page {
-  position: relative;
-  overflow-y: auto;
-  min-height: 100vh;
+@media screen and (min-width:800px) {
+  .page {
+    position: relative;
+    overflow-y: auto;
+    min-height: 100vh;
+    max-height: 100vh;
+  }
 }
 
 .page h2 {
@@ -101,7 +104,6 @@ body {
   text-decoration: none;
   font-size: 24px;
   padding: 12px;
-  margin: 4px;
   transition: color 0.4s;
 }
 
@@ -157,7 +159,7 @@ body {
 @media screen and (min-width: 800px) {
   .pageContent {
     min-height: calc(100vh - 210px);
-    margin: 70px 110px;
+    margin: 70px 140px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,7 +168,7 @@ body {
 
   .rightBar {
     position: fixed;
-    right: 15px;
+    right: 8px;
     height: 100%;
     top: 0;
     display: flex;
@@ -178,6 +180,8 @@ body {
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   .slideButtons:hover > div > span {
@@ -217,7 +221,7 @@ body {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 799.99px) {
   .backgroundGradient {
     padding-top: 95px;
   }

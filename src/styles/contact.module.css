@@ -1,0 +1,102 @@
+.contactForm {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contactForm button {
+    max-width: 100%;
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+.infoInputs {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    width: 40%;
+}
+
+.textArea {
+    padding: 8px;
+    width: 60%;
+}
+
+input, textarea {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 12px;
+    border: none;
+    margin-bottom: 16px;
+    border-bottom: 2px solid white;
+}
+
+.textArea > textarea {
+    resize: none;
+    height: calc(100% - 34px);
+    width: 100%;
+    border: 2px solid white;
+    min-height: 180px;
+}
+
+button {
+    border-radius: 0;
+    border: 3px solid white;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 10px 15px;
+    transition: .3s color, .3s background-color;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+}
+
+@media screen and (max-width: 600px) {
+    .infoInputs {
+        width: 100%;
+    }
+
+    .textArea {
+        width: 100%;
+    }
+
+}
+
+.contactBoxes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contactBoxes a {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 25px;
+    border: 1px solid white;
+    padding: 16px;
+    width: 250px;
+    position: relative;
+    bottom: 0;
+    transition: 0.3s bottom;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+}
+
+.contactBoxes a:hover {
+    bottom: 5px;
+}
+
+.contactBoxes a > svg {
+    font-size: 32px;
+}
