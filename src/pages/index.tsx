@@ -17,9 +17,10 @@ import Contact from "../slides/Contact";
 
 const pages: Page[] = [
   {
-    title: "Wstęp",
+    title: "Start",
     component: <Home />,
     icon: <FaHome />,
+    hideTitle: true
   },
   {
     title: "O mnie",
@@ -37,7 +38,7 @@ const pages: Page[] = [
     icon: <FaProjectDiagram />,
   },
   {
-    title: "Cennik",
+    title: "Oferta",
     component: <Prices />,
     icon: <FaMoneyBill />,
   },

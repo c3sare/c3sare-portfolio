@@ -68,6 +68,13 @@ body {
     overflow-y: auto;
     min-height: 100vh;
     max-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-width:799.99px) {
+  .page {
+    overflow-x: hidden;
   }
 }
 
@@ -157,6 +164,8 @@ body {
 }
 
 @media screen and (min-width: 800px) {
+
+  
   .pageContent {
     min-height: calc(100vh - 210px);
     margin: 70px 140px;

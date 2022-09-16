@@ -17,12 +17,13 @@
     display: flex;
     flex-direction: column;
     padding: 8px;
-    width: 40%;
+    width: 30%;
+    justify-content: space-between;
 }
 
 .textArea {
     padding: 8px;
-    width: 60%;
+    width: 40%;
 }
 
 input, textarea {
@@ -32,13 +33,13 @@ input, textarea {
     border: none;
     margin-bottom: 16px;
     border-bottom: 2px solid white;
+    border-top: 2px solid white;
 }
 
 .textArea > textarea {
     resize: none;
     height: calc(100% - 34px);
     width: 100%;
-    border: 2px solid white;
     min-height: 180px;
 }
 
@@ -70,9 +71,11 @@ button:hover {
 
 .contactBoxes {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
+    width: 30%;
+    max-width: 1200px;
 }
 
 .contactBoxes a {
@@ -83,13 +86,14 @@ button:hover {
     justify-content: center;
     color: white;
     margin: 25px;
-    border: 1px solid white;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
     padding: 16px;
-    width: 250px;
+    width: 100%;
     position: relative;
     bottom: 0;
     transition: 0.3s bottom;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
     text-decoration: none;
 }
 
@@ -98,5 +102,40 @@ button:hover {
 }
 
 .contactBoxes a > svg {
-    font-size: 32px;
+    font-size: 26px;
+}
+
+.contactForm label {
+    display: block;
+    font-size: 13px;
+    width: 100%;
+}
+
+.infoInputs input {
+    width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .contactBoxes {
+        width: 100%;
+    }
+    .contactBoxes a {
+        width: calc(50% - 50px);
+    }
+    
+    .infoInputs {
+        width: 40%;
+    }
+    
+    .textArea {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .infoInputs,
+    .textArea,
+    .contactBoxes a  {
+        width: 100%;
+    }
 }

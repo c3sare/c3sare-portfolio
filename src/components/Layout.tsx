@@ -13,6 +13,7 @@ export interface Page {
   title: string;
   component: JSX.Element;
   icon: JSX.Element;
+  hideTitle?: boolean
 }
 
 const Layout = (props: { pages: Page[] }) => {
@@ -135,7 +136,7 @@ const Layout = (props: { pages: Page[] }) => {
                 }
                 onWheel={mobile ? undefined : handleScroll}
               >
-                {mobile ? <h2>{page.title}</h2> : <h5>{page.title}</h5>}
+                {mobile ? <h2>{page.title}</h2> : (page.hideTitle ? <></> : <h5>{page.title}</h5>)}
                 <div className={style.pageContent}>{page.component}</div>
                 {!mobile && index < pages.length - 1 && (
                   <footer
