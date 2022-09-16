@@ -13,7 +13,7 @@ export interface Page {
   title: string;
   component: JSX.Element;
   icon: JSX.Element;
-  hideTitle?: boolean
+  hideTitle?: boolean;
 }
 
 const Layout = (props: { pages: Page[] }) => {
@@ -38,34 +38,36 @@ const Layout = (props: { pages: Page[] }) => {
   }, [currentHeight, currentWidth]);
 
   React.useEffect(() => {
-    let before:number;
+    let before: number;
     const setHeightWidth = () => {
       setCurrentHeight(window.innerHeight);
       setcurrentWidth(window.innerWidth);
     };
     setHeightWidth();
 
-    const changeSlideTouch = (event:TouchEvent) => {
+    const changeSlideTouch = (event: TouchEvent) => {
       before = event.touches[0].clientY;
-    }
+    };
 
-    const changeSlideTouchEnd = (event:TouchEvent) => {
-      if(before < event.changedTouches[0].clientY) {
-        if(currentSlide > 0) setCurrentSlide(currentSlide-1);
-      } else if(event!.changedTouches[0]!.clientY < before) {
-        if(currentSlide < pages.length-1) setCurrentSlide(currentSlide+1);
+    const changeSlideTouchEnd = (event: TouchEvent) => {
+      if (before < event.changedTouches[0].clientY) {
+        if (event.changedTouches[0].clientY - before < 70) return;
+        if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
+      } else if (event!.changedTouches[0]!.clientY < before) {
+        if (before - event.changedTouches[0].clientY < 70) return;
+        if (currentSlide < pages.length - 1) setCurrentSlide(currentSlide + 1);
       }
-    }
+    };
 
     window.addEventListener("resize", setHeightWidth, true);
-    if(!mobile) {
-      window.addEventListener('touchstart', changeSlideTouch, true);
+    if (!mobile) {
+      window.addEventListener("touchstart", changeSlideTouch, true);
       window.addEventListener("touchend", changeSlideTouchEnd, true);
     }
 
     return () => {
       window.removeEventListener("resize", setHeightWidth, true);
-      window.removeEventListener('touchstart', changeSlideTouch, true);
+      window.removeEventListener("touchstart", changeSlideTouch, true);
       window.removeEventListener("touchend", changeSlideTouchEnd, true);
     };
   }, [currentSlide, mobile]);
@@ -116,7 +118,7 @@ const Layout = (props: { pages: Page[] }) => {
         <div
           className={style.sliderMain}
           ref={sliderMain}
-          style={mobile ? {overflow: "auto"} : {}}
+          style={mobile ? { overflow: "auto" } : {}}
         >
           <div
             style={{
@@ -129,14 +131,16 @@ const Layout = (props: { pages: Page[] }) => {
               <div
                 className={style.page}
                 key={index}
-                style={
-                  mobile
-                    ? {...bgColor(index) }
-                    : {}
-                }
+                style={mobile ? { ...bgColor(index) } : {}}
                 onWheel={mobile ? undefined : handleScroll}
               >
-                {mobile ? <h2>{page.title}</h2> : (page.hideTitle ? <></> : <h5>{page.title}</h5>)}
+                {mobile ? (
+                  <h2>{page.title}</h2>
+                ) : page.hideTitle ? (
+                  <></>
+                ) : (
+                  <h5>{page.title}</h5>
+                )}
                 <div className={style.pageContent}>{page.component}</div>
                 {!mobile && index < pages.length - 1 && (
                   <footer
@@ -151,7 +155,8 @@ const Layout = (props: { pages: Page[] }) => {
             ))}
           </div>
         </div>
-        {!mobile && <div className={style.rightBar}>
+        {!mobile && (
+          <div className={style.rightBar}>
             <div className={style.slideButtons}>
               {pages.map((page, index) => (
                 <div
@@ -163,7 +168,8 @@ const Layout = (props: { pages: Page[] }) => {
                 </div>
               ))}
             </div>
-        </div>}
+          </div>
+        )}
         <footer className={style.copyrights}>
           <span>Created for C3sare.pl</span>
           <span>
