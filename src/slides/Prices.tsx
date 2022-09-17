@@ -1,4 +1,4 @@
-import React, { EventHandler } from "react";
+import React from "react";
 import * as style from "../styles/prices.module.css";
 import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 import { FaMinus } from "@react-icons/all-files/fa/FaMinus";
@@ -277,10 +277,22 @@ const Prices = () => {
 
   const deactivateMouseSlide = (e: React.MouseEvent<HTMLDivElement>) => {
     activeSlide.current = false;
+
+    actuallyPosition.current = Math.round(actuallyPosition.current / 330) * 330;
+
+    trackSlider.current!.style.transition = ".3s transform";
+    trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
+    setTimeout(() => (trackSlider.current!.style.transition = ""), 500);
   };
 
   const deactivateTouchSlide = (e: React.TouchEvent<HTMLDivElement>) => {
     activeSlide.current = false;
+
+    actuallyPosition.current = Math.round(actuallyPosition.current / 330) * 330;
+
+    trackSlider.current!.style.transition = ".3s transform";
+    trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
+    setTimeout(() => (trackSlider.current!.style.transition = ""), 500);
   };
 
   const handleOnMouseMove = (e: React.MouseEvent) => {
