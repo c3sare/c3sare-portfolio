@@ -67,8 +67,10 @@
   transition: 0.3s top;
 }
 
-.prices > div > .variant:hover {
-  top: 21px;
+@media screen and (min-width: 800px) {
+  .prices > div > .variant:hover {
+    top: 21px;
+  }
 }
 
 .price {

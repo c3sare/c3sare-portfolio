@@ -1,141 +1,141 @@
 .contactForm {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .contactForm button {
-    max-width: 100%;
-    width: 300px;
-    display: block;
-    margin: 0 auto;
+  max-width: 100%;
+  width: 300px;
+  display: block;
+  margin: 0 auto;
 }
 
 .infoInputs {
-    display: flex;
-    flex-direction: column;
-    padding: 8px;
-    width: 30%;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  width: 30%;
+  justify-content: space-between;
 }
 
 .textArea {
-    padding: 8px;
-    width: 40%;
+  padding: 8px;
+  width: 40%;
 }
 
-input, textarea {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    padding: 12px;
-    border: none;
-    margin-bottom: 16px;
-    border-bottom: 2px solid white;
-    border-top: 2px solid white;
+input,
+textarea {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 12px;
+  border: none;
+  margin-bottom: 16px;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
 }
 
 .textArea > textarea {
-    resize: none;
-    height: calc(100% - 34px);
-    width: 100%;
-    min-height: 180px;
+  resize: none;
+  height: calc(100% - 31px);
+  width: 100%;
+  min-height: 180px;
 }
 
 button {
-    border-radius: 0;
-    border: 3px solid white;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    padding: 10px 15px;
-    transition: .3s color, .3s background-color;
-    cursor: pointer;
+  border-radius: 0;
+  border: 3px solid white;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 10px 15px;
+  transition: 0.3s color, 0.3s background-color;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: rgba(255, 255, 255, 1);
-    color: black;
+  background-color: rgba(255, 255, 255, 1);
+  color: black;
 }
 
 @media screen and (max-width: 600px) {
-    .infoInputs {
-        width: 100%;
-    }
+  .infoInputs {
+    width: 100%;
+  }
 
-    .textArea {
-        width: 100%;
-    }
-
+  .textArea {
+    width: 100%;
+  }
 }
 
 .contactBoxes {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 30%;
-    max-width: 1200px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 30%;
+  max-width: 1200px;
 }
 
 .contactBoxes a {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin: 25px;
-    border-bottom: 2px solid white;
-    border-top: 2px solid white;
-    padding: 16px;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    transition: 0.3s bottom;
-    background-color: rgba(0, 0, 0, 0.3);
-    text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 25px;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+  padding: 16px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  transition: 0.3s bottom;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-decoration: none;
 }
 
 .contactBoxes a:hover {
-    bottom: 5px;
+  bottom: 5px;
 }
 
 .contactBoxes a > svg {
-    font-size: 26px;
+  font-size: 26px;
 }
 
 .contactForm label {
-    display: block;
-    font-size: 13px;
-    width: 100%;
+  display: block;
+  font-size: 13px;
+  width: 100%;
 }
 
 .infoInputs input {
-    width: 100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
-    .contactBoxes {
-        width: 100%;
-    }
-    .contactBoxes a {
-        width: calc(50% - 50px);
-    }
-    
-    .infoInputs {
-        width: 40%;
-    }
-    
-    .textArea {
-        width: 60%;
-    }
+  .contactBoxes {
+    width: 100%;
+  }
+  .contactBoxes a {
+    width: calc(50% - 50px);
+  }
+
+  .infoInputs {
+    width: 40%;
+  }
+
+  .textArea {
+    width: 60%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .infoInputs,
-    .textArea,
-    .contactBoxes a  {
-        width: 100%;
-    }
+  .infoInputs,
+  .textArea,
+  .contactBoxes a {
+    width: 100%;
+  }
 }
