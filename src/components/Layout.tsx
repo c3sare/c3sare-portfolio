@@ -8,6 +8,9 @@ import { FaRegWindowClose } from "@react-icons/all-files/fa/FaRegWindowClose";
 import { FaBars } from "@react-icons/all-files/fa/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
+import Instagram from "../images/icons/social/ig.svg";
+import Facebook from "../images/icons/social/fb.svg";
+import Linkedin from "../images/icons/social/li.svg";
 
 export interface Page {
   title: string;
@@ -36,18 +39,19 @@ const Layout = (props: { pages: Page[] }) => {
     if (before.current < event.changedTouches[0].clientY) {
       if (event.changedTouches[0].clientY - before.current < 70) return;
       if (event.currentTarget.scrollTop !== 0) return;
-      if(event.currentTarget.scrollTop === scrollTopBefore.current) {
+      if (event.currentTarget.scrollTop === scrollTopBefore.current) {
         if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
       }
     } else if (event!.changedTouches[0]!.clientY < before.current) {
       if (before.current - event.changedTouches[0].clientY < 70) return;
       if (
-        (Math.ceil(event.currentTarget.scrollTop + event.currentTarget.offsetHeight) <
-        event.currentTarget.scrollHeight)
+        Math.ceil(
+          event.currentTarget.scrollTop + event.currentTarget.offsetHeight
+        ) < event.currentTarget.scrollHeight
       ) {
         return;
       }
-      if(event.currentTarget.scrollTop === scrollTopBefore.current) {
+      if (event.currentTarget.scrollTop === scrollTopBefore.current) {
         if (currentSlide < pages.length - 1) setCurrentSlide(currentSlide + 1);
       }
     }
@@ -174,28 +178,28 @@ const Layout = (props: { pages: Page[] }) => {
           </div>
         )}
         <footer className={style.copyrights}>
-          <span>Created for C3sare.pl</span>
+          <span>Created by C3sare</span>
           <span>
             <a
               target="_blank"
               href="https://www.facebook.com/marcin.marciniuk.33/"
               aria-label="C3sare - Facebook"
             >
-              <FaFacebookF />
+              <Facebook />
             </a>
             <a
               target="_blank"
               href="https://www.linkedin.com/in/marcin-marciniuk-b35646220/"
               aria-label="C3sare - Linkedin"
             >
-              <FaLinkedinIn />
+              <Linkedin />
             </a>
             <a
               target="_blank"
               href="https://www.instagram.com/plc3sare/"
               aria-label="C3sare - Instagram"
             >
-              <FaInstagram />
+              <Instagram />
             </a>
           </span>
         </footer>
