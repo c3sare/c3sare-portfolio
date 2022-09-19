@@ -96,162 +96,7 @@ const priceBoxes = [
         have: true,
       },
     ],
-  },
-  {
-    title: "Pakiet Premium",
-    cost: [3000, 0],
-    popular: false,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: true,
-      },
-      {
-        title: "Blog na stronie",
-        have: true,
-      },
-      {
-        title: "Sklep internetowy",
-        have: true,
-      },
-      {
-        title: "Analityka Google",
-        have: true,
-      },
-    ],
-  },
-  {
-    title: "Pakiet Premium",
-    cost: [3000, 0],
-    popular: false,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: true,
-      },
-      {
-        title: "Blog na stronie",
-        have: true,
-      },
-      {
-        title: "Sklep internetowy",
-        have: true,
-      },
-      {
-        title: "Analityka Google",
-        have: true,
-      },
-    ],
-  },
-  {
-    title: "Pakiet Premium",
-    cost: [3000, 0],
-    popular: false,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: true,
-      },
-      {
-        title: "Blog na stronie",
-        have: true,
-      },
-      {
-        title: "Sklep internetowy",
-        have: true,
-      },
-      {
-        title: "Analityka Google",
-        have: true,
-      },
-    ],
-  },
-  {
-    title: "Pakiet Premium",
-    cost: [3000, 0],
-    popular: false,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: true,
-      },
-      {
-        title: "Blog na stronie",
-        have: true,
-      },
-      {
-        title: "Sklep internetowy",
-        have: true,
-      },
-      {
-        title: "Analityka Google",
-        have: true,
-      },
-    ],
-  },
-  {
-    title: "Pakiet Premium",
-    cost: [3000, 0],
-    popular: false,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: true,
-      },
-      {
-        title: "Blog na stronie",
-        have: true,
-      },
-      {
-        title: "Sklep internetowy",
-        have: true,
-      },
-      {
-        title: "Analityka Google",
-        have: true,
-      },
-    ],
-  },
+  }
 ];
 
 const Prices = () => {
@@ -333,6 +178,10 @@ const Prices = () => {
           -330 * priceBoxes.length + container.current!.clientWidth;
         trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
       }
+      if(actuallyPosition.current !== 0 && 330 * priceBoxes.length < container.current!.clientWidth) {
+        actuallyPosition.current = 0;
+        trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
+      }
     };
     handleSetContainerWidth();
 
@@ -346,8 +195,16 @@ const Prices = () => {
   return (
     <div
       className={style.prices}
-      onMouseDown={activateMouseSlide}
-      onTouchStart={activateTouchSlide}
+      onMouseDown={(e) => {
+        if(e.currentTarget.clientWidth < 330 * priceBoxes.length) {
+          activateMouseSlide(e);
+        }
+      }}
+      onTouchStart={(e) => {
+        if(e.currentTarget.clientWidth < 330 * priceBoxes.length) {
+          activateTouchSlide(e);
+        }
+      }}
       onMouseUp={deactivateMouseSlide}
       onTouchEnd={deactivateTouchSlide}
       onMouseMove={handleOnMouseMove}

@@ -24,6 +24,34 @@ const Layout = (props: { pages: Page[] }) => {
   const [mobile, setMobile] = React.useState(false);
   const blockScroll = React.useRef<boolean>(false);
   const sliderMain = React.useRef<HTMLDivElement>(null);
+  const before = React.useRef(0);
+  const scrollTopBefore = React.useRef(0);
+
+  const changeSlideTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    before.current = event.touches[0].clientY;
+    scrollTopBefore.current = event.currentTarget.scrollTop;
+  };
+
+  const changeSlideTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (before.current < event.changedTouches[0].clientY) {
+      if (event.changedTouches[0].clientY - before.current < 70) return;
+      if (event.currentTarget.scrollTop !== 0) return;
+      if(event.currentTarget.scrollTop === scrollTopBefore.current) {
+        if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
+      }
+    } else if (event!.changedTouches[0]!.clientY < before.current) {
+      if (before.current - event.changedTouches[0].clientY < 70) return;
+      if (
+        (Math.ceil(event.currentTarget.scrollTop + event.currentTarget.offsetHeight) <
+        event.currentTarget.scrollHeight)
+      ) {
+        return;
+      }
+      if(event.currentTarget.scrollTop === scrollTopBefore.current) {
+        if (currentSlide < pages.length - 1) setCurrentSlide(currentSlide + 1);
+      }
+    }
+  };
 
   React.useEffect(() => {
     if (currentWidth < 800 && mobile === false) {
@@ -38,37 +66,16 @@ const Layout = (props: { pages: Page[] }) => {
   }, [currentHeight, currentWidth]);
 
   React.useEffect(() => {
-    let before: number;
     const setHeightWidth = () => {
       setCurrentHeight(window.innerHeight);
       setcurrentWidth(window.innerWidth);
     };
     setHeightWidth();
 
-    const changeSlideTouch = (event: TouchEvent) => {
-      before = event.touches[0].clientY;
-    };
-
-    const changeSlideTouchEnd = (event: TouchEvent) => {
-      if (before < event.changedTouches[0].clientY) {
-        if (event.changedTouches[0].clientY - before < 70) return;
-        if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
-      } else if (event!.changedTouches[0]!.clientY < before) {
-        if (before - event.changedTouches[0].clientY < 70) return;
-        if (currentSlide < pages.length - 1) setCurrentSlide(currentSlide + 1);
-      }
-    };
-
     window.addEventListener("resize", setHeightWidth, true);
-    if (!mobile) {
-      window.addEventListener("touchstart", changeSlideTouch, true);
-      window.addEventListener("touchend", changeSlideTouchEnd, true);
-    }
 
     return () => {
       window.removeEventListener("resize", setHeightWidth, true);
-      window.removeEventListener("touchstart", changeSlideTouch, true);
-      window.removeEventListener("touchend", changeSlideTouchEnd, true);
     };
   }, [currentSlide, mobile]);
 
@@ -76,7 +83,7 @@ const Layout = (props: { pages: Page[] }) => {
     if (!blockScroll.current) {
       if (e.deltaY > 0) {
         if (
-          e.currentTarget.scrollTop + e.currentTarget.clientHeight <
+          Math.ceil(e.currentTarget.scrollTop + e.currentTarget.offsetHeight) <
           e.currentTarget.scrollHeight
         ) {
           return;
@@ -132,15 +139,11 @@ const Layout = (props: { pages: Page[] }) => {
                 className={style.page}
                 key={index}
                 style={mobile ? { ...bgColor(index) } : {}}
-                onWheel={mobile ? undefined : handleScroll}
+                onWheel={handleScroll}
+                onTouchStart={changeSlideTouchStart}
+                onTouchEnd={changeSlideTouchEnd}
               >
-                {mobile ? (
-                  <h2>{page.title}</h2>
-                ) : page.hideTitle ? (
-                  <></>
-                ) : (
-                  <h5>{page.title}</h5>
-                )}
+                {page.hideTitle ? <></> : <h2>{page.title}</h2>}
                 <div className={style.pageContent}>{page.component}</div>
                 {!mobile && index < pages.length - 1 && (
                   <footer
