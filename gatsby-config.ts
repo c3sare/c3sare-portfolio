@@ -2,7 +2,7 @@ import type { GatsbyConfig } from "gatsby";
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -14,9 +14,17 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `0xgywss1ielu`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    `gatsby-transformer-inline-svg`,
     "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-web-font-loader",
@@ -50,15 +58,8 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /\.svg$/
-        }
-      }
-    },
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `0xgywss1ielu`,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+          include: /\.svg$/,
+        },
       },
     },
   ],
