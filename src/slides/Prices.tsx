@@ -2,6 +2,7 @@ import React from "react";
 import * as style from "../styles/prices.module.css";
 import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 import { FaMinus } from "@react-icons/all-files/fa/FaMinus";
+import { graphql, useStaticQuery } from "gatsby";
 
 const priceBoxes = [
   {
@@ -107,6 +108,27 @@ const Prices = () => {
   const positionBeforeMove = React.useRef<number>(0);
   const container = React.useRef<HTMLDivElement>(null);
   const [currentWidth, setCurrentWidth] = React.useState(300);
+
+  const priceBoxes = useStaticQuery(graphql`
+    {
+      allContentfulPrices {
+        nodes {
+          name
+          cost
+          cons {
+            have
+            title
+          }
+          popular
+        }
+      }
+    }
+  `).allContentfulPrices.nodes.map((item:any) => ({
+    title: item.name,
+    cons: [...item.cons.reverse()],
+    popular: item.popular,
+    cost: [item.cost, 0]
+  })).reverse();
 
   const activateMouseSlide = (e: React.MouseEvent<HTMLDivElement>) => {
     activeSlide.current = true;
