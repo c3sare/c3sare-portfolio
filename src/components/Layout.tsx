@@ -16,7 +16,10 @@ export interface Page {
   hideTitle?: boolean;
 }
 
-const Layout = (props: { pages?: Page[], children?: JSX.Element | JSX.Element[] | React.ReactNode}) => {
+const Layout = (props: {
+  pages?: Page[];
+  children?: JSX.Element | JSX.Element[] | React.ReactNode;
+}) => {
   const { pages } = props;
   const [currentSlide, setCurrentSlide] = React.useState<number>(0);
   const [currentHeight, setCurrentHeight] = React.useState<number>(0);
@@ -56,11 +59,11 @@ const Layout = (props: { pages?: Page[], children?: JSX.Element | JSX.Element[] 
 
   React.useEffect(() => {
     if (currentWidth < 800 && mobile === false) {
-      if(pages) sliderMain.current!.scrollTop = 0;
+      if (pages) sliderMain.current!.scrollTop = 0;
       setMobile(true);
       setCurrentSlide(0);
     } else if (currentWidth > 800 && mobile === true) {
-      if(pages) sliderMain.current!.scrollTop = 0;
+      if (pages) sliderMain.current!.scrollTop = 0;
       setMobile(false);
       setCurrentSlide(0);
     }
@@ -123,45 +126,46 @@ const Layout = (props: { pages?: Page[], children?: JSX.Element | JSX.Element[] 
         </Link>
       </header>
       <div className={style.backgroundGradient}>
-        {pages ? <div
-          className={style.sliderMain}
-          ref={sliderMain}
-          style={mobile ? { overflow: "auto" } : {}}
-        >
+        {pages ? (
           <div
-            style={{
-              transform: `translate3d(0, ${
-                mobile ? "0" : -currentSlide * currentHeight
-              }px, 0)`,
-            }}
+            className={style.sliderMain}
+            ref={sliderMain}
+            style={mobile ? { overflow: "auto" } : {}}
           >
-            {pages.map((page, index) => (
-              <div
-                className={style.page}
-                key={index}
-                style={mobile ? { ...bgColor(index) } : {}}
-                onWheel={handleScroll}
-                onTouchStart={changeSlideTouchStart}
-                onTouchEnd={changeSlideTouchEnd}
-              >
-                {page.hideTitle ? <></> : <h2>{page.title}</h2>}
-                <div className={style.pageContent}>{page.component}</div>
-                {!mobile && index < pages.length - 1 && (
-                  <footer
-                    className={style.nextSlide}
-                    onClick={() => setCurrentSlide(currentSlide + 1)}
-                  >
-                    <FaAngleDoubleDown />
-                    <span>{pages[index + 1].title}</span>
-                  </footer>
-                )}
-              </div>
-            ))}
+            <div
+              style={{
+                transform: `translate3d(0, ${
+                  mobile ? "0" : -currentSlide * currentHeight
+                }px, 0)`,
+              }}
+            >
+              {pages.map((page, index) => (
+                <div
+                  className={style.page}
+                  key={index}
+                  style={mobile ? { ...bgColor(index) } : {}}
+                  onWheel={handleScroll}
+                  onTouchStart={changeSlideTouchStart}
+                  onTouchEnd={changeSlideTouchEnd}
+                >
+                  {page.hideTitle ? <></> : <h2>{page.title}</h2>}
+                  <div className={style.pageContent}>{page.component}</div>
+                  {!mobile && index < pages.length - 1 && (
+                    <footer
+                      className={style.nextSlide}
+                      onClick={() => setCurrentSlide(currentSlide + 1)}
+                    >
+                      <FaAngleDoubleDown />
+                      <span>{pages[index + 1].title}</span>
+                    </footer>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        :
-        props.children
-        }
+        ) : (
+          <main className={style.main}>{props.children}</main>
+        )}
         {!mobile && pages && (
           <div className={style.rightBar}>
             <div className={style.slideButtons}>

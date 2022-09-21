@@ -2,7 +2,7 @@ import React from "react";
 import * as style from "../styles/prices.module.css";
 import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 import { FaMinus } from "@react-icons/all-files/fa/FaMinus";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 
 interface PriceBox {
   title: string;
@@ -10,6 +10,7 @@ interface PriceBox {
   popular?: boolean;
   pros: string[];
   cons: string[];
+  slug: string;
 }
 
 const Prices = () => {
@@ -20,8 +21,17 @@ const Prices = () => {
   const positionBeforeMove = React.useRef<number>(0);
   const container = React.useRef<HTMLDivElement>(null);
   const [currentWidth, setCurrentWidth] = React.useState(300);
+  const mount = React.useRef(false);
 
-  const priceBoxes:PriceBox[] = useStaticQuery(graphql`
+  React.useEffect(() => {
+    mount.current = true;
+
+    return () => {
+      mount.current = false;
+    };
+  }, []);
+
+  const priceBoxes: PriceBox[] = useStaticQuery(graphql`
     {
       allContentfulPrices {
         nodes {
@@ -30,15 +40,17 @@ const Prices = () => {
           cons
           cost
           popular
+          slug
         }
       }
     }
-  `).allContentfulPrices.nodes.map((item:any) => ({
+  `).allContentfulPrices.nodes.map((item: any) => ({
     title: item.name,
     pros: item.pros === null ? [] : [...item.pros],
     cons: item.cons === null ? [] : [...item.cons],
     popular: item.popular,
-    cost: [item.cost, 0]
+    cost: [item.cost, 0],
+    slug: item.slug,
   }));
 
   const activateMouseSlide = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,7 +72,9 @@ const Prices = () => {
 
     trackSlider.current!.style.transition = ".3s transform";
     trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
-    setTimeout(() => (trackSlider.current!.style.transition = ""), 500);
+    setTimeout(() => {
+      if (mount.current) trackSlider.current!.style.transition = "";
+    }, 500);
   };
 
   const deactivateTouchSlide = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -70,7 +84,9 @@ const Prices = () => {
 
     trackSlider.current!.style.transition = ".3s transform";
     trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
-    setTimeout(() => (trackSlider.current!.style.transition = ""), 500);
+    setTimeout(() => {
+      if (mount.current) trackSlider.current!.style.transition = "";
+    }, 500);
   };
 
   const handleOnMouseMove = (e: React.MouseEvent) => {
@@ -111,7 +127,10 @@ const Prices = () => {
           -330 * priceBoxes.length + container.current!.clientWidth;
         trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
       }
-      if(actuallyPosition.current !== 0 && 330 * priceBoxes.length < container.current!.clientWidth) {
+      if (
+        actuallyPosition.current !== 0 &&
+        330 * priceBoxes.length < container.current!.clientWidth
+      ) {
         actuallyPosition.current = 0;
         trackSlider.current!.style.transform = `translate3d(${actuallyPosition.current}px, 0, 0)`;
       }
@@ -129,12 +148,12 @@ const Prices = () => {
     <div
       className={style.prices}
       onMouseDown={(e) => {
-        if(e.currentTarget.clientWidth < 330 * priceBoxes.length) {
+        if (e.currentTarget.clientWidth < 330 * priceBoxes.length) {
           activateMouseSlide(e);
         }
       }}
       onTouchStart={(e) => {
-        if(e.currentTarget.clientWidth < 330 * priceBoxes.length) {
+        if (e.currentTarget.clientWidth < 330 * priceBoxes.length) {
           activateTouchSlide(e);
         }
       }}
@@ -166,27 +185,22 @@ const Prices = () => {
               </span>
             </div>
             {box.pros.map((pro, i) => (
-              <div
-                key={i}
-                className={style.addon}
-              >
+              <div key={i} className={style.addon}>
                 <FaCheck />
                 <span>{pro}</span>
               </div>
             ))}
             {box.cons.map((con, i) => (
-              <div
-                key={i}
-                className={style.addon + " " + style.minus}
-              >
+              <div key={i} className={style.addon + " " + style.minus}>
                 <FaMinus />
                 <span>{con}</span>
               </div>
             ))}
             <hr />
             <div className={style.buttonsPrice}>
-              <button>Zamawiam</button>
-              <button>Więcej</button>
+              <Link to={`/prices/${box.slug}`}>
+                <button>Więcej</button>
+              </Link>
             </div>
           </div>
         ))}

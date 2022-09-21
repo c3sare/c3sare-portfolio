@@ -1,15 +1,55 @@
-const path = require('path')
+const path = require("path");
+import { GatsbyNode } from "gatsby";
 
-exports.createPages = async ({ graphql, actions, reporter }:any) => {
-  const { createPage } = actions
+interface Page {
+  errors?: any;
+  data?: {
+    allContentfulServices: {
+      nodes: Array<{
+        slug: string;
+      }>;
+    };
+  };
+}
+
+interface PricePage {
+  errors?: any;
+  data?: {
+    allContentfulPrices: {
+      nodes: {
+        slug: string;
+      }[];
+    };
+  };
+}
+
+export const createPages: GatsbyNode["createPages"] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
+  const { createPage } = actions;
 
   // Define a template for blog post
-  const blogPost = path.resolve('./src/templates/services.tsx');
+  const servicePage = path.resolve("./src/templates/services.tsx");
+  const pricePage = path.resolve("./src/templates/prices.tsx");
 
-  const result = await graphql(
+  const result: Page = await graphql(
     `
       {
         allContentfulServices {
+          nodes {
+            slug
+          }
+        }
+      }
+    `
+  );
+
+  const resultPrices: PricePage = await graphql(
+    `
+      {
+        allContentfulPrices {
           nodes {
             slug
           }
@@ -22,25 +62,42 @@ exports.createPages = async ({ graphql, actions, reporter }:any) => {
     reporter.panicOnBuild(
       `There was an error loading your Contentful posts`,
       result.errors
-    )
-    return
+    );
+    return;
   }
 
-  const posts = result.data.allContentfulServices.nodes;
+  if (resultPrices.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your Contentful posts`,
+      resultPrices.errors
+    );
+    return;
+  }
 
-  // Create blog posts pages
-  // But only if there's at least one blog post found in Contentful
-  // `context` is available in the template as a prop and as a variable in GraphQL
+  const posts = result.data!.allContentfulServices.nodes;
+  const prices = resultPrices.data!.allContentfulPrices.nodes;
 
   if (posts.length > 0) {
-    posts.forEach((post:any) => {
+    posts.forEach((post) => {
       createPage({
         path: `/services/${post.slug}/`,
-        component: blogPost,
+        component: servicePage,
         context: {
-          slug: post.slug
+          slug: post.slug,
         },
-      })
-    })
+      });
+    });
   }
-}
+
+  if (prices.length > 0) {
+    prices.forEach((price) => {
+      createPage({
+        path: `/prices/${price.slug}/`,
+        component: pricePage,
+        context: {
+          slug: price.slug,
+        },
+      });
+    });
+  }
+};
