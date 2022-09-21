@@ -1,8 +1,5 @@
 import React from "react";
 import * as style from "../styles/style.module.css";
-import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
-import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
-import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
 import { FaAngleDoubleDown } from "@react-icons/all-files/fa/FaAngleDoubleDown";
 import { FaRegWindowClose } from "@react-icons/all-files/fa/FaRegWindowClose";
 import { FaBars } from "@react-icons/all-files/fa/FaBars";
@@ -19,7 +16,7 @@ export interface Page {
   hideTitle?: boolean;
 }
 
-const Layout = (props: { pages: Page[] }) => {
+const Layout = (props: { pages?: Page[], children?: JSX.Element | JSX.Element[] | React.ReactNode}) => {
   const { pages } = props;
   const [currentSlide, setCurrentSlide] = React.useState<number>(0);
   const [currentHeight, setCurrentHeight] = React.useState<number>(0);
@@ -52,18 +49,18 @@ const Layout = (props: { pages: Page[] }) => {
         return;
       }
       if (event.currentTarget.scrollTop === scrollTopBefore.current) {
-        if (currentSlide < pages.length - 1) setCurrentSlide(currentSlide + 1);
+        if (currentSlide < pages!.length - 1) setCurrentSlide(currentSlide + 1);
       }
     }
   };
 
   React.useEffect(() => {
     if (currentWidth < 800 && mobile === false) {
-      sliderMain.current!.scrollTop = 0;
+      if(pages) sliderMain.current!.scrollTop = 0;
       setMobile(true);
       setCurrentSlide(0);
     } else if (currentWidth > 800 && mobile === true) {
-      sliderMain.current!.scrollTop = 0;
+      if(pages) sliderMain.current!.scrollTop = 0;
       setMobile(false);
       setCurrentSlide(0);
     }
@@ -92,7 +89,7 @@ const Layout = (props: { pages: Page[] }) => {
         ) {
           return;
         }
-        if (pages.length - 1 > currentSlide) {
+        if (pages!.length - 1 > currentSlide) {
           setCurrentSlide(currentSlide + 1);
           blockScroll.current = true;
           setTimeout(() => (blockScroll.current = false), 900);
@@ -126,7 +123,7 @@ const Layout = (props: { pages: Page[] }) => {
         </Link>
       </header>
       <div className={style.backgroundGradient}>
-        <div
+        {pages ? <div
           className={style.sliderMain}
           ref={sliderMain}
           style={mobile ? { overflow: "auto" } : {}}
@@ -162,7 +159,10 @@ const Layout = (props: { pages: Page[] }) => {
             ))}
           </div>
         </div>
-        {!mobile && (
+        :
+        props.children
+        }
+        {!mobile && pages && (
           <div className={style.rightBar}>
             <div className={style.slideButtons}>
               {pages.map((page, index) => (

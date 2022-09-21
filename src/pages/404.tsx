@@ -1,8 +1,10 @@
 import * as React from "react"
 import { Link, HeadFC } from "gatsby"
+import Layout from "../components/Layout"
 
 const pageStyles = {
-  color: "#232129",
+  minHeight: '100vh',
+  color: "white",
   padding: "96px",
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
@@ -25,22 +27,17 @@ const codeStyles = {
 
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Layout>
+      <main style={pageStyles}>
+        <h1 style={headingStyles}>Strony nie znaleziono</h1>
+        <p style={paragraphStyles}>
+          Przepraszam 😔, nie mogę znaleźć strony której szukasz.
+          <br />
+          <br />
+          <Link style={{color: 'grey'}} to="/">Wróć na stronę główną</Link>.
+        </p>
+      </main>
+    </Layout>
   )
 }
 

@@ -26,6 +26,7 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     `gatsby-transformer-inline-svg`,
     "gatsby-plugin-offline",
+    "gatsby-transformer-remark",
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {

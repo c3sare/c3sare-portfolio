@@ -4,101 +4,13 @@ import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 import { FaMinus } from "@react-icons/all-files/fa/FaMinus";
 import { graphql, useStaticQuery } from "gatsby";
 
-const priceBoxes = [
-  {
-    title: "Pakiet Standard",
-    cost: [600, 0],
-    popular: false,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: false,
-      },
-      {
-        title: "Blog na stronie",
-        have: false,
-      },
-      {
-        title: "Sklep internetowy",
-        have: false,
-      },
-      {
-        title: "Analityka Google",
-        have: false,
-      },
-    ],
-  },
-  {
-    title: "Pakiet Medium",
-    cost: [1200, 0],
-    popular: true,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: true,
-      },
-      {
-        title: "Blog na stronie",
-        have: true,
-      },
-      {
-        title: "Sklep internetowy",
-        have: false,
-      },
-      {
-        title: "Analityka Google",
-        have: false,
-      },
-    ],
-  },
-  {
-    title: "Pakiet Premium",
-    cost: [3000, 0],
-    popular: false,
-    cons: [
-      {
-        title: "Strona w jednym języku",
-        have: true,
-      },
-      {
-        title: "Optymalizacja dla wyszukiwarek",
-        have: true,
-      },
-      {
-        title: "Panel Administracyjny",
-        have: true,
-      },
-      {
-        title: "Blog na stronie",
-        have: true,
-      },
-      {
-        title: "Sklep internetowy",
-        have: true,
-      },
-      {
-        title: "Analityka Google",
-        have: true,
-      },
-    ],
-  }
-];
+interface PriceBox {
+  title: string;
+  cost: [number, number];
+  popular?: boolean;
+  pros: string[];
+  cons: string[];
+}
 
 const Prices = () => {
   const activeSlide = React.useRef<boolean>(false);
@@ -109,26 +21,25 @@ const Prices = () => {
   const container = React.useRef<HTMLDivElement>(null);
   const [currentWidth, setCurrentWidth] = React.useState(300);
 
-  const priceBoxes = useStaticQuery(graphql`
+  const priceBoxes:PriceBox[] = useStaticQuery(graphql`
     {
       allContentfulPrices {
         nodes {
           name
+          pros
+          cons
           cost
-          cons {
-            have
-            title
-          }
           popular
         }
       }
     }
   `).allContentfulPrices.nodes.map((item:any) => ({
     title: item.name,
-    cons: [...item.cons.reverse()],
+    pros: item.pros === null ? [] : [...item.pros],
+    cons: item.cons === null ? [] : [...item.cons],
     popular: item.popular,
     cost: [item.cost, 0]
-  })).reverse();
+  }));
 
   const activateMouseSlide = (e: React.MouseEvent<HTMLDivElement>) => {
     activeSlide.current = true;
@@ -254,13 +165,22 @@ const Prices = () => {
                 </span>
               </span>
             </div>
+            {box.pros.map((pro, i) => (
+              <div
+                key={i}
+                className={style.addon}
+              >
+                <FaCheck />
+                <span>{pro}</span>
+              </div>
+            ))}
             {box.cons.map((con, i) => (
               <div
                 key={i}
-                className={style.addon + " " + (con.have ? "" : style.minus)}
+                className={style.addon + " " + style.minus}
               >
-                {con.have ? <FaCheck /> : <FaMinus />}
-                <span>{con.title}</span>
+                <FaMinus />
+                <span>{con}</span>
               </div>
             ))}
             <hr />
