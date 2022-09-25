@@ -23,6 +23,17 @@ interface PricePage {
   };
 }
 
+interface ProjectPage {
+  errors?: any;
+  data?: {
+    allContentfulProjects: {
+      nodes: {
+        slug: string;
+      }[];
+    };
+  };
+}
+
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions,
@@ -33,6 +44,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   // Define a template for blog post
   const servicePage = path.resolve("./src/templates/services.tsx");
   const pricePage = path.resolve("./src/templates/prices.tsx");
+  const projectPage = path.resolve("./src/templates/project.tsx");
 
   const result: Page = await graphql(
     `
@@ -58,24 +70,29 @@ export const createPages: GatsbyNode["createPages"] = async ({
     `
   );
 
-  if (result.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your Contentful posts`,
-      result.errors
-    );
-    return;
-  }
+  const resultProjects: ProjectPage = await graphql(
+    `
+      {
+        allContentfulProjects {
+          nodes {
+            slug
+          }
+        }
+      }
+    `
+  );
 
-  if (resultPrices.errors) {
+  if (result.errors || resultPrices.errors || resultProjects.errors) {
     reporter.panicOnBuild(
       `There was an error loading your Contentful posts`,
-      resultPrices.errors
+      result.errors || resultPrices.errors || resultProjects.errors
     );
     return;
   }
 
   const posts = result.data!.allContentfulServices.nodes;
   const prices = resultPrices.data!.allContentfulPrices.nodes;
+  const projects = resultProjects.data!.allContentfulProjects.nodes;
 
   if (posts.length > 0) {
     posts.forEach((post) => {
@@ -96,6 +113,18 @@ export const createPages: GatsbyNode["createPages"] = async ({
         component: pricePage,
         context: {
           slug: price.slug,
+        },
+      });
+    });
+  }
+
+  if (projects.length > 0) {
+    projects.forEach((project) => {
+      createPage({
+        path: `/projects/${project.slug}/`,
+        component: projectPage,
+        context: {
+          slug: project.slug,
         },
       });
     });

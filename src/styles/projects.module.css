@@ -1,116 +1,121 @@
 .projects {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .projects > .project {
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 0 3px black;
-    background: linear-gradient(
-        to left,
-        rgba(54, 0, 42, 0.6),
-        rgba(51, 0, 118, 0.6)
-      );
-    overflow:hidden;
-    position: relative;
-    margin: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px black;
+  background: linear-gradient(
+    to left,
+    rgba(54, 0, 42, 0.6),
+    rgba(51, 0, 118, 0.6)
+  );
+  overflow: hidden;
+  position: relative;
+  margin: 15px;
 }
 
 .projects > .project > .contentMenu {
-    position: absolute;
-    top: 5px; 
-    left: 5px;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-    opacity: 0;
-    transition: opacity 0.5s;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  opacity: 0;
+  transition: opacity 0.5s;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .projects > .project > .contentMenu a,
 .projects > .project > .contentMenu span {
-    color: white;
-    padding: 6px 8px;
-    border-radius: 25px;
-    border: 2px solid white;
-    margin: 0 8px;
-    position: relative;
-    top: -100px;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0);
-    transition: top .5s, background-color .3s;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 25px;
+  border: 2px solid white;
+  margin: 0 8px;
+  position: relative;
+  top: -100px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  transition: top 0.5s, background-color 0.3s;
 }
 
 .projects > .project > .contentMenu a:hover,
 .projects > .project > .contentMenu span:hover {
-    background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 1);
 }
 
 .projects > .project:hover > .contentMenu {
-    opacity: 1;
-    background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .projects > .project:hover > .contentMenu a,
 .projects > .project:hover > .contentMenu span {
-    top: 0;
+  top: 0;
 }
 
 .projects > .project .imageBox {
-    overflow:hidden;
+  overflow: hidden;
 }
 
 .projects > .project .imageBox > img {
-    transition: transform 0.6s;
+  transition: transform 0.6s;
 }
 
 .projects > .project:hover .imageBox > img {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 @media screen and (max-width: 599.99px) {
-    .projects > .project {
-      width: calc(100% - 30px);
-    }
+  .projects > .project {
+    width: calc(100% - 30px);
   }
-  
-  @media screen and (min-width: 600px) and (max-width: 1200px) {
-    .projects > .project {
-      width: calc(50% - 30px);
-    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  .projects > .project {
+    width: calc(50% - 30px);
   }
-  
-  @media screen and (min-width: 1200px) {
-    .projects > .project {
-      width: calc(33.333333% - 30px);
-    }
+}
+
+@media screen and (min-width: 1200px) {
+  .projects > .project {
+    width: calc(33.333333% - 30px);
   }
+}
 
 .techs {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .techs img {
-    width: 20px;
-    margin: 4px;
-    height: auto;
+  width: 20px;
+  margin: 4px;
+  height: auto;
 }
 
 .more {
-    width: 100%;
+  width: 100%;
+}
+
+.more a {
+  text-decoration: none;
+  color: white;
 }
 
 .more button {
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
