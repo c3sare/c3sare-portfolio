@@ -82,4 +82,14 @@ const ProjectsPage = () => {
   );
 };
 
+export const Head = () => {
+  return (
+    <>
+      <title>C3sare | Projekty</title>
+      <meta name="description" content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"/>
+      <meta name="keywords" content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"/>
+    </>
+  )
+}
+
 export default ProjectsPage;

@@ -25,6 +25,7 @@ const Layout = (props: {
   const [currentHeight, setCurrentHeight] = React.useState<number>(0);
   const [currentWidth, setcurrentWidth] = React.useState<number>(0);
   const [mobile, setMobile] = React.useState(false);
+  const [openMenu, setOpenMenu] = React.useState(false);
   const blockScroll = React.useRef<boolean>(false);
   const sliderMain = React.useRef<HTMLDivElement>(null);
   const before = React.useRef(0);
@@ -124,6 +125,12 @@ const Layout = (props: {
         <Link to="/">
           <img src={logo} alt="C3sare logo" width="120px" height="30px" />
         </Link>
+        <div
+          className={style.navButton}
+          onClick={() => setOpenMenu(true)}
+        >
+          <FaBars/>
+        </div>
       </header>
       <div className={style.backgroundGradient}>
         {pages ? (
@@ -208,6 +215,17 @@ const Layout = (props: {
           </span>
         </footer>
       </div>
+      {openMenu &&
+        <div className={style.fullScreenMenu}>
+          <div className={style.menuElements}>
+            <Link activeClassName={style.active} to="/">Strona Główna</Link>
+            <Link activeClassName={style.active} to="/projects">Projekty</Link>
+          </div>
+          <div className={style.closeMenu} onClick={() => setOpenMenu(false)}>
+            <FaRegWindowClose/>
+          </div>
+        </div>
+      }
     </div>
   );
 };
