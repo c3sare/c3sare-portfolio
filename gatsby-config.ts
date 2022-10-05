@@ -15,18 +15,26 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: "./src/images/",
+      },
+      __key: "images",
+    },
+    "gatsby-plugin-sharp",
+    "gatsby-plugin-image",
+    "gatsby-transformer-sharp",
+    `gatsby-transformer-inline-svg`,
+    {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `0xgywss1ielu`,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        downloadLocal: true
       },
     },
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    `gatsby-transformer-inline-svg`,
     "gatsby-plugin-offline",
-    "gatsby-transformer-remark",
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
@@ -34,14 +42,6 @@ const config: GatsbyConfig = {
           families: ["Roboto"],
         },
       },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: "./src/images/",
-      },
-      __key: "images",
     },
     {
       resolve: `gatsby-plugin-manifest`,

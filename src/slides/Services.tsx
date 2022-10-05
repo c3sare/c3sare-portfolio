@@ -16,21 +16,23 @@ const Services = () => {
         nodes {
           title
           icon {
-            url
-          }
-          content {
-            childMarkdownRemark {
-              excerpt(format: PLAIN, pruneLength: 300)
+            localFile {
+              svg {
+                content
+              }
             }
           }
           slug
+          description {
+            description
+          }
         }
       }
     }
   `).allContentfulServices.nodes.map((item:any) => ({
     title: item.title,
-    icon: item.icon.url,
-    text: item.content.childMarkdownRemark.excerpt,
+    icon: item.icon.localFile.svg.content,
+    text: item.description.description,
     slug: item.slug
   }));
 
@@ -38,7 +40,7 @@ const Services = () => {
     <div className={style.services}>
       {services.map((service, index) => (
         <div key={index} className={style.service}>
-          <img src={service.icon} alt="obraz"/>
+          <span dangerouslySetInnerHTML={{__html: service.icon}}/>
           <h3>{service.title}</h3>
           <p>{service.text}</p>
           <Link to={'/services/'+service.slug}><button>Więcej</button></Link>

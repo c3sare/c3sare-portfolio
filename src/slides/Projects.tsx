@@ -3,35 +3,38 @@ import { FaInfo } from "@react-icons/all-files/fa/FaInfo";
 import React from "react";
 import * as style from "../styles/projects.module.css";
 import { graphql, Link, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 interface Project {
-  img: {
-    url: string;
-  };
+  img: any;
   title: string;
   slug: string;
   demo: string;
   technologies: {
     name: string;
-    img: {
-      url: string;
-    };
+    img: string;
   }[];
 }
 
 const Projects = () => {
   const projects: Project[] = useStaticQuery(graphql`
     {
-      allContentfulProjects {
+      allContentfulProjects(limit: 6) {
         nodes {
           title
           img {
-            url
+            gatsbyImageData(
+                width: 400
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+            )
           }
           technologies {
             name
             img {
-              url
+              localFile {
+                publicURL
+              }
             }
           }
           demo
@@ -39,14 +42,23 @@ const Projects = () => {
         }
       }
     }
-  `).allContentfulProjects.nodes;
+  `).allContentfulProjects.nodes.map((item:any) => ({
+    title: item.title,
+    img: getImage(item.img),
+    technologies: item.technologies.map((item:any) => ({
+      name: item.name,
+      img: item.img.localFile.publicURL
+    })),
+    demo: item.demo,
+    slug: item.slug
+  }));
 
   return (
     <div className={style.projects}>
       {projects.map((project, i) => (
         <div className={style.project}>
           <div className={style.imageBox}>
-            <img src={project.img.url} alt={project.title} />
+            <GatsbyImage image={project.img} alt={project.title} />
           </div>
           <div className={style.contentMenu}>
             <Link to={"/projects/" + project.slug}>
@@ -58,7 +70,7 @@ const Projects = () => {
           </div>
           <div className={style.techs}>
             {project.technologies.map((tech) => (
-              <img src={tech.img.url} alt={tech.name} />
+              <img src={tech.img} alt={tech.name}/>
             ))}
           </div>
         </div>

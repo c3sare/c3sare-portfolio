@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.12.1",
     "@react-icons/all-files": "^4.1.0",
     "gatsby": "^4.22.1",
     "gatsby-plugin-image": "^2.22.0",
@@ -27,7 +28,6 @@
     "gatsby-source-contentful": "^7.21.0",
     "gatsby-source-filesystem": "^4.22.0",
     "gatsby-transformer-inline-svg": "^1.2.0",
-    "gatsby-transformer-remark": "^5.23.0",
     "gatsby-transformer-sharp": "^4.22.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"

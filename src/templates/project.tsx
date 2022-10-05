@@ -2,6 +2,7 @@ import { graphql } from "gatsby";
 import get from "lodash/get";
 import React from "react";
 import Layout from "../components/Layout";
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const PricesPage = (props: any) => {
   const page = get(props, "data.contentfulProjects");
@@ -10,10 +11,7 @@ const PricesPage = (props: any) => {
     <Layout>
       <div
         style={{ minHeight: "100vh" }}
-        dangerouslySetInnerHTML={{
-          __html: page.content.childMarkdownRemark.html,
-        }}
-      ></div>
+      >{documentToReactComponents(JSON.parse(page.content.raw))}</div>
     </Layout>
   );
 };
@@ -38,9 +36,7 @@ export const pageQuery = graphql`
         name
       }
       content {
-        childMarkdownRemark {
-          html
-        }
+        raw
       }
     }
   }
