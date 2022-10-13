@@ -23,12 +23,12 @@ const ProjectsPage = () => {
       allContentfulProjects {
         nodes {
           title
-          img {
+          images {            
             gatsbyImageData(
               width: 400
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
-          )
+            )
           }
           technologies {
             name
@@ -45,7 +45,7 @@ const ProjectsPage = () => {
     }
   `).allContentfulProjects.nodes.map((item:any) => ({
     title: item.title,
-    img: getImage(item.img),
+    img: getImage(item.images[0]),
     technologies: item.technologies.map((item:any) => ({
       name: item.name,
       img: item.img.localFile.publicURL

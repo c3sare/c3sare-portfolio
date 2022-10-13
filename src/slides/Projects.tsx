@@ -22,11 +22,11 @@ const Projects = () => {
       allContentfulProjects(limit: 6) {
         nodes {
           title
-          img {
+          images {
             gatsbyImageData(
-                width: 400
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
+              width: 400
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
             )
           }
           technologies {
@@ -44,7 +44,7 @@ const Projects = () => {
     }
   `).allContentfulProjects.nodes.map((item:any) => ({
     title: item.title,
-    img: getImage(item.img),
+    img: getImage(item.images[0]),
     technologies: item.technologies.map((item:any) => ({
       name: item.name,
       img: item.img.localFile.publicURL
