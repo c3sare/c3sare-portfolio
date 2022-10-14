@@ -1,0 +1,70 @@
+.slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.sliderContainer {
+    display: block;
+    transition: .3s transform;
+}
+
+.sliderContainer img {
+    display: inline-block;
+}
+
+.slideBtnLeft,
+.slideBtnRight {
+    position: absolute;
+    font-size: 35px;
+    top: 50%;
+    color: rgb(51, 70, 209);
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.slideBtnLeft {
+    left: 15px;
+}
+
+.slideBtnRight {
+    right: 15px;
+}
+
+.techUsed {
+    display: block;
+    margin: 25px;
+    text-align: center;
+}
+
+.techs {
+    display: block;
+    text-align: center;
+}
+
+.tech {
+    position: relative;
+    display: inline-block;
+    margin: 10px 25px;
+}
+
+.tech span {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.siteUrl {
+    margin: 25px;
+    text-align: center;
+}
+
+.siteUrl a {
+    text-decoration: none;
+    color: rgb(193, 0, 151);
+}
+
+.siteUrl a:hover {
+    text-decoration: underline;
+}
