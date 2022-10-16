@@ -24,7 +24,7 @@ const Projects = () => {
           title
           images {
             gatsbyImageData(
-              width: 400
+              width: 600
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
             )
@@ -42,15 +42,15 @@ const Projects = () => {
         }
       }
     }
-  `).allContentfulProjects.nodes.map((item:any) => ({
+  `).allContentfulProjects.nodes.map((item: any) => ({
     title: item.title,
     img: getImage(item.images[0]),
-    technologies: item.technologies.map((item:any) => ({
+    technologies: item.technologies.map((item: any) => ({
       name: item.name,
-      img: item.img.localFile.publicURL
+      img: item.img.localFile.publicURL,
     })),
     demo: item.demo,
-    slug: item.slug
+    slug: item.slug,
   }));
 
   return (
@@ -70,7 +70,7 @@ const Projects = () => {
           </div>
           <div className={style.techs}>
             {project.technologies.map((tech) => (
-              <img src={tech.img} alt={tech.name}/>
+              <img src={tech.img} alt={tech.name} />
             ))}
           </div>
         </div>

@@ -23,9 +23,9 @@ const ProjectsPage = () => {
       allContentfulProjects {
         nodes {
           title
-          images {            
+          images {
             gatsbyImageData(
-              width: 400
+              width: 600
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
             )
@@ -43,15 +43,15 @@ const ProjectsPage = () => {
         }
       }
     }
-  `).allContentfulProjects.nodes.map((item:any) => ({
+  `).allContentfulProjects.nodes.map((item: any) => ({
     title: item.title,
     img: getImage(item.images[0]),
-    technologies: item.technologies.map((item:any) => ({
+    technologies: item.technologies.map((item: any) => ({
       name: item.name,
-      img: item.img.localFile.publicURL
+      img: item.img.localFile.publicURL,
     })),
     demo: item.demo,
-    slug: item.slug
+    slug: item.slug,
   }));
 
   return (
@@ -72,7 +72,7 @@ const ProjectsPage = () => {
             </div>
             <div className={style.techs}>
               {project.technologies.map((tech) => (
-                <img src={tech.img} alt={tech.name}/>
+                <img src={tech.img} alt={tech.name} />
               ))}
             </div>
           </div>
@@ -86,10 +86,16 @@ export const Head = () => {
   return (
     <>
       <title>C3sare | Projekty</title>
-      <meta name="description" content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"/>
-      <meta name="keywords" content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"/>
+      <meta
+        name="description"
+        content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"
+      />
+      <meta
+        name="keywords"
+        content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"
+      />
     </>
-  )
-}
+  );
+};
 
 export default ProjectsPage;

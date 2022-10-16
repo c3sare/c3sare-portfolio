@@ -1,3 +1,93 @@
-.aboutMeBox {
-    width: 100%;
+.aboutMeContainer {
+  width: 100%;
+}
+
+.eduJobBox {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.langSoftwareBox {
+  width: 100%;
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.eduJobBox h3,
+.langSoftwareBox h3 {
+  font-size: 32px;
+  padding: 15px;
+  border-bottom: 1px solid white;
+  width: 100%;
+}
+
+.eduJobItem {
+  margin: 25px 15px;
+}
+
+.langSoftwareItem {
+  margin: 0 15px;
+}
+
+.langSoftwareItem {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.langSoftwareItem svg {
+  height: 32px;
+}
+
+.eduJobItem > p {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.eduJobItem > span {
+  font-size: 11px;
+}
+
+.knowledge {
+  display: block;
+}
+
+.knowledge .full,
+.knowledge .empty {
+  display: inline-block;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  border: 2px solid black;
+}
+
+.knowledge .empty {
+  background-color: white;
+}
+
+.knowledge .full {
+  background-color: rgb(51, 70, 209);
+}
+
+.langSoftwareContainer {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media screen and (max-width: 800px) {
+  .langSoftwareContainer {
+    flex-wrap: wrap;
+  }
 }
