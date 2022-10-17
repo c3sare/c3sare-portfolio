@@ -53,13 +53,18 @@ const PricesPage = (props: any) => {
             }px, 0px, 0px)`,
           }}
         >
-          {page.images.map((screen: any) => (
-            <GatsbyImage
-              style={{ width: currentWidth + "px" }}
-              image={getImage(screen)}
-              alt={screen.title}
-            />
-          ))}
+          {page.images.map((screen: any) =>
+            {
+              const gimg:any = getImage(screen);
+              return (
+                <GatsbyImage
+                  style={{ width: currentWidth + "px" }}
+                  image={gimg}
+                  alt={screen.title}
+                />
+              )
+            }
+          )}
         </div>
         {page.images.length > 1 && (
           <>

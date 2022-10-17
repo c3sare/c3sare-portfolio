@@ -9,6 +9,15 @@
     display: inline-block;
     margin: 25px;
     height: 100%;
+    font-size: 14px;
+}
+
+.haveList li::marker {
+    content: "✓ ";
+}
+
+.notHaveList li::marker {
+    content: "✘ ";
 }
 
 .haveList ul,

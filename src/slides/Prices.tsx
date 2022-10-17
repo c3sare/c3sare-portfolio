@@ -31,6 +31,12 @@ const Prices = () => {
     };
   }, []);
 
+  function sortByCost(a: PriceBox, b: PriceBox) {
+    if(Number(a.cost[0]) > Number(b.cost[0])) return 1;
+    if(Number(b.cost[0]) > Number(a.cost[0])) return -1;
+    else return 0;
+  }
+
   const priceBoxes: PriceBox[] = useStaticQuery(graphql`
     {
       allContentfulPrices {
@@ -51,7 +57,7 @@ const Prices = () => {
     popular: item.popular,
     cost: [item.cost, 0],
     slug: item.slug,
-  }));
+  })).sort(sortByCost);
 
   const activateMouseSlide = (e: React.MouseEvent<HTMLDivElement>) => {
     activeSlide.current = true;

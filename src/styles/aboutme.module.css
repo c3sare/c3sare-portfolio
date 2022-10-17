@@ -33,10 +33,24 @@
   margin: 0 15px;
 }
 
+.langSoftwareItem > span:first-child {
+  padding: 10px;
+}
+
+.langSoftwareItem > span:nth-child(2) {
+  font-size: 13px;
+  padding-bottom: 4px;
+  font-weight: 700;
+}
+
 .langSoftwareItem {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+}
+
+.langSoftwareItem img {
+  height: 32px;
 }
 
 .langSoftwareItem svg {
@@ -65,17 +79,18 @@
 .knowledge .empty {
   display: inline-block;
   border-radius: 50%;
-  width: 15px;
-  height: 15px;
+  margin: 0 1px;
+  width: 12px;
+  height: 12px;
   border: 2px solid black;
 }
 
 .knowledge .empty {
-  background-color: white;
+  background-color: rgb(70, 70, 70);
 }
 
 .knowledge .full {
-  background-color: rgb(51, 70, 209);
+  background-color:rgb(170, 255, 0);
 }
 
 .langSoftwareContainer {
@@ -90,4 +105,27 @@
   .langSoftwareContainer {
     flex-wrap: wrap;
   }
+}
+
+@media screen and (max-width: 900px) and (min-width: 360px) {
+  .eduJobBox h3,
+  .langSoftwareBox h3 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 359.99px) {
+  .eduJobBox h3,
+  .langSoftwareBox h3 {
+    font-size: 18px;
+  }
+}
+
+.langSoftwareBox a {
+  text-decoration: none;
+  color: rgb(193, 0, 151);
+}
+
+.langSoftwareBox a:hover {
+  text-decoration: underline;
 }

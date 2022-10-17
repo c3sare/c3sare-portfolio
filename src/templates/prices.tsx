@@ -20,7 +20,7 @@ const PricesPage = (props: any) => {
             ))}
           </ul>
         </div>
-        {page.cons.length > 0 &&
+        {page.cons &&
           <div className={style.notHaveList}>
             <h5>Nie zawiera</h5>
             <ul>
