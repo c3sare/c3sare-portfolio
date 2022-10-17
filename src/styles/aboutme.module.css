@@ -90,7 +90,7 @@
 }
 
 .knowledge .full {
-  background-color:rgb(170, 255, 0);
+  background-color: rgb(170, 255, 0);
 }
 
 .langSoftwareContainer {
@@ -128,4 +128,39 @@
 
 .langSoftwareBox a:hover {
   text-decoration: underline;
+}
+
+.personDetails {
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.details span {
+  padding: 10px 0;
+}
+
+.details a {
+  color: white;
+  text-decoration: none;
+}
+
+.details .name {
+  font-size: 32px;
+}
+
+.avatar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }

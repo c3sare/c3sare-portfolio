@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import * as style from "../styles/aboutme.module.css";
 
@@ -157,10 +157,10 @@ const Aboutme = () => {
   interface File {
     file: {
       localFile: {
-        publicURL: string,
-      },
-      filename: string
-    }[]
+        publicURL: string;
+      };
+      filename: string;
+    }[];
   }
 
   function sortByDateEducation(a: Education, b: Education) {
@@ -206,10 +206,24 @@ const Aboutme = () => {
 
   const hobby: Interested[] = aboutme.allContentfulInterested.nodes;
 
-  const files:File[] = aboutme.allContentfulToDownload.nodes;
+  const files: File[] = aboutme.allContentfulToDownload.nodes;
 
   return (
     <div className={style.aboutMeContainer}>
+      <div className={style.personDetails}>
+        <div className={style.details}>
+          <span className={style.name}>Marcin Marciniuk</span>
+          <span>
+            <a href="tel:531699319">+48 531 699 319</a>
+          </span>
+          <span>
+            <a href="mailto:marcinm222@gmail.com">marcinm222@gmail.com</a>
+          </span>
+        </div>
+        <div className={style.avatar}>
+          <StaticImage src="../images/avatar.png" alt="Avatar" width={300} />
+        </div>
+      </div>
       <div className={style.eduJobBox}>
         <h3>Wykształcenie</h3>
         {education.map((item) => (
@@ -265,7 +279,7 @@ const Aboutme = () => {
         <div className={style.langSoftwareBox}>
           <h3>Oprogramowanie</h3>
           {software.map((item) => {
-            const gimg:any = getImage(item.icon);
+            const gimg: any = getImage(item.icon);
 
             return (
               <div className={style.langSoftwareItem}>
@@ -289,7 +303,7 @@ const Aboutme = () => {
       <div className={style.langSoftwareBox}>
         <h3>Programowanie</h3>
         {programming.map((item) => {
-          const gimg:any = getImage(item.icon);
+          const gimg: any = getImage(item.icon);
 
           return (
             <div className={style.langSoftwareItem}>
@@ -312,7 +326,7 @@ const Aboutme = () => {
       <div className={style.langSoftwareBox}>
         <h3>Dodatkowe Technologie</h3>
         {additionalTechs.map((item) => {
-          const gimg:any = getImage(item.icon);
+          const gimg: any = getImage(item.icon);
           return (
             <div className={style.langSoftwareItem}>
               <span>
@@ -341,9 +355,7 @@ const Aboutme = () => {
         <h3>Zainteresowania</h3>
         {hobby.map((item) => (
           <div className={style.langSoftwareItem}>
-            <span
-              dangerouslySetInnerHTML={{ __html: item.icon.svg.content }}
-            />
+            <span dangerouslySetInnerHTML={{ __html: item.icon.svg.content }} />
             <span>{item.title}</span>
           </div>
         ))}
@@ -352,7 +364,7 @@ const Aboutme = () => {
         <h3>Pobierz</h3>
         {files.map((item) => (
           <div className={style.langSoftwareItem}>
-            {item.file.map(link => (
+            {item.file.map((link) => (
               <a href={link.localFile.publicURL}>{link.filename}</a>
             ))}
           </div>
