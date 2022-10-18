@@ -9,6 +9,7 @@ const ServicePage = (props:any) => {
 
     return (
         <Layout>
+            <h1 style={{textAlign: 'center'}}>{page.title}</h1>
             <div
                 style={{minHeight: '100vh'}}
             >{documentToReactComponents(JSON.parse(page.content.raw))}</div>
