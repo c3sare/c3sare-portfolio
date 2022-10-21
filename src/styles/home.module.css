@@ -1,0 +1,10 @@
+.home {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.home span {
+    color: gainsboro;
+    font-size: 15px;
+}

@@ -221,7 +221,7 @@ const Aboutme = () => {
           </span>
         </div>
         <div className={style.avatar}>
-          <StaticImage src="../images/avatar.png" alt="Avatar" width={300} />
+          <StaticImage placeholder="dominantColor" src="../images/avatar.png" alt="Avatar" width={300} />
         </div>
       </div>
       <div className={style.eduJobBox}>

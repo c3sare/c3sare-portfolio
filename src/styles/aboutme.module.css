@@ -164,3 +164,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.avatar > div {
+  border-radius: 50%;
+  overflow: hidden;
+}

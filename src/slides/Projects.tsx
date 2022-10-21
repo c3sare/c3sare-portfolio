@@ -25,6 +25,7 @@ const Projects = () => {
           images {
             gatsbyImageData(
               width: 600
+              height: 340
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
             )
