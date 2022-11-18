@@ -1,6 +1,16 @@
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
+import {FaBook} from "@react-icons/all-files/fa/faBook";
+import {FaUserTie} from "@react-icons/all-files/fa/faUserTie";
+import {FaCube} from "@react-icons/all-files/fa/faCube"
+import {FaDownload} from "@react-icons/all-files/fa/faDownload";
+import {FaClipboard} from "@react-icons/all-files/fa/faClipboard";
+import {FaClipboardCheck} from "@react-icons/all-files/fa/faClipboardCheck";
+import {FaCode} from "@react-icons/all-files/fa/faCode";
+import {FaCodeBranch} from "@react-icons/all-files/fa/faCodeBranch";
+import {FaLanguage} from "@react-icons/all-files/fa/faLanguage";
+import {FaLaptop} from "@react-icons/all-files/fa/faLaptop";
 import * as style from "../styles/aboutme.module.css";
 
 interface Education {
@@ -225,7 +235,10 @@ const Aboutme = () => {
         </div>
       </div>
       <div className={style.eduJobBox}>
-        <h3>Wykształcenie</h3>
+        <h3>
+          <span><FaBook/></span>
+          <span>Wykształcenie</span>
+        </h3>
         {education.map((item) => (
           <div className={style.eduJobItem}>
             <p>
@@ -240,7 +253,10 @@ const Aboutme = () => {
         ))}
       </div>
       <div className={style.eduJobBox}>
-        <h3>Doświadczenie</h3>
+        <h3>
+          <span><FaUserTie/></span>
+          <span>Doświadczenie</span>
+        </h3>
         {experience.map((item) => (
           <div className={style.eduJobItem}>
             <p>
@@ -256,7 +272,10 @@ const Aboutme = () => {
       </div>
       <div className={style.langSoftwareContainer}>
         <div className={style.langSoftwareBox}>
-          <h3>Języki</h3>
+          <h3>
+            <span><FaLanguage/></span>
+            <span>Języki</span>
+          </h3>
           {langugages.map((item) => (
             <div className={style.langSoftwareItem}>
               <span
@@ -277,7 +296,10 @@ const Aboutme = () => {
           ))}
         </div>
         <div className={style.langSoftwareBox}>
-          <h3>Oprogramowanie</h3>
+          <h3>
+            <span><FaLaptop/></span>
+            <span>Oprogramowanie</span>
+          </h3>
           {software.map((item) => {
             const gimg: any = getImage(item.icon);
 
@@ -301,7 +323,10 @@ const Aboutme = () => {
         </div>
       </div>
       <div className={style.langSoftwareBox}>
-        <h3>Programowanie</h3>
+        <h3>
+          <span><FaCode/></span>
+          <span>Programowanie</span>
+        </h3>
         {programming.map((item) => {
           const gimg: any = getImage(item.icon);
 
@@ -324,7 +349,10 @@ const Aboutme = () => {
         })}
       </div>
       <div className={style.langSoftwareBox}>
-        <h3>Dodatkowe Technologie</h3>
+        <h3>
+          <span><FaCodeBranch/></span>
+          <span>Dodatkowe technologie</span>
+        </h3>
         {additionalTechs.map((item) => {
           const gimg: any = getImage(item.icon);
           return (
@@ -339,20 +367,29 @@ const Aboutme = () => {
       </div>
       <div className={style.langSoftwareContainer}>
         <div className={style.langSoftwareBox}>
-          <h3>Umiejętności</h3>
+          <h3>
+            <span><FaClipboard/></span>
+            <span>Umiejętności</span>
+          </h3>
           {personalSkills.map((item) => (
             <div className={style.langSoftwareItem}>✓ {item.title}</div>
           ))}
         </div>
         <div className={style.langSoftwareBox}>
-          <h3>Dodatkowe atuty</h3>
+          <h3>
+            <span><FaClipboardCheck/></span>
+            <span>Dodatkowe atuty</span>
+          </h3>
           {personalAdvantages.map((item) => (
             <div className={style.langSoftwareItem}>✓ {item.title}</div>
           ))}
         </div>
       </div>
       <div className={style.langSoftwareBox}>
-        <h3>Zainteresowania</h3>
+        <h3>
+          <span><FaCube/></span>
+          <span>Zainteresowania</span>
+        </h3>
         {hobby.map((item) => (
           <div className={style.langSoftwareItem}>
             <span dangerouslySetInnerHTML={{ __html: item.icon.svg.content }} />
@@ -361,7 +398,10 @@ const Aboutme = () => {
         ))}
       </div>
       <div className={style.langSoftwareBox}>
-        <h3>Pobierz</h3>
+        <h3>
+          <span><FaDownload/></span>
+          <span>Pobierz</span>
+        </h3>
         {files.map((item) => (
           <div className={style.langSoftwareItem}>
             {item.file.map((link) => (

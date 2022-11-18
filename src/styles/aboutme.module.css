@@ -19,10 +19,36 @@
 
 .eduJobBox h3,
 .langSoftwareBox h3 {
-  font-size: 32px;
-  padding: 15px;
-  border-bottom: 1px solid white;
+  font-size: 22px;
+  padding: 0 25px;
+  margin-bottom: 0;
   width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.eduJobBox h3 > span:first-child,
+.langSoftwareBox h3 > span:first-child {
+  padding-right: 16px;
+  font-size: 35px;
+}
+
+.eduJobBox h3 > span:nth-child(2),
+.langSoftwareBox h3 > span:nth-child(2) {
+  display: block;
+  position: relative;
+}
+
+.eduJobBox h3 > span:nth-child(2):after,
+.langSoftwareBox h3 > span:nth-child(2):after {
+  content: "";
+  width: 100%;
+  background-color: white;
+  height: 2px;
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  transform:skewX(-60deg);
 }
 
 .eduJobItem {
