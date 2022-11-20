@@ -11,17 +11,22 @@
   width: 100%;
   display: flex;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 15px auto;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
+  background-color: #ffffff10;
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding-bottom: 10px;
+  box-shadow: 0 0 5px rgb(255 255 255 / 30%);
 }
 
 .eduJobBox h3,
 .langSoftwareBox h3 {
   font-size: 22px;
   padding: 0 25px;
-  margin-bottom: 0;
+  margin: 10px 0 0 0;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -48,7 +53,7 @@
   position: absolute;
   bottom: 12px;
   left: 0;
-  transform:skewX(-60deg);
+  transform: skewX(-60deg);
 }
 
 .eduJobItem {
@@ -194,4 +199,23 @@
 .avatar > div {
   border-radius: 50%;
   overflow: hidden;
+}
+
+.percentBar {
+  width: 150px;
+  height: 12px;
+  border-radius: 12px;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+}
+
+.knowPercent {
+  width: 50%;
+  height: 100%;
+  border-radius: 12px;
+  background-color: aqua;
+  text-align: center;
+  line-height: 12px;
+  font-weight: 800;
 }

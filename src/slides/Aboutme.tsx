@@ -1,16 +1,16 @@
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import {FaBook} from "@react-icons/all-files/fa/faBook";
-import {FaUserTie} from "@react-icons/all-files/fa/faUserTie";
-import {FaCube} from "@react-icons/all-files/fa/faCube"
-import {FaDownload} from "@react-icons/all-files/fa/faDownload";
-import {FaClipboard} from "@react-icons/all-files/fa/faClipboard";
-import {FaClipboardCheck} from "@react-icons/all-files/fa/faClipboardCheck";
-import {FaCode} from "@react-icons/all-files/fa/faCode";
-import {FaCodeBranch} from "@react-icons/all-files/fa/faCodeBranch";
-import {FaLanguage} from "@react-icons/all-files/fa/faLanguage";
-import {FaLaptop} from "@react-icons/all-files/fa/faLaptop";
+import { FaBook } from "@react-icons/all-files/fa/faBook";
+import { FaUserTie } from "@react-icons/all-files/fa/faUserTie";
+import { FaCube } from "@react-icons/all-files/fa/faCube";
+import { FaDownload } from "@react-icons/all-files/fa/faDownload";
+import { FaClipboard } from "@react-icons/all-files/fa/faClipboard";
+import { FaClipboardCheck } from "@react-icons/all-files/fa/faClipboardCheck";
+import { FaCode } from "@react-icons/all-files/fa/faCode";
+import { FaCodeBranch } from "@react-icons/all-files/fa/faCodeBranch";
+import { FaLanguage } from "@react-icons/all-files/fa/faLanguage";
+import { FaLaptop } from "@react-icons/all-files/fa/faLaptop";
 import * as style from "../styles/aboutme.module.css";
 
 interface Education {
@@ -231,12 +231,19 @@ const Aboutme = () => {
           </span>
         </div>
         <div className={style.avatar}>
-          <StaticImage placeholder="dominantColor" src="../images/avatar.png" alt="Avatar" width={300} />
+          <StaticImage
+            placeholder="dominantColor"
+            src="../images/avatar.png"
+            alt="Avatar"
+            width={300}
+          />
         </div>
       </div>
       <div className={style.eduJobBox}>
         <h3>
-          <span><FaBook/></span>
+          <span>
+            <FaBook />
+          </span>
           <span>Wykształcenie</span>
         </h3>
         {education.map((item) => (
@@ -254,7 +261,9 @@ const Aboutme = () => {
       </div>
       <div className={style.eduJobBox}>
         <h3>
-          <span><FaUserTie/></span>
+          <span>
+            <FaUserTie />
+          </span>
           <span>Doświadczenie</span>
         </h3>
         {experience.map((item) => (
@@ -273,7 +282,9 @@ const Aboutme = () => {
       <div className={style.langSoftwareContainer}>
         <div className={style.langSoftwareBox}>
           <h3>
-            <span><FaLanguage/></span>
+            <span>
+              <FaLanguage />
+            </span>
             <span>Języki</span>
           </h3>
           {langugages.map((item) => (
@@ -297,7 +308,9 @@ const Aboutme = () => {
         </div>
         <div className={style.langSoftwareBox}>
           <h3>
-            <span><FaLaptop/></span>
+            <span>
+              <FaLaptop />
+            </span>
             <span>Oprogramowanie</span>
           </h3>
           {software.map((item) => {
@@ -324,7 +337,9 @@ const Aboutme = () => {
       </div>
       <div className={style.langSoftwareBox}>
         <h3>
-          <span><FaCode/></span>
+          <span>
+            <FaCode />
+          </span>
           <span>Programowanie</span>
         </h3>
         {programming.map((item) => {
@@ -347,10 +362,21 @@ const Aboutme = () => {
             </div>
           );
         })}
+        <div className={style.langSoftwareItem}>
+          <span>{/* <GatsbyImage image={gimg} alt={item.title} /> */}</span>
+          <span>Test</span>
+          <div className={style.knowledge}>
+            <div className={style.percentBar}>
+              <div className={style.knowPercent}>100%</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div className={style.langSoftwareBox}>
         <h3>
-          <span><FaCodeBranch/></span>
+          <span>
+            <FaCodeBranch />
+          </span>
           <span>Dodatkowe technologie</span>
         </h3>
         {additionalTechs.map((item) => {
@@ -368,7 +394,9 @@ const Aboutme = () => {
       <div className={style.langSoftwareContainer}>
         <div className={style.langSoftwareBox}>
           <h3>
-            <span><FaClipboard/></span>
+            <span>
+              <FaClipboard />
+            </span>
             <span>Umiejętności</span>
           </h3>
           {personalSkills.map((item) => (
@@ -377,7 +405,9 @@ const Aboutme = () => {
         </div>
         <div className={style.langSoftwareBox}>
           <h3>
-            <span><FaClipboardCheck/></span>
+            <span>
+              <FaClipboardCheck />
+            </span>
             <span>Dodatkowe atuty</span>
           </h3>
           {personalAdvantages.map((item) => (
@@ -387,7 +417,9 @@ const Aboutme = () => {
       </div>
       <div className={style.langSoftwareBox}>
         <h3>
-          <span><FaCube/></span>
+          <span>
+            <FaCube />
+          </span>
           <span>Zainteresowania</span>
         </h3>
         {hobby.map((item) => (
@@ -399,7 +431,9 @@ const Aboutme = () => {
       </div>
       <div className={style.langSoftwareBox}>
         <h3>
-          <span><FaDownload/></span>
+          <span>
+            <FaDownload />
+          </span>
           <span>Pobierz</span>
         </h3>
         {files.map((item) => (
