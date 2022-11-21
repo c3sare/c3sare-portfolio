@@ -53,11 +53,12 @@ const PricesPage = (props: any) => {
             }px, 0px, 0px)`,
           }}
         >
-          {page.images.map((screen: any) =>
+          {page.images.map((screen: any, i:number) =>
             {
               const gimg:any = getImage(screen);
               return (
                 <GatsbyImage
+                  key={i}
                   style={{ width: currentWidth + "px" }}
                   image={gimg}
                   alt={screen.title}
@@ -80,8 +81,8 @@ const PricesPage = (props: any) => {
       <div className={style.techUsed}>
         <h3>Technologie użyte do budowy projektu</h3>
         <div className={style.techs}>
-          {page.technologies.map((tech: any) => (
-            <div className={style.tech}>
+          {page.technologies.map((tech: any, i:number) => (
+            <div className={style.tech} key={i}>
               <img
                 src={tech.img.url}
                 alt={tech.name}

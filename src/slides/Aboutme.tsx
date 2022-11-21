@@ -13,6 +13,15 @@ import { FaLanguage } from "@react-icons/all-files/fa/faLanguage";
 import { FaLaptop } from "@react-icons/all-files/fa/faLaptop";
 import * as style from "../styles/aboutme.module.css";
 
+const percentRate = {
+  0: "0",
+  1: "20",
+  2: "40",
+  3: "60",
+  4: "80",
+  5: "100"
+}
+
 interface Education {
   schoolName: string;
   specialization: string;
@@ -249,7 +258,7 @@ const Aboutme = () => {
         {education.map((item) => (
           <div className={style.eduJobItem}>
             <p>
-              <span>{item.specialization}</span>
+              <span>{item.specialization.toUpperCase()}</span>
               <span>
                 {item.schoolStart.split("-")[0]} -{" "}
                 {item.stillStudy ? "do teraz" : item.schoolEnd.split("-")[0]}
@@ -269,7 +278,7 @@ const Aboutme = () => {
         {experience.map((item) => (
           <div className={style.eduJobItem}>
             <p>
-              <span>{item.position}</span>
+              <span>{item.position.toUpperCase()}</span>
               <span>
                 {item.jobStart.split("-")[0]} -{" "}
                 {item.stillWorking ? "do teraz" : item.jobEnd.split("-")[0]}
@@ -296,12 +305,9 @@ const Aboutme = () => {
               />
               <span>{item.title}</span>
               <div className={style.knowledge}>
-                {[...Array(item.knowledge)].map((_dot) => (
-                  <div className={style.full} />
-                ))}
-                {[...Array(5 - item.knowledge)].map((_dot) => (
-                  <div className={style.empty} />
-                ))}
+                <div className={style.percentBar}>
+                  <div className={style.knowPercent} style={{width: `${percentRate[item.knowledge]}%`}}>{percentRate[item.knowledge]}%</div>
+                </div>
               </div>
             </div>
           ))}
@@ -323,12 +329,9 @@ const Aboutme = () => {
                 </span>
                 <span>{item.title}</span>
                 <div className={style.knowledge}>
-                  {[...Array(item.knowledge)].map((_dot) => (
-                    <div className={style.full} />
-                  ))}
-                  {[...Array(5 - item.knowledge)].map((_dot) => (
-                    <div className={style.empty} />
-                  ))}
+                  <div className={style.percentBar}>
+                    <div className={style.knowPercent} style={{width: `${percentRate[item.knowledge]}%`}}>{percentRate[item.knowledge]}%</div>
+                  </div>
                 </div>
               </div>
             );
@@ -352,25 +355,13 @@ const Aboutme = () => {
               </span>
               <span>{item.title}</span>
               <div className={style.knowledge}>
-                {[...Array(item.knowledge)].map((_dot) => (
-                  <div className={style.full} />
-                ))}
-                {[...Array(5 - item.knowledge)].map((_dot) => (
-                  <div className={style.empty} />
-                ))}
+                <div className={style.percentBar}>
+                  <div className={style.knowPercent} style={{width: `${percentRate[item.knowledge]}%`}}>{percentRate[item.knowledge]}%</div>
+                </div>
               </div>
             </div>
           );
         })}
-        <div className={style.langSoftwareItem}>
-          <span>{/* <GatsbyImage image={gimg} alt={item.title} /> */}</span>
-          <span>Test</span>
-          <div className={style.knowledge}>
-            <div className={style.percentBar}>
-              <div className={style.knowPercent}>100%</div>
-            </div>
-          </div>
-        </div>
       </div>
       <div className={style.langSoftwareBox}>
         <h3>

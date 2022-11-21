@@ -3,15 +3,24 @@
 }
 
 .eduJobBox {
-  margin: 0 auto;
-  max-width: 1200px;
+  margin: 15px;
+  max-width: 1170px;
+  width: calc(100% - 30px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff10;
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding-bottom: 10px;
+  box-shadow: 0 0 5px rgb(255 255 255 / 30%);
 }
 
 .langSoftwareBox {
-  width: 100%;
+  width: calc(100% - 30px);
   display: flex;
-  max-width: 1200px;
-  margin: 15px auto;
+  max-width: 1170px;
+  margin: 15px;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
@@ -58,6 +67,7 @@
 
 .eduJobItem {
   margin: 25px 15px;
+  width: calc(100% - 30px);
 }
 
 .langSoftwareItem {
@@ -71,7 +81,6 @@
 .langSoftwareItem > span:nth-child(2) {
   font-size: 13px;
   padding-bottom: 4px;
-  font-weight: 700;
 }
 
 .langSoftwareItem {
@@ -96,6 +105,10 @@
   font-size: 15px;
   margin: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.eduJobItem > p > span:nth-child(2) {
+  font-weight: 100;
 }
 
 .eduJobItem > span {
@@ -125,7 +138,6 @@
 }
 
 .langSoftwareContainer {
-  margin: 0 auto;
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
@@ -164,8 +176,14 @@
 .personDetails {
   display: flex;
   flex-wrap: nowrap;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1170px;
+  width: calc(100% - 30px);
+  margin: 15px;
+  background-color: #ffffff10;
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding-bottom: 10px;
+  box-shadow: 0 0 5px rgb(255 255 255 / 30%);
 }
 
 .details {
@@ -202,20 +220,20 @@
 }
 
 .percentBar {
-  width: 150px;
-  height: 12px;
+  width: 100px;
+  height: 15px;
   border-radius: 12px;
-  background-color: white;
-  color: black;
-  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 11px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .knowPercent {
   width: 50%;
   height: 100%;
   border-radius: 12px;
-  background-color: aqua;
+  background-color: rgba(51, 70, 209, 0.7);
   text-align: center;
-  line-height: 12px;
-  font-weight: 800;
+  line-height: 13px;
 }

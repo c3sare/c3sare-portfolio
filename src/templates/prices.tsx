@@ -15,8 +15,8 @@ const PricesPage = (props: any) => {
         <div className={style.haveList}>
           <h5>Zawiera</h5>
           <ul>
-            {page.pros.map((pro:string) => (
-              <li>{pro}</li>
+            {page.pros.map((pro:string, i:number) => (
+              <li key={i}>{pro}</li>
             ))}
           </ul>
         </div>
@@ -24,8 +24,8 @@ const PricesPage = (props: any) => {
           <div className={style.notHaveList}>
             <h5>Nie zawiera</h5>
             <ul>
-              {page.cons.map((con:string) => (
-                <li>{con}</li>
+              {page.cons.map((con:string, i:number) => (
+                <li key={i}>{con}</li>
               ))}
             </ul>
           </div>

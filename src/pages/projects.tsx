@@ -59,7 +59,7 @@ const ProjectsPage = () => {
     <Layout>
       <div className={style.projects}>
         {projects.map((project, i) => (
-          <div className={style.project}>
+          <div className={style.project} key={i}>
             <div className={style.imageBox}>
               <GatsbyImage image={project.img} alt={project.title} />
             </div>
@@ -72,8 +72,8 @@ const ProjectsPage = () => {
               </a>
             </div>
             <div className={style.techs}>
-              {project.technologies.map((tech) => (
-                <img src={tech.img} alt={tech.name} />
+              {project.technologies.map((tech, techi) => (
+                <img src={tech.img} alt={tech.name} key={techi}/>
               ))}
             </div>
           </div>
