@@ -94,6 +94,7 @@
 
 .langSoftwareItem img {
   height: 32px;
+  width: auto;
 }
 
 .langSoftwareItem svg {
