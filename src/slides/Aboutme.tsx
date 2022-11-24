@@ -1,16 +1,16 @@
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { FaBook } from "@react-icons/all-files/fa/faBook";
-import { FaUserTie } from "@react-icons/all-files/fa/faUserTie";
-import { FaCube } from "@react-icons/all-files/fa/faCube";
-import { FaDownload } from "@react-icons/all-files/fa/faDownload";
-import { FaClipboard } from "@react-icons/all-files/fa/faClipboard";
-import { FaClipboardCheck } from "@react-icons/all-files/fa/faClipboardCheck";
-import { FaCode } from "@react-icons/all-files/fa/faCode";
-import { FaCodeBranch } from "@react-icons/all-files/fa/faCodeBranch";
-import { FaLanguage } from "@react-icons/all-files/fa/faLanguage";
-import { FaLaptop } from "@react-icons/all-files/fa/faLaptop";
+import { FaBook } from "@react-icons/all-files/fa/FaBook";
+import { FaUserTie } from "@react-icons/all-files/fa/FaUserTie";
+import { FaCube } from "@react-icons/all-files/fa/FaCube";
+import { FaDownload } from "@react-icons/all-files/fa/FaDownload";
+import { FaClipboard } from "@react-icons/all-files/fa/FaClipboard";
+import { FaClipboardCheck } from "@react-icons/all-files/fa/FaClipboardCheck";
+import { FaCode } from "@react-icons/all-files/fa/FaCode";
+import { FaCodeBranch } from "@react-icons/all-files/fa/FaCodeBranch";
+import { FaLanguage } from "@react-icons/all-files/fa/FaLanguage";
+import { FaLaptop } from "@react-icons/all-files/fa/FaLaptop";
 import * as style from "../styles/aboutme.module.css";
 
 const percentRate = {
