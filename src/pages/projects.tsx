@@ -47,7 +47,7 @@ const ProjectsPage = () => {
   `).allContentfulProjects.nodes.map((item: any) => ({
     title: item.title,
     img: getImage(item.images[0]),
-    technologies: item.technologies.map((item: any) => ({
+    technologies: item.technologies.slice(0, 3).map((item: any) => ({
       name: item.name,
       img: item.img.localFile.publicURL,
     })),
