@@ -5,9 +5,10 @@ import { FaRegWindowClose } from "@react-icons/all-files/fa/FaRegWindowClose";
 import { FaBars } from "@react-icons/all-files/fa/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
-import Instagram from "../images/icons/social/ig.svg";
-import Facebook from "../images/icons/social/fb.svg";
-import Linkedin from "../images/icons/social/li.svg";
+import InstagramIcon from "../images/icons/social/ig.svg";
+import FacebookIcon from "../images/icons/social/fb.svg";
+import LinkedinIcon from "../images/icons/social/li.svg";
+import GithubIcon from "../images/icons/social/gh.svg";
 
 export interface Page {
   title: string;
@@ -16,8 +17,19 @@ export interface Page {
   hideTitle?: boolean;
 }
 
+interface Social {
+  name: string;
+  url: string;
+  icon: {
+    svg: {
+      content: string;
+    };
+  };
+}
+
 const Layout = (props: {
   pages?: Page[];
+  socials: Social[];
   children?: JSX.Element | JSX.Element[] | React.ReactNode;
 }) => {
   const { pages } = props;
@@ -26,6 +38,7 @@ const Layout = (props: {
   const [currentWidth, setcurrentWidth] = React.useState<number>(0);
   const [mobile, setMobile] = React.useState(false);
   const [openMenu, setOpenMenu] = React.useState(false);
+  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const blockScroll = React.useRef<boolean>(false);
   const sliderMain = React.useRef<HTMLDivElement>(null);
   const before = React.useRef(0);
@@ -60,13 +73,10 @@ const Layout = (props: {
 
   React.useEffect(() => {
     if (currentWidth < 800 && mobile === false) {
-      if (pages) sliderMain.current!.scrollTop = 0;
       setMobile(true);
-      setCurrentSlide(0);
     } else if (currentWidth > 800 && mobile === true) {
       if (pages) sliderMain.current!.scrollTop = 0;
       setMobile(false);
-      setCurrentSlide(0);
     }
   }, [currentHeight, currentWidth]);
 
@@ -125,24 +135,17 @@ const Layout = (props: {
         <Link to="/">
           <img src={logo} alt="C3sare logo" width="120px" height="30px" />
         </Link>
-        <div
-          className={style.navButton}
-          onClick={() => setOpenMenu(true)}
-        >
-          <FaBars/>
+        <div className={style.navButton} onClick={() => setOpenMenu(true)}>
+          <FaBars />
         </div>
       </header>
       <div className={style.backgroundGradient}>
         {pages ? (
-          <div
-            className={style.sliderMain}
-            ref={sliderMain}
-            style={mobile ? { overflow: "auto" } : {}}
-          >
+          <div className={style.sliderMain} ref={sliderMain}>
             <div
               style={{
                 transform: `translate3d(0, ${
-                  mobile ? "0" : -currentSlide * currentHeight
+                  -currentSlide * currentHeight
                 }px, 0)`,
               }}
             >
@@ -155,9 +158,9 @@ const Layout = (props: {
                   onTouchStart={changeSlideTouchStart}
                   onTouchEnd={changeSlideTouchEnd}
                 >
-                  {page.hideTitle ? <></> : <h2>{page.title}</h2>}
+                  {page.hideTitle ? null : <h2>{page.title}</h2>}
                   <div className={style.pageContent}>{page.component}</div>
-                  {!mobile && index < pages.length - 1 && (
+                  {index < pages.length - 1 && (
                     <footer
                       className={style.nextSlide}
                       onClick={() => setCurrentSlide(currentSlide + 1)}
@@ -173,8 +176,11 @@ const Layout = (props: {
         ) : (
           <main className={style.main}>{props.children}</main>
         )}
-        {!mobile && pages && (
-          <div className={style.rightBar}>
+        {pages && (
+          <div
+            className={style.rightBar}
+            style={showMobileMenu ? { right: "8px" } : {}}
+          >
             <div className={style.slideButtons}>
               {pages.map((page, index) => (
                 <div
@@ -186,46 +192,49 @@ const Layout = (props: {
                 </div>
               ))}
             </div>
+            <div
+              className={style.btnShowHideMenu}
+              style={
+                showMobileMenu
+                  ? { transform: "rotate(270deg)", right: "100%" }
+                  : {}
+              }
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+            >
+              <FaAngleDoubleDown />
+            </div>
           </div>
         )}
         <footer className={style.copyrights}>
           <span>Created by C3sare</span>
           <span>
-            <a
-              target="_blank"
-              href="https://www.facebook.com/marcin.marciniuk.33/"
-              aria-label="C3sare - Facebook"
-            >
-              <Facebook />
-            </a>
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/in/marcin-marciniuk-b35646220/"
-              aria-label="C3sare - Linkedin"
-            >
-              <Linkedin />
-            </a>
-            <a
-              target="_blank"
-              href="https://www.instagram.com/plc3sare/"
-              aria-label="C3sare - Instagram"
-            >
-              <Instagram />
-            </a>
+            {props.socials.map((node) => (
+              <a
+                key={node.name}
+                target="_blank"
+                href={node.url}
+                aria-label={node.name}
+                dangerouslySetInnerHTML={{ __html: node.icon.svg.content }}
+              />
+            ))}
           </span>
         </footer>
       </div>
-      {openMenu &&
+      {openMenu && (
         <div className={style.fullScreenMenu}>
           <div className={style.menuElements}>
-            <Link activeClassName={style.active} to="/">Strona Główna</Link>
-            <Link activeClassName={style.active} to="/projects">Projekty</Link>
+            <Link activeClassName={style.active} to="/">
+              Strona Główna
+            </Link>
+            <Link activeClassName={style.active} to="/projects">
+              Projekty
+            </Link>
           </div>
           <div className={style.closeMenu} onClick={() => setOpenMenu(false)}>
-            <FaRegWindowClose/>
+            <FaRegWindowClose />
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };

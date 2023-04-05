@@ -17,8 +17,18 @@ interface Project {
   }[];
 }
 
+interface Socials {
+  name: string;
+  url: string;
+  icon: {
+    svg: {
+      content: string;
+    };
+  };
+}
+
 const ProjectsPage = () => {
-  const projects: Project[] = useStaticQuery(graphql`
+  const query: any = useStaticQuery(graphql`
     {
       allContentfulProjects {
         nodes {
@@ -43,20 +53,37 @@ const ProjectsPage = () => {
           slug
         }
       }
+      allContentfulSocials {
+        nodes {
+          icon {
+            svg {
+              content
+            }
+          }
+          name
+          url
+        }
+      }
     }
-  `).allContentfulProjects.nodes.map((item: any) => ({
-    title: item.title,
-    img: getImage(item.images[0]),
-    technologies: item.technologies.slice(0, 3).map((item: any) => ({
-      name: item.name,
-      img: item.img.localFile.publicURL,
-    })),
-    demo: item.demo,
-    slug: item.slug,
-  }));
+  `);
+
+  const socials: Socials[] = query.allContentfulSocials.nodes;
+
+  const projects: Project[] = query.allContentfulProjects.nodes.map(
+    (item: any) => ({
+      title: item.title,
+      img: getImage(item.images[0]),
+      technologies: item.technologies.slice(0, 3).map((item: any) => ({
+        name: item.name,
+        img: item.img.localFile.publicURL,
+      })),
+      demo: item.demo,
+      slug: item.slug,
+    })
+  );
 
   return (
-    <Layout>
+    <Layout socials={socials}>
       <div className={style.projects}>
         {projects.map((project, i) => (
           <div className={style.project} key={i}>
@@ -73,7 +100,7 @@ const ProjectsPage = () => {
             </div>
             <div className={style.techs}>
               {project.technologies.map((tech, techi) => (
-                <img src={tech.img} alt={tech.name} key={techi}/>
+                <img src={tech.img} alt={tech.name} key={techi} />
               ))}
             </div>
           </div>

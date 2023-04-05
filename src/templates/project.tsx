@@ -13,6 +13,7 @@ const PricesPage = (props: any) => {
   const [currentSlide, setCurrentSlide] = React.useState<number>(0);
   const [currentWidth, setCurrentWidth] = React.useState<number>(0);
   const page = get(props, "data.contentfulProjects");
+  const socials = get(props, "data.allContentfulSocials.nodes");
 
   const handleNextSlide = () => {
     setCurrentSlide((state) => {
@@ -41,21 +42,32 @@ const PricesPage = (props: any) => {
   }, [slideShow]);
 
   return (
-    <Layout>
+    <Layout socials={socials}>
       <h1 style={{ textAlign: "center" }}>{page.title}</h1>
-      <div className={style.slider} ref={slideShow}>
-        <div
-          className={style.sliderContainer}
-          style={{
-            width: page.images.length * currentWidth + "px",
-            transform: `translate3d(${
-              -currentWidth * currentSlide
-            }px, 0px, 0px)`,
-          }}
-        >
-          {page.images.map((screen: any, i:number) =>
-            {
-              const gimg:any = getImage(screen);
+      <div
+        style={{
+          padding: "5px",
+          borderRadius: "5px",
+          boxShadow: "0 0 3px black",
+          background:
+            "linear-gradient( to left, rgba(54, 0, 42, 0.6), rgba(51, 0, 118, 0.6) )",
+          overflow: "hidden",
+          position: "relative",
+          margin: "25px",
+        }}
+      >
+        <div className={style.slider} ref={slideShow}>
+          <div
+            className={style.sliderContainer}
+            style={{
+              width: page.images.length * currentWidth + "px",
+              transform: `translate3d(${
+                -currentWidth * currentSlide
+              }px, 0px, 0px)`,
+            }}
+          >
+            {page.images.map((screen: any, i: number) => {
+              const gimg: any = getImage(screen);
               return (
                 <GatsbyImage
                   key={i}
@@ -63,25 +75,25 @@ const PricesPage = (props: any) => {
                   image={gimg}
                   alt={screen.title}
                 />
-              )
-            }
+              );
+            })}
+          </div>
+          {page.images.length > 1 && (
+            <>
+              <div className={style.slideBtnLeft} onClick={handlePrevSlide}>
+                <FaArrowCircleLeft />
+              </div>
+              <div className={style.slideBtnRight} onClick={handleNextSlide}>
+                <FaArrowCircleRight />
+              </div>
+            </>
           )}
         </div>
-        {page.images.length > 1 && (
-          <>
-            <div className={style.slideBtnLeft} onClick={handlePrevSlide}>
-              <FaArrowCircleLeft />
-            </div>
-            <div className={style.slideBtnRight} onClick={handleNextSlide}>
-              <FaArrowCircleRight />
-            </div>
-          </>
-        )}
       </div>
       <div className={style.techUsed}>
         <h3>Technologie użyte do budowy projektu</h3>
         <div className={style.techs}>
-          {page.technologies.map((tech: any, i:number) => (
+          {page.technologies.map((tech: any, i: number) => (
             <div className={style.tech} key={i}>
               <img
                 src={tech.img.url}
@@ -133,6 +145,17 @@ export const pageQuery = graphql`
       }
       content {
         raw
+      }
+    }
+    allContentfulSocials {
+      nodes {
+        icon {
+          svg {
+            content
+          }
+        }
+        name
+        url
       }
     }
   }

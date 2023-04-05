@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import { FaBook } from "@react-icons/all-files/fa/FaBook";
 import { FaUserTie } from "@react-icons/all-files/fa/FaUserTie";
@@ -19,8 +19,8 @@ const percentRate = {
   2: "40",
   3: "60",
   4: "80",
-  5: "100"
-}
+  5: "100",
+};
 
 interface Education {
   schoolName: string;
@@ -261,8 +261,8 @@ const Aboutme = () => {
           </span>
           <span>Wykształcenie</span>
         </h3>
-        {education.map((item) => (
-          <div className={style.eduJobItem}>
+        {education.map((item, i) => (
+          <div className={style.eduJobItem} key={i}>
             <p>
               <span>{item.specialization.toUpperCase()}</span>
               <span>
@@ -282,7 +282,7 @@ const Aboutme = () => {
           <span>Doświadczenie</span>
         </h3>
         {experience.map((item) => (
-          <div className={style.eduJobItem}>
+          <div className={style.eduJobItem} key={item.employer}>
             <p>
               <span>{item.position.toUpperCase()}</span>
               <span>
@@ -303,7 +303,7 @@ const Aboutme = () => {
             <span>Języki</span>
           </h3>
           {langugages.map((item) => (
-            <div className={style.langSoftwareItem}>
+            <div className={style.langSoftwareItem} key={item.title}>
               <span
                 dangerouslySetInnerHTML={{
                   __html: item.flag.localFile.svg.content,
@@ -312,7 +312,12 @@ const Aboutme = () => {
               <span>{item.title}</span>
               <div className={style.knowledge}>
                 <div className={style.percentBar}>
-                  <div className={style.knowPercent} style={{width: `${percentRate[item.knowledge]}%`}}>{percentRate[item.knowledge]}%</div>
+                  <div
+                    className={style.knowPercent}
+                    style={{ width: `${percentRate[item.knowledge]}%` }}
+                  >
+                    {percentRate[item.knowledge]}%
+                  </div>
                 </div>
               </div>
             </div>
@@ -326,19 +331,28 @@ const Aboutme = () => {
             <span>Oprogramowanie</span>
           </h3>
           {software.map((item) => (
-              <div className={style.langSoftwareItem}>
-                <span>
-                  <img src={item.icon.localFile.publicURL} width="32px" height="32px" alt={item.title} />
-                </span>
-                <span>{item.title}</span>
-                <div className={style.knowledge}>
-                  <div className={style.percentBar}>
-                    <div className={style.knowPercent} style={{width: `${percentRate[item.knowledge]}%`}}>{percentRate[item.knowledge]}%</div>
+            <div className={style.langSoftwareItem} key={item.title}>
+              <span>
+                <img
+                  src={item.icon.localFile.publicURL}
+                  width="32px"
+                  height="32px"
+                  alt={item.title}
+                />
+              </span>
+              <span>{item.title}</span>
+              <div className={style.knowledge}>
+                <div className={style.percentBar}>
+                  <div
+                    className={style.knowPercent}
+                    style={{ width: `${percentRate[item.knowledge]}%` }}
+                  >
+                    {percentRate[item.knowledge]}%
                   </div>
                 </div>
               </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
       </div>
       <div className={style.langSoftwareBox}>
@@ -349,19 +363,28 @@ const Aboutme = () => {
           <span>Programowanie</span>
         </h3>
         {programming.map((item) => (
-            <div className={style.langSoftwareItem}>
-              <span>
-                <img src={item.icon.localFile.publicURL} width="32px" height="32px" alt={item.title} />
-              </span>
-              <span>{item.title}</span>
-              <div className={style.knowledge}>
-                <div className={style.percentBar}>
-                  <div className={style.knowPercent} style={{width: `${percentRate[item.knowledge]}%`}}>{percentRate[item.knowledge]}%</div>
+          <div className={style.langSoftwareItem} key={item.title}>
+            <span>
+              <img
+                src={item.icon.localFile.publicURL}
+                width="32px"
+                height="32px"
+                alt={item.title}
+              />
+            </span>
+            <span>{item.title}</span>
+            <div className={style.knowledge}>
+              <div className={style.percentBar}>
+                <div
+                  className={style.knowPercent}
+                  style={{ width: `${percentRate[item.knowledge]}%` }}
+                >
+                  {percentRate[item.knowledge]}%
                 </div>
               </div>
             </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
       <div className={style.langSoftwareBox}>
         <h3>
@@ -371,14 +394,18 @@ const Aboutme = () => {
           <span>Dodatkowe technologie</span>
         </h3>
         {additionalTechs.map((item) => (
-            <div className={style.langSoftwareItem}>
-              <span>
-                <img src={item.icon.localFile.publicURL} width="32px" height="32px" alt={item.title} />
-              </span>
-              <span>{item.title}</span>
-            </div>
-          )
-        )}
+          <div className={style.langSoftwareItem} key={item.title}>
+            <span>
+              <img
+                src={item.icon.localFile.publicURL}
+                width="32px"
+                height="32px"
+                alt={item.title}
+              />
+            </span>
+            <span>{item.title}</span>
+          </div>
+        ))}
       </div>
       <div className={style.langSoftwareContainer}>
         <div className={style.langSoftwareBox}>
@@ -389,7 +416,9 @@ const Aboutme = () => {
             <span>Umiejętności</span>
           </h3>
           {personalSkills.map((item) => (
-            <div className={style.langSoftwareItem}>✓ {item.title}</div>
+            <div className={style.langSoftwareItem} key={item.title}>
+              ✓ {item.title}
+            </div>
           ))}
         </div>
         <div className={style.langSoftwareBox}>
@@ -400,7 +429,9 @@ const Aboutme = () => {
             <span>Dodatkowe atuty</span>
           </h3>
           {personalAdvantages.map((item) => (
-            <div className={style.langSoftwareItem}>✓ {item.title}</div>
+            <div className={style.langSoftwareItem} key={item.title}>
+              ✓ {item.title}
+            </div>
           ))}
         </div>
       </div>
@@ -412,7 +443,7 @@ const Aboutme = () => {
           <span>Zainteresowania</span>
         </h3>
         {hobby.map((item) => (
-          <div className={style.langSoftwareItem}>
+          <div className={style.langSoftwareItem} key={item.title}>
             <span dangerouslySetInnerHTML={{ __html: item.icon.svg.content }} />
             <span>{item.title}</span>
           </div>
@@ -425,10 +456,12 @@ const Aboutme = () => {
           </span>
           <span>Pobierz</span>
         </h3>
-        {files.map((item) => (
-          <div className={style.langSoftwareItem}>
-            {item.file.map((link) => (
-              <a href={link.localFile.publicURL}>{link.filename}</a>
+        {files.map((item, i) => (
+          <div className={style.langSoftwareItem} key={i}>
+            {item.file.map((link, j) => (
+              <a href={link.localFile.publicURL} key={j}>
+                {link.filename}
+              </a>
             ))}
           </div>
         ))}

@@ -1,70 +1,74 @@
 .slider {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .sliderContainer {
-    display: block;
-    transition: .3s transform;
+  display: block;
+  transition: 0.3s transform;
 }
 
 .sliderContainer img {
-    display: inline-block;
+  display: inline-block;
 }
 
 .slideBtnLeft,
 .slideBtnRight {
-    position: absolute;
-    font-size: 35px;
-    top: 50%;
-    color: rgb(51, 70, 209);
-    transform: translateY(-50%);
-    cursor: pointer;
+  position: absolute;
+  font-size: 35px;
+  top: 50%;
+  color: rgb(51, 70, 209);
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .slideBtnLeft {
-    left: 15px;
+  left: 15px;
 }
 
 .slideBtnRight {
-    right: 15px;
+  right: 15px;
 }
 
 .techUsed {
-    display: block;
-    margin: 25px;
-    text-align: center;
+  display: block;
+  margin: 25px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 25px;
+  box-shadow: 0 0 3px black;
 }
 
 .techs {
-    display: block;
-    text-align: center;
+  display: block;
+  text-align: center;
 }
 
 .tech {
-    position: relative;
-    display: inline-block;
-    margin: 10px 25px;
+  position: relative;
+  display: inline-block;
+  margin: 10px 25px;
 }
 
 .tech span {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .siteUrl {
-    margin: 25px;
-    text-align: center;
+  margin: 25px;
+  text-align: center;
 }
 
 .siteUrl a {
-    text-decoration: none;
-    color: rgb(193, 0, 151);
+  text-decoration: none;
+  color: rgb(193, 0, 151);
 }
 
 .siteUrl a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

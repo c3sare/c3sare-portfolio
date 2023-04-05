@@ -1,7 +1,8 @@
 import * as React from "react";
-import type { HeadFC } from "gatsby";
+import { HeadFC, graphql } from "gatsby";
 import Layout, { Page } from "../components/Layout";
 import Home from "../slides/Home";
+import get from "lodash/get";
 
 import { FaHome } from "@react-icons/all-files/fa/FaHome";
 import { FaQuestionCircle } from "@react-icons/all-files/fa/FaQuestionCircle";
@@ -20,7 +21,7 @@ const pages: Page[] = [
     title: "Start",
     component: <Home />,
     icon: <FaHome />,
-    hideTitle: true
+    hideTitle: true,
   },
   {
     title: "O mnie",
@@ -49,8 +50,10 @@ const pages: Page[] = [
   },
 ];
 
-const IndexPage = () => {
-  return <Layout pages={pages} />;
+const IndexPage = (props: any) => {
+  const socials = get(props, "data.allContentfulSocials.nodes");
+
+  return <Layout socials={socials} pages={pages} />;
 };
 
 export default IndexPage;
@@ -58,7 +61,29 @@ export default IndexPage;
 export const Head: HeadFC = () => (
   <>
     <title>C3sare | Strona Główna</title>
-    <meta name="description" content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"/>
-    <meta name="keywords" content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"/>
+    <meta
+      name="description"
+      content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"
+    />
+    <meta
+      name="keywords"
+      content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"
+    />
   </>
 );
+
+export const query = graphql`
+  {
+    allContentfulSocials {
+      nodes {
+        icon {
+          svg {
+            content
+          }
+        }
+        name
+        url
+      }
+    }
+  }
+`;
