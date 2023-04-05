@@ -9,10 +9,9 @@ const config: GatsbyConfig = {
     title: `C3sare - Portfolio`,
     siteUrl: `https://www.c3sare.pl`,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
-  graphqlTypegen: true,
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     {
       resolve: "gatsby-source-filesystem",
@@ -31,7 +30,7 @@ const config: GatsbyConfig = {
       options: {
         spaceId: `0xgywss1ielu`,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        downloadLocal: true
+        downloadLocal: true,
       },
     },
     "gatsby-plugin-offline",

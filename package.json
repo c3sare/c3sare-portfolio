@@ -16,27 +16,26 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^15.12.1",
+    "@contentful/rich-text-react-renderer": "^15.16.3",
     "@react-icons/all-files": "^4.1.0",
-    "gatsby": "^4.22.1",
-    "gatsby-plugin-image": "^2.22.0",
-    "gatsby-plugin-manifest": "^4.22.0",
-    "gatsby-plugin-offline": "^5.22.0",
-    "gatsby-plugin-react-svg": "^3.1.0",
-    "gatsby-plugin-sharp": "^4.22.0",
+    "gatsby": "^5.8.1",
+    "gatsby-plugin-image": "^3.8.0",
+    "gatsby-plugin-manifest": "^5.8.0",
+    "gatsby-plugin-offline": "^6.8.0",
+    "gatsby-plugin-react-svg": "^3.3.0",
+    "gatsby-plugin-sharp": "^5.8.1",
     "gatsby-plugin-web-font-loader": "^1.0.4",
-    "gatsby-source-contentful": "^7.21.0",
-    "gatsby-source-filesystem": "^4.22.0",
+    "gatsby-source-contentful": "^8.8.0",
+    "gatsby-source-filesystem": "^5.8.0",
     "gatsby-transformer-inline-svg": "^1.2.0",
-    "gatsby-transformer-sharp": "^4.22.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-particles-js": "^3.6.0"
+    "gatsby-transformer-sharp": "^5.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.45",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "typescript": "^4.8.2"
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^5.0.3"
   }
 }
