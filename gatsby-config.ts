@@ -10,6 +10,9 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.c3sare.pl`,
   },
   graphqlTypegen: false,
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
