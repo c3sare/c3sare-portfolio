@@ -356,7 +356,7 @@ body {
   top: 0;
   left: 0;
   z-index: 99;
-  min-height: 100%;
+  max-height: 100vh;
   transition: transform 0.5s;
   text-align: center;
   background: linear-gradient(
@@ -364,6 +364,7 @@ body {
     rgba(51, 70, 209, 0.8),
     rgba(53, 0, 52, 0.8)
   );
+  overflow-y: auto;
 }
 
 .menuMobile > * {
