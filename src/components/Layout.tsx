@@ -30,7 +30,7 @@ const Layout = (props: {
 }) => {
   const { pages } = props;
   const [currentSlide, setCurrentSlide] = React.useState<number>(
-    getPage(pages, location)
+    !pages || !location ? 0 : getPage(pages, location)
   );
   const [currentHeight, setCurrentHeight] = React.useState<number>(0);
   const [currentWidth, setcurrentWidth] = React.useState<number>(0);
@@ -93,7 +93,9 @@ const Layout = (props: {
   }, [currentSlide, mobile]);
 
   React.useEffect(() => {
-    if (location.pathname === "/") navigate(`/?page=${currentSlide}`);
+    if (location) {
+      if (location.pathname === "/") navigate(`/?page=${currentSlide}`);
+    }
   }, [currentSlide]);
 
   const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
