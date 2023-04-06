@@ -1,7 +1,6 @@
 import React from "react";
 import * as style from "../styles/style.module.css";
 import FaAngleDoubleDown from "../icons/FaAngleDoubleDown";
-import FaRegWindowClose from "../icons/FaRegWindowClose";
 import FaBars from "../icons/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
@@ -115,93 +114,124 @@ const Layout = (props: {
   }
 
   return (
-    <div className={style.background}>
-      <header className={style.header}>
-        <Link to="/">
-          <img src={logo} alt="C3sare logo" width="120px" height="30px" />
-        </Link>
-        <div className={style.menu}>
-          <Link activeClassName={style.active} to="/">
-            Strona Główna
+    <>
+      <div className={style.background}>
+        <header className={style.header}>
+          <Link to="/">
+            <img src={logo} alt="C3sare logo" width="120px" height="30px" />
           </Link>
-          <Link activeClassName={style.active} to="/projects">
-            Projekty
-          </Link>
-          <div className={style.navButton} onClick={() => setOpenMenu(true)}>
-            <FaBars />
-          </div>
-        </div>
-      </header>
-      <div className={style.backgroundGradient}>
-        {pages ? (
-          <div className={style.sliderMain} ref={sliderMain}>
-            <div
-              style={{
-                transform: `translate3d(0, ${
-                  -currentSlide * currentHeight
-                }px, 0)`,
-              }}
-            >
-              {pages.map((page, index) => (
-                <div
-                  className={style.page}
-                  key={index}
-                  style={mobile ? { ...bgColor(index) } : {}}
-                  onWheel={handleScroll}
-                  onTouchStart={changeSlideTouchStart}
-                  onTouchEnd={changeSlideTouchEnd}
-                >
-                  {page.hideTitle ? null : <h2>{page.title}</h2>}
-                  <div className={style.pageContent}>
-                    <page.component setCurrentSlide={setCurrentSlide} />
-                  </div>
-                  {index < pages.length - 1 && (
-                    <footer
-                      className={style.nextSlide}
-                      onClick={() => setCurrentSlide(currentSlide + 1)}
-                    >
-                      <FaAngleDoubleDown />
-                      <span>{pages[index + 1].title}</span>
-                    </footer>
-                  )}
-                </div>
-              ))}
+          <div className={style.menu}>
+            <Link activeClassName={style.active} to="/">
+              Strona Główna
+            </Link>
+            <Link activeClassName={style.active} to="/projects">
+              Projekty
+            </Link>
+            <div className={style.navButton} onClick={() => setOpenMenu(true)}>
+              <FaBars />
             </div>
           </div>
-        ) : (
-          <main className={style.main}>{props.children}</main>
-        )}
-        {pages && (
-          <div
-            className={style.rightBar}
-            style={showMobileMenu ? { right: "8px" } : {}}
-          >
-            <div className={style.slideButtons}>
-              {pages.map((page, index) => (
-                <div
+        </header>
+        <div className={style.backgroundGradient}>
+          {pages ? (
+            <div className={style.sliderMain} ref={sliderMain}>
+              <div
+                style={{
+                  transform: `translate3d(0, ${
+                    -currentSlide * currentHeight
+                  }px, 0)`,
+                }}
+              >
+                {pages.map((page, index) => (
+                  <div
+                    className={style.page}
+                    key={index}
+                    style={mobile ? { ...bgColor(index) } : {}}
+                    onWheel={handleScroll}
+                    onTouchStart={changeSlideTouchStart}
+                    onTouchEnd={changeSlideTouchEnd}
+                  >
+                    {page.hideTitle ? null : <h2>{page.title}</h2>}
+                    <div className={style.pageContent}>
+                      <page.component setCurrentSlide={setCurrentSlide} />
+                    </div>
+                    {index < pages.length - 1 && (
+                      <footer
+                        className={style.nextSlide}
+                        onClick={() => setCurrentSlide(currentSlide + 1)}
+                      >
+                        <FaAngleDoubleDown />
+                        <span>{pages[index + 1].title}</span>
+                      </footer>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <main className={style.main}>{props.children}</main>
+          )}
+          {pages && (
+            <div
+              className={style.rightBar}
+              style={showMobileMenu ? { right: "8px" } : {}}
+            >
+              <div className={style.slideButtons}>
+                {pages.map((page, index) => (
+                  <div
+                    key={index}
+                    className={currentSlide === index ? style.activeSlide : ""}
+                    onClick={() => setCurrentSlide(index)}
+                  >
+                    {page.icon} <span>{page.title}</span>
+                  </div>
+                ))}
+              </div>
+              <div
+                className={style.btnShowHideMenu}
+                style={
+                  showMobileMenu
+                    ? { transform: "rotate(270deg)", right: "100%" }
+                    : {}
+                }
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+              >
+                <FaAngleDoubleDown />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      {openMenu && (
+        <div className={style.menuMobile}>
+          <div>
+            <h2>Menu</h2>
+            {pages &&
+              pages.map((page, index) => (
+                <button
                   key={index}
                   className={currentSlide === index ? style.activeSlide : ""}
                   onClick={() => setCurrentSlide(index)}
                 >
                   {page.icon} <span>{page.title}</span>
-                </div>
+                </button>
               ))}
-            </div>
-            <div
-              className={style.btnShowHideMenu}
-              style={
-                showMobileMenu
-                  ? { transform: "rotate(270deg)", right: "100%" }
-                  : {}
-              }
-              onClick={() => setShowMobileMenu(!showMobileMenu)}
-            >
-              <FaAngleDoubleDown />
+          </div>
+          <div>
+            <h2>Inne strony</h2>
+            <div>
+              <Link activeClassName={style.active} to="/">
+                <button>Strona Główna</button>
+              </Link>
+              <Link activeClassName={style.active} to="/projects">
+                <button>Projekty</button>
+              </Link>
             </div>
           </div>
-        )}
-      </div>
-    </div>
+          <button onClick={() => setOpenMenu(false)}>Zamknij</button>
+        </div>
+      )}
+    </>
   );
 };
 

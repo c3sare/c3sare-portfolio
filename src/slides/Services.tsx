@@ -47,7 +47,7 @@ const Services = () => {
           <h3>{service.title}</h3>
           <p>{service.text}</p>
           <Link to={"/services/" + service.slug}>
-            <button>Więcej</button>
+            <button>More</button>
           </Link>
         </div>
       ))}
