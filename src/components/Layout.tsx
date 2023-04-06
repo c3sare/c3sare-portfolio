@@ -137,9 +137,7 @@ const Layout = (props: {
             <div className={style.sliderMain} ref={sliderMain}>
               <div
                 style={{
-                  transform: `translate3d(0, ${
-                    -currentSlide * currentHeight
-                  }px, 0)`,
+                  transform: `translate3d(0, ${-currentSlide * 100}vh, 0)`,
                 }}
               >
                 {pages.map((page, index) => (
