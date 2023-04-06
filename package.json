@@ -23,12 +23,14 @@
     "gatsby-plugin-manifest": "^5.8.0",
     "gatsby-plugin-sharp": "^5.8.1",
     "gatsby-plugin-sitemap": "^6.8.0",
+    "gatsby-plugin-use-query-params": "^1.0.1",
     "gatsby-source-contentful": "^8.8.0",
     "gatsby-source-filesystem": "^5.8.0",
     "gatsby-transformer-sharp": "^5.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9"
+    "react-hook-form": "^7.43.9",
+    "use-query-params": "^2.2.1"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",

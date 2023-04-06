@@ -49,18 +49,24 @@ interface Language {
 interface Software {
   title: string;
   knowledge: 0 | 1 | 2 | 3 | 4 | 5;
-  icon: any;
+  icon: {
+    gatsbyImage: any;
+  };
 }
 
 interface ProgLang {
   title: string;
   knowledge: 0 | 1 | 2 | 3 | 4 | 5;
-  icon: any;
+  icon: {
+    gatsbyImage: any;
+  };
 }
 
 interface AddTech {
   title: string;
-  icon: any;
+  icon: {
+    gatsbyImage: any;
+  };
 }
 
 interface PersonalSkill {
@@ -120,7 +126,12 @@ const Aboutme = () => {
           knowledge
           title
           icon {
-            url
+            gatsbyImage(
+              formats: WEBP
+              placeholder: NONE
+              quality: 100
+              height: 32
+            )
           }
         }
       }
@@ -128,7 +139,12 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            url
+            gatsbyImage(
+              formats: WEBP
+              placeholder: NONE
+              quality: 100
+              height: 32
+            )
           }
           knowledge
         }
@@ -137,7 +153,12 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            url
+            gatsbyImage(
+              formats: WEBP
+              placeholder: NONE
+              quality: 100
+              height: 32
+            )
           }
         }
       }
@@ -340,10 +361,9 @@ const Aboutme = () => {
           {software.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
               <span>
-                <img
-                  src={item.icon.url}
-                  width="32px"
-                  height="32px"
+                <GatsbyImage
+                  loading="eager"
+                  image={item.icon.gatsbyImage}
                   alt={item.title}
                 />
               </span>
@@ -372,10 +392,9 @@ const Aboutme = () => {
         {programming.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
             <span>
-              <img
-                src={item.icon.url}
-                width="32px"
-                height="32px"
+              <GatsbyImage
+                loading="eager"
+                image={item.icon.gatsbyImage}
                 alt={item.title}
               />
             </span>
@@ -403,10 +422,9 @@ const Aboutme = () => {
         {additionalTechs.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
             <span>
-              <img
-                src={item.icon.url}
-                width="32px"
-                height="32px"
+              <GatsbyImage
+                loading="eager"
+                image={item.icon.gatsbyImage}
                 alt={item.title}
               />
             </span>
@@ -473,7 +491,11 @@ const Aboutme = () => {
         {files.map((item, i) => (
           <div className={style.langSoftwareItem} key={i}>
             {item.file.map((link, j) => (
-              <a href={link.url} key={j}>
+              <a
+                href={link.url}
+                key={j}
+                aria-label={`Download file named ${link.filename}`}
+              >
                 {link.filename}
               </a>
             ))}

@@ -4,6 +4,7 @@ import FaAngleDoubleDown from "../icons/FaAngleDoubleDown";
 import FaBars from "../icons/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
+import { navigate } from "gatsby";
 
 export interface Page {
   title: string;
@@ -12,12 +13,25 @@ export interface Page {
   hideTitle?: boolean;
 }
 
+const getPage = (pages: any, location: any) => {
+  if (!pages || !location) return 0;
+  const q = location.search;
+  if (q.indexOf("?page=") === 0) {
+    const page = Number(q.slice(-1));
+    if (page >= 0 && page < pages.length) return page;
+    else return 0;
+  } else return 0;
+};
+
 const Layout = (props: {
   pages?: Page[];
+  location?: any;
   children?: JSX.Element | JSX.Element[] | React.ReactNode;
 }) => {
   const { pages } = props;
-  const [currentSlide, setCurrentSlide] = React.useState<number>(0);
+  const [currentSlide, setCurrentSlide] = React.useState<number>(
+    getPage(pages, location)
+  );
   const [currentHeight, setCurrentHeight] = React.useState<number>(0);
   const [currentWidth, setcurrentWidth] = React.useState<number>(0);
   const [mobile, setMobile] = React.useState(false);
@@ -77,6 +91,10 @@ const Layout = (props: {
       window.removeEventListener("resize", setHeightWidth, true);
     };
   }, [currentSlide, mobile]);
+
+  React.useEffect(() => {
+    if (location.pathname === "/") navigate(`/?page=${currentSlide}`);
+  }, [currentSlide]);
 
   const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
     if (!blockScroll.current) {
@@ -202,26 +220,29 @@ const Layout = (props: {
       </div>
       {openMenu && (
         <div className={style.menuMobile}>
-          <div>
-            <h2>Menu</h2>
-            {pages &&
-              pages.map((page, index) => (
-                <button
-                  key={index}
-                  className={currentSlide === index ? style.activeSlide : ""}
-                  onClick={() => {
-                    if (index !== currentSlide) {
-                      setCurrentSlide(index);
-                      setOpenMenu(false);
-                    }
-                  }}
-                >
-                  {page.icon} <span>{page.title}</span>
-                </button>
+          {pages && (
+            <div>
+              <h2>Szybkie odnośniki</h2>
+              {pages.map((page, index) => (
+                <Link to={`/?page=${index}`}>
+                  <button
+                    key={index}
+                    className={currentSlide === index ? style.activeSlide : ""}
+                    onClick={() => {
+                      if (index !== currentSlide) {
+                        setCurrentSlide(index);
+                        setOpenMenu(false);
+                      }
+                    }}
+                  >
+                    {page.icon} <span>{page.title}</span>
+                  </button>
+                </Link>
               ))}
-          </div>
+            </div>
+          )}
           <div>
-            <h2>Inne strony</h2>
+            <h2>Nawigacja</h2>
             <div>
               <Link activeClassName={style.active} to="/">
                 <button>Strona Główna</button>

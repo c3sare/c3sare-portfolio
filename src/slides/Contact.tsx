@@ -186,14 +186,18 @@ const Contact = () => {
         <br />
         <StaticImage
           placeholder="none"
+          loading="eager"
           height={32}
+          quality={100}
           src="../images/icon.png"
           alt="Gatsby"
         />
         <StaticImage
           src="../images/cf.png"
           placeholder="none"
+          loading="eager"
           height={32}
+          quality={100}
           alt="Contentful"
         />
       </footer>

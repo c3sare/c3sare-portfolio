@@ -139,7 +139,7 @@ body {
 }
 
 .nextSlide {
-  width: 60px;
+  width: 70px;
   height: 55px;
   display: flex;
   flex-direction: column;
@@ -368,6 +368,10 @@ body {
 
 .menuMobile > * {
   margin: 16px 8px;
+}
+
+.menuMobile a {
+  text-decoration: none;
 }
 
 .menuMobile button {

@@ -178,7 +178,7 @@ const Prices = () => {
       >
         {priceBoxes.map((box, index) => (
           <div key={index} className={style.variant}>
-            {box.popular && <div className={style.popular}>Popularny</div>}
+            {box.popular && <div className={style.popular}>Popular</div>}
             <div className={style.title}>
               <h3>{box.title}</h3>
               <span className={style.price}>
@@ -206,7 +206,10 @@ const Prices = () => {
             ))}
             <hr />
             <div className={style.buttonsPrice}>
-              <Link to={`/prices/${box.slug}`}>
+              <Link
+                to={`/prices/${box.slug}`}
+                aria-label={`Read more about ${box.title} offer`}
+              >
                 <button>More</button>
               </Link>
             </div>
