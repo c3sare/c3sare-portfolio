@@ -188,7 +188,7 @@ const Prices = () => {
                   {String(box.cost[1]).length < 2
                     ? String(box.cost[1]) + "0"
                     : box.cost[1]}{" "}
-                  zł
+                  PLN
                 </span>
               </span>
             </div>
@@ -207,7 +207,7 @@ const Prices = () => {
             <hr />
             <div className={style.buttonsPrice}>
               <Link to={`/prices/${box.slug}`}>
-                <button>Więcej</button>
+                <button>More</button>
               </Link>
             </div>
           </div>

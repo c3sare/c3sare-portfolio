@@ -8,22 +8,13 @@ import logo from "../images/logo.webp";
 
 export interface Page {
   title: string;
-  component: JSX.Element;
+  component: any;
   icon: JSX.Element;
   hideTitle?: boolean;
 }
 
-interface Social {
-  name: string;
-  url: string;
-  icon: {
-    url: string;
-  };
-}
-
 const Layout = (props: {
   pages?: Page[];
-  socials: Social[];
   children?: JSX.Element | JSX.Element[] | React.ReactNode;
 }) => {
   const { pages } = props;
@@ -129,8 +120,16 @@ const Layout = (props: {
         <Link to="/">
           <img src={logo} alt="C3sare logo" width="120px" height="30px" />
         </Link>
-        <div className={style.navButton} onClick={() => setOpenMenu(true)}>
-          <FaBars />
+        <div className={style.menu}>
+          <Link activeClassName={style.active} to="/">
+            Strona Główna
+          </Link>
+          <Link activeClassName={style.active} to="/projects">
+            Projekty
+          </Link>
+          <div className={style.navButton} onClick={() => setOpenMenu(true)}>
+            <FaBars />
+          </div>
         </div>
       </header>
       <div className={style.backgroundGradient}>
@@ -153,7 +152,9 @@ const Layout = (props: {
                   onTouchEnd={changeSlideTouchEnd}
                 >
                   {page.hideTitle ? null : <h2>{page.title}</h2>}
-                  <div className={style.pageContent}>{page.component}</div>
+                  <div className={style.pageContent}>
+                    <page.component setCurrentSlide={setCurrentSlide} />
+                  </div>
                   {index < pages.length - 1 && (
                     <footer
                       className={style.nextSlide}
@@ -199,42 +200,7 @@ const Layout = (props: {
             </div>
           </div>
         )}
-        <footer className={style.copyrights}>
-          <span>Created by C3sare</span>
-          <span>
-            {props.socials.map((node) => (
-              <a
-                key={node.name}
-                target="_blank"
-                href={node.url}
-                aria-label={node.name}
-              >
-                <img
-                  src={node.icon.url}
-                  alt={node.name}
-                  width="40px"
-                  height="40px"
-                />
-              </a>
-            ))}
-          </span>
-        </footer>
       </div>
-      {openMenu && (
-        <div className={style.fullScreenMenu}>
-          <div className={style.menuElements}>
-            <Link activeClassName={style.active} to="/">
-              Strona Główna
-            </Link>
-            <Link activeClassName={style.active} to="/projects">
-              Projekty
-            </Link>
-          </div>
-          <div className={style.closeMenu} onClick={() => setOpenMenu(false)}>
-            <FaRegWindowClose />
-          </div>
-        </div>
-      )}
     </div>
   );
 };

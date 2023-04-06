@@ -1,8 +1,7 @@
 import * as React from "react";
-import { HeadFC, graphql } from "gatsby";
+import { HeadFC } from "gatsby";
 import Layout, { Page } from "../components/Layout";
 import Home from "../slides/Home";
-import get from "lodash/get";
 
 import FaHome from "../icons/FaHome";
 import FaQuestionCircle from "../icons/FaQuestionCircle";
@@ -18,42 +17,40 @@ import Contact from "../slides/Contact";
 
 const pages: Page[] = [
   {
-    title: "Start",
-    component: <Home />,
+    title: "Home",
+    component: Home,
     icon: <FaHome />,
     hideTitle: true,
   },
   {
-    title: "O mnie",
-    component: <Aboutme />,
+    title: "About me",
+    component: Aboutme,
     icon: <FaQuestionCircle />,
   },
   {
-    title: "Usługi",
-    component: <Services />,
+    title: "Services",
+    component: Services,
     icon: <FaRegHospital />,
   },
   {
-    title: "Projekty",
-    component: <Projects />,
+    title: "My Projects",
+    component: Projects,
     icon: <FaProjectDiagram />,
   },
   {
-    title: "Oferta",
-    component: <Prices />,
+    title: "Offer",
+    component: Prices,
     icon: <FaMoneyBill />,
   },
   {
-    title: "Kontakt",
-    component: <Contact />,
+    title: "Contact",
+    component: Contact,
     icon: <FaPhoneSquareAlt />,
   },
 ];
 
-const IndexPage = (props: any) => {
-  const socials = get(props, "data.allContentfulSocials.nodes");
-
-  return <Layout socials={socials} pages={pages} />;
+const IndexPage = () => {
+  return <Layout pages={pages} />;
 };
 
 export default IndexPage;
@@ -71,17 +68,3 @@ export const Head: HeadFC = () => (
     />
   </>
 );
-
-export const query = graphql`
-  {
-    allContentfulSocials {
-      nodes {
-        icon {
-          url
-        }
-        name
-        url
-      }
-    }
-  }
-`;

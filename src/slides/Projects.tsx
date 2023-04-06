@@ -78,7 +78,7 @@ const Projects = () => {
       ))}
       <div className={style.more}>
         <Link to="/projects/">
-          <button>Wszystkie Projekty</button>
+          <button>All projects</button>
         </Link>
       </div>
     </div>

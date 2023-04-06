@@ -238,12 +238,20 @@ const Aboutme = () => {
         <div className={style.details}>
           <span className={style.name}>{personal.name}</span>
           <span>
-            <a href={`tel:${personal.phone.replaceAll(" ", "")}`}>
+            <a
+              href={`tel:${personal.phone.replaceAll(" ", "")}`}
+              aria-label="Contact using phone number"
+            >
               {personal.phone}
             </a>
           </span>
           <span>
-            <a href={`mailto:${personal.mail}`}>{personal.mail}</a>
+            <a
+              href={`mailto:${personal.mail}`}
+              aria-label="Contact using e-mail address"
+            >
+              {personal.mail}
+            </a>
           </span>
         </div>
         <div className={style.avatar}>
@@ -255,7 +263,7 @@ const Aboutme = () => {
           <span>
             <FaBook />
           </span>
-          <span>Wykształcenie</span>
+          <span>Education</span>
         </h3>
         {education.map((item, i) => (
           <div className={style.eduJobItem} key={i}>
@@ -263,7 +271,7 @@ const Aboutme = () => {
               <span>{item.specialization.toUpperCase()}</span>
               <span>
                 {item.schoolStart.split("-")[0]} -{" "}
-                {item.stillStudy ? "do teraz" : item.schoolEnd.split("-")[0]}
+                {item.stillStudy ? "until today" : item.schoolEnd.split("-")[0]}
               </span>
             </p>
             <span>{item.schoolName}</span>
@@ -275,7 +283,7 @@ const Aboutme = () => {
           <span>
             <FaUserTie />
           </span>
-          <span>Doświadczenie</span>
+          <span>Experience</span>
         </h3>
         {experience.map((item) => (
           <div className={style.eduJobItem} key={item.employer}>
@@ -283,7 +291,7 @@ const Aboutme = () => {
               <span>{item.position.toUpperCase()}</span>
               <span>
                 {item.jobStart.split("-")[0]} -{" "}
-                {item.stillWorking ? "do teraz" : item.jobEnd.split("-")[0]}
+                {item.stillWorking ? "until today" : item.jobEnd.split("-")[0]}
               </span>
             </p>
             <span>{item.employer}</span>
@@ -296,7 +304,7 @@ const Aboutme = () => {
             <span>
               <FaLanguage />
             </span>
-            <span>Języki</span>
+            <span>Languages</span>
           </h3>
           {langugages.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
@@ -327,7 +335,7 @@ const Aboutme = () => {
             <span>
               <FaLaptop />
             </span>
-            <span>Oprogramowanie</span>
+            <span>Software</span>
           </h3>
           {software.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
@@ -359,7 +367,7 @@ const Aboutme = () => {
           <span>
             <FaCode />
           </span>
-          <span>Programowanie</span>
+          <span>Programming</span>
         </h3>
         {programming.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
@@ -390,7 +398,7 @@ const Aboutme = () => {
           <span>
             <FaCodeBranch />
           </span>
-          <span>Dodatkowe technologie</span>
+          <span>Additional technologies</span>
         </h3>
         {additionalTechs.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
@@ -412,7 +420,7 @@ const Aboutme = () => {
             <span>
               <FaClipboard />
             </span>
-            <span>Umiejętności</span>
+            <span>Soft Skills</span>
           </h3>
           {personalSkills.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
@@ -425,7 +433,7 @@ const Aboutme = () => {
             <span>
               <FaClipboardCheck />
             </span>
-            <span>Dodatkowe atuty</span>
+            <span>Additional advantages</span>
           </h3>
           {personalAdvantages.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
@@ -439,7 +447,7 @@ const Aboutme = () => {
           <span>
             <FaCube />
           </span>
-          <span>Zainteresowania</span>
+          <span>Interests</span>
         </h3>
         {hobby.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
@@ -460,7 +468,7 @@ const Aboutme = () => {
           <span>
             <FaDownload />
           </span>
-          <span>Pobierz</span>
+          <span>Download</span>
         </h3>
         {files.map((item, i) => (
           <div className={style.langSoftwareItem} key={i}>

@@ -162,3 +162,8 @@ button:hover {
   font-size: 10px;
   padding-bottom: 8px;
 }
+
+.copyrights {
+  padding: 8px;
+  font-size: 12px;
+}
