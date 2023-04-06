@@ -43,9 +43,7 @@ export const query = graphql`
     allContentfulSocials {
       nodes {
         icon {
-          svg {
-            content
-          }
+          url
         }
         name
         url

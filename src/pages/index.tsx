@@ -4,12 +4,12 @@ import Layout, { Page } from "../components/Layout";
 import Home from "../slides/Home";
 import get from "lodash/get";
 
-import { FaHome } from "@react-icons/all-files/fa/FaHome";
-import { FaQuestionCircle } from "@react-icons/all-files/fa/FaQuestionCircle";
-import { FaRegHospital } from "@react-icons/all-files/fa/FaRegHospital";
-import { FaProjectDiagram } from "@react-icons/all-files/fa/FaProjectDiagram";
-import { FaMoneyBill } from "@react-icons/all-files/fa/FaMoneyBill";
-import { FaPhoneSquareAlt } from "@react-icons/all-files/fa/FaPhoneSquareAlt";
+import FaHome from "../icons/FaHome";
+import FaQuestionCircle from "../icons/FaQuestionCircle";
+import FaRegHospital from "../icons/FaRegHospital";
+import FaProjectDiagram from "../icons/FaProjectDiagram";
+import FaMoneyBill from "../icons/FaMoneyBill";
+import FaPhoneSquareAlt from "../icons/FaPhoneSquareAlt";
 import Aboutme from "../slides/Aboutme";
 import Services from "../slides/Services";
 import Projects from "../slides/Projects";
@@ -77,9 +77,7 @@ export const query = graphql`
     allContentfulSocials {
       nodes {
         icon {
-          svg {
-            content
-          }
+          url
         }
         name
         url

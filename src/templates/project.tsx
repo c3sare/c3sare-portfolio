@@ -5,8 +5,8 @@ import Layout from "../components/Layout";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import * as style from "./project.module.css";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { FaArrowCircleLeft } from "@react-icons/all-files/fa/FaArrowCircleLeft";
-import { FaArrowCircleRight } from "@react-icons/all-files/fa/FaArrowCircleRight";
+import FaArrowCircleLeft from "../icons/FaArrowCircleLeft";
+import FaArrowCircleRight from "../icons/FaArrowCircleRight";
 
 const PricesPage = (props: any) => {
   const slideShow = React.useRef<HTMLDivElement>(null);
@@ -150,9 +150,7 @@ export const pageQuery = graphql`
     allContentfulSocials {
       nodes {
         icon {
-          svg {
-            content
-          }
+          url
         }
         name
         url

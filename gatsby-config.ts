@@ -9,38 +9,20 @@ const config: GatsbyConfig = {
     title: `C3sare - Portfolio`,
     siteUrl: `https://www.c3sare.pl`,
   },
-  flags: {
-    DEV_SSR: true,
-  },
+  graphqlTypegen: false,
   plugins: [
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: "gatsby-source-contentful",
       options: {
-        name: "images",
-        path: "./src/images/",
-      },
-      __key: "images",
-    },
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-image",
-    "gatsby-transformer-sharp",
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `0xgywss1ielu`,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
         downloadLocal: true,
       },
     },
-    "gatsby-plugin-offline",
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        google: {
-          families: ["Roboto"],
-        },
-      },
-    },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sitemap",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -54,12 +36,12 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: "gatsby-source-filesystem",
       options: {
-        rule: {
-          include: /\.svg$/,
-        },
+        name: "images",
+        path: "./src/images/",
       },
+      __key: "images",
     },
   ],
 };

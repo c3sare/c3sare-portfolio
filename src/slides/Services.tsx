@@ -3,24 +3,20 @@ import * as style from "../styles/services.module.css";
 import { graphql, Link, useStaticQuery } from "gatsby";
 
 interface Service {
-  title: string,
-  text: string,
-  icon: string,
-  slug: string
+  title: string;
+  text: string;
+  icon: string;
+  slug: string;
 }
 
 const Services = () => {
-  const services:Service[] = useStaticQuery(graphql`
+  const services: Service[] = useStaticQuery(graphql`
     {
       allContentfulServices {
         nodes {
           title
           icon {
-            localFile {
-              svg {
-                content
-              }
-            }
+            url
           }
           slug
           description {
@@ -29,21 +25,30 @@ const Services = () => {
         }
       }
     }
-  `).allContentfulServices.nodes.map((item:any) => ({
+  `).allContentfulServices.nodes.map((item: any) => ({
     title: item.title,
-    icon: item.icon.localFile.svg.content,
+    icon: item.icon.url,
     text: item.description.description,
-    slug: item.slug
+    slug: item.slug,
   }));
 
   return (
     <div className={style.services}>
       {services.map((service, index) => (
         <div key={index} className={style.service}>
-          <span dangerouslySetInnerHTML={{__html: service.icon}}/>
+          <span>
+            <img
+              src={service.icon}
+              alt={service.title}
+              width="72px"
+              height="auto"
+            />
+          </span>
           <h3>{service.title}</h3>
           <p>{service.text}</p>
-          <Link to={'/services/'+service.slug}><button>Więcej</button></Link>
+          <Link to={"/services/" + service.slug}>
+            <button>Więcej</button>
+          </Link>
         </div>
       ))}
     </div>

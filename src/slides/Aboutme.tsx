@@ -1,16 +1,16 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import { FaBook } from "@react-icons/all-files/fa/FaBook";
-import { FaUserTie } from "@react-icons/all-files/fa/FaUserTie";
-import { FaCube } from "@react-icons/all-files/fa/FaCube";
-import { FaDownload } from "@react-icons/all-files/fa/FaDownload";
-import { FaClipboard } from "@react-icons/all-files/fa/FaClipboard";
-import { FaClipboardCheck } from "@react-icons/all-files/fa/FaClipboardCheck";
-import { FaCode } from "@react-icons/all-files/fa/FaCode";
-import { FaCodeBranch } from "@react-icons/all-files/fa/FaCodeBranch";
-import { FaLanguage } from "@react-icons/all-files/fa/FaLanguage";
-import { FaLaptop } from "@react-icons/all-files/fa/FaLaptop";
+import FaBook from "../icons/FaBook";
+import FaUserTie from "../icons/FaUserTie";
+import FaCube from "../icons/FaCube";
+import FaDownload from "../icons/FaDownload";
+import FaClipboard from "../icons/FaClipboard";
+import FaClipboardCheck from "../icons/FaClipboardCheck";
+import FaCode from "../icons/FaCode";
+import FaCodeBranch from "../icons/FaCodeBranch";
+import FaLanguage from "../icons/FaLanguage";
+import FaLaptop from "../icons/FaLaptop";
 import * as style from "../styles/aboutme.module.css";
 
 const percentRate = {
@@ -42,11 +42,7 @@ interface Language {
   title: string;
   knowledge: 0 | 1 | 2 | 3 | 4 | 5;
   flag: {
-    localFile: {
-      svg: {
-        content: string;
-      };
-    };
+    url: string;
   };
 }
 
@@ -80,6 +76,15 @@ interface Interested {
   icon: any;
 }
 
+interface Personal {
+  name: string;
+  mail: string;
+  phone: string;
+  photo: {
+    gatsbyImage: any;
+  };
+}
+
 const Aboutme = () => {
   const aboutme = useStaticQuery(graphql`
     query MyQuery {
@@ -106,11 +111,7 @@ const Aboutme = () => {
           title
           knowledge
           flag {
-            localFile {
-              svg {
-                content
-              }
-            }
+            url
           }
         }
       }
@@ -119,9 +120,7 @@ const Aboutme = () => {
           knowledge
           title
           icon {
-            localFile {
-              publicURL
-            }
+            url
           }
         }
       }
@@ -129,9 +128,7 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            localFile {
-              publicURL
-            }
+            url
           }
           knowledge
         }
@@ -140,9 +137,7 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            localFile {
-              publicURL
-            }
+            url
           }
         }
       }
@@ -160,20 +155,24 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            svg {
-              content
-            }
+            url
           }
         }
       }
       allContentfulToDownload {
         nodes {
           file {
-            localFile {
-              publicURL
-            }
+            url
             filename
           }
+        }
+      }
+      contentfulPersonal {
+        name
+        mail
+        phone
+        photo {
+          gatsbyImage(width: 300, placeholder: DOMINANT_COLOR, formats: WEBP)
         }
       }
     }
@@ -181,9 +180,7 @@ const Aboutme = () => {
 
   interface File {
     file: {
-      localFile: {
-        publicURL: string;
-      };
+      url: string;
       filename: string;
     }[];
   }
@@ -205,6 +202,8 @@ const Aboutme = () => {
     else if (a.knowledge > b.knowledge) return 1;
     else return 0;
   }
+
+  const personal: Personal = aboutme.contentfulPersonal;
 
   const education: Education[] =
     aboutme.allContentfulEducation.nodes.sort(sortByDateEducation);
@@ -237,21 +236,18 @@ const Aboutme = () => {
     <div className={style.aboutMeContainer}>
       <div className={style.personDetails}>
         <div className={style.details}>
-          <span className={style.name}>Marcin Marciniuk</span>
+          <span className={style.name}>{personal.name}</span>
           <span>
-            <a href="tel:531699319">+48 531 699 319</a>
+            <a href={`tel:${personal.phone.replaceAll(" ", "")}`}>
+              {personal.phone}
+            </a>
           </span>
           <span>
-            <a href="mailto:marcinm222@gmail.com">marcinm222@gmail.com</a>
+            <a href={`mailto:${personal.mail}`}>{personal.mail}</a>
           </span>
         </div>
         <div className={style.avatar}>
-          <StaticImage
-            placeholder="dominantColor"
-            src="../images/avatar.png"
-            alt="Avatar"
-            width={300}
-          />
+          <GatsbyImage image={personal.photo.gatsbyImage} alt={personal.name} />
         </div>
       </div>
       <div className={style.eduJobBox}>
@@ -304,11 +300,14 @@ const Aboutme = () => {
           </h3>
           {langugages.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: item.flag.localFile.svg.content,
-                }}
-              />
+              <span>
+                <img
+                  src={item.flag.url}
+                  alt={item.title}
+                  height="32px"
+                  width="auto"
+                />
+              </span>
               <span>{item.title}</span>
               <div className={style.knowledge}>
                 <div className={style.percentBar}>
@@ -334,7 +333,7 @@ const Aboutme = () => {
             <div className={style.langSoftwareItem} key={item.title}>
               <span>
                 <img
-                  src={item.icon.localFile.publicURL}
+                  src={item.icon.url}
                   width="32px"
                   height="32px"
                   alt={item.title}
@@ -366,7 +365,7 @@ const Aboutme = () => {
           <div className={style.langSoftwareItem} key={item.title}>
             <span>
               <img
-                src={item.icon.localFile.publicURL}
+                src={item.icon.url}
                 width="32px"
                 height="32px"
                 alt={item.title}
@@ -397,7 +396,7 @@ const Aboutme = () => {
           <div className={style.langSoftwareItem} key={item.title}>
             <span>
               <img
-                src={item.icon.localFile.publicURL}
+                src={item.icon.url}
                 width="32px"
                 height="32px"
                 alt={item.title}
@@ -444,7 +443,14 @@ const Aboutme = () => {
         </h3>
         {hobby.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
-            <span dangerouslySetInnerHTML={{ __html: item.icon.svg.content }} />
+            <span>
+              <img
+                src={item.icon.url}
+                alt={item.title}
+                width="auto"
+                height="32px"
+              />
+            </span>
             <span>{item.title}</span>
           </div>
         ))}
@@ -459,7 +465,7 @@ const Aboutme = () => {
         {files.map((item, i) => (
           <div className={style.langSoftwareItem} key={i}>
             {item.file.map((link, j) => (
-              <a href={link.localFile.publicURL} key={j}>
+              <a href={link.url} key={j}>
                 {link.filename}
               </a>
             ))}

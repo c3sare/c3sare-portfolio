@@ -1,7 +1,7 @@
 import React from "react";
 import * as style from "../styles/prices.module.css";
-import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
-import { FaMinus } from "@react-icons/all-files/fa/FaMinus";
+import FaCheck from "../icons/FaCheck";
+import FaMinus from "../icons/FaMinus";
 import { graphql, Link, useStaticQuery } from "gatsby";
 
 interface PriceBox {
@@ -32,8 +32,8 @@ const Prices = () => {
   }, []);
 
   function sortByCost(a: PriceBox, b: PriceBox) {
-    if(Number(a.cost[0]) > Number(b.cost[0])) return 1;
-    if(Number(b.cost[0]) > Number(a.cost[0])) return -1;
+    if (Number(a.cost[0]) > Number(b.cost[0])) return 1;
+    if (Number(b.cost[0]) > Number(a.cost[0])) return -1;
     else return 0;
   }
 
@@ -50,14 +50,16 @@ const Prices = () => {
         }
       }
     }
-  `).allContentfulPrices.nodes.map((item: any) => ({
-    title: item.name,
-    pros: item.pros === null ? [] : [...item.pros],
-    cons: item.cons === null ? [] : [...item.cons],
-    popular: item.popular,
-    cost: [item.cost, 0],
-    slug: item.slug,
-  })).sort(sortByCost);
+  `)
+    .allContentfulPrices.nodes.map((item: any) => ({
+      title: item.name,
+      pros: item.pros === null ? [] : [...item.pros],
+      cons: item.cons === null ? [] : [...item.cons],
+      popular: item.popular,
+      cost: [item.cost, 0],
+      slug: item.slug,
+    }))
+    .sort(sortByCost);
 
   const activateMouseSlide = (e: React.MouseEvent<HTMLDivElement>) => {
     activeSlide.current = true;

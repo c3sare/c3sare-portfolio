@@ -1,5 +1,5 @@
-import { FaInfo } from "@react-icons/all-files/fa/FaInfo";
-import { FaLink } from "@react-icons/all-files/fa/FaLink";
+import FaInfo from "../icons/FaInfo";
+import FaLink from "../icons/FaLink";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import Layout from "../components/Layout";
@@ -21,9 +21,7 @@ interface Socials {
   name: string;
   url: string;
   icon: {
-    svg: {
-      content: string;
-    };
+    url: string;
   };
 }
 
@@ -56,9 +54,7 @@ const ProjectsPage = () => {
       allContentfulSocials {
         nodes {
           icon {
-            svg {
-              content
-            }
+            url
           }
           name
           url

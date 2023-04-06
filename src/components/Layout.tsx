@@ -1,14 +1,10 @@
 import React from "react";
 import * as style from "../styles/style.module.css";
-import { FaAngleDoubleDown } from "@react-icons/all-files/fa/FaAngleDoubleDown";
-import { FaRegWindowClose } from "@react-icons/all-files/fa/FaRegWindowClose";
-import { FaBars } from "@react-icons/all-files/fa/FaBars";
+import FaAngleDoubleDown from "../icons/FaAngleDoubleDown";
+import FaRegWindowClose from "../icons/FaRegWindowClose";
+import FaBars from "../icons/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
-import InstagramIcon from "../images/icons/social/ig.svg";
-import FacebookIcon from "../images/icons/social/fb.svg";
-import LinkedinIcon from "../images/icons/social/li.svg";
-import GithubIcon from "../images/icons/social/gh.svg";
 
 export interface Page {
   title: string;
@@ -21,9 +17,7 @@ interface Social {
   name: string;
   url: string;
   icon: {
-    svg: {
-      content: string;
-    };
+    url: string;
   };
 }
 
@@ -214,8 +208,14 @@ const Layout = (props: {
                 target="_blank"
                 href={node.url}
                 aria-label={node.name}
-                dangerouslySetInnerHTML={{ __html: node.icon.svg.content }}
-              />
+              >
+                <img
+                  src={node.icon.url}
+                  alt={node.name}
+                  width="40px"
+                  height="40px"
+                />
+              </a>
             ))}
           </span>
         </footer>

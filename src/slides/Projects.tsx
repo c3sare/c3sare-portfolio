@@ -1,5 +1,5 @@
-import { FaLink } from "@react-icons/all-files/fa/FaLink";
-import { FaInfo } from "@react-icons/all-files/fa/FaInfo";
+import FaLink from "../icons/FaLink";
+import FaInfo from "../icons/FaInfo";
 import React from "react";
 import * as style from "../styles/projects.module.css";
 import { graphql, Link, useStaticQuery } from "gatsby";
