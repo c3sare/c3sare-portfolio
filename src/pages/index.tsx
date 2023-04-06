@@ -49,8 +49,8 @@ const pages: Page[] = [
   },
 ];
 
-const IndexPage = ({ location }: any) => {
-  return <Layout location={location} pages={pages} />;
+const IndexPage = () => {
+  return <Layout pages={pages} />;
 };
 
 export default IndexPage;
