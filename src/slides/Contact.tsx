@@ -5,6 +5,7 @@ import FaAt from "../icons/FaAt";
 import { useForm } from "react-hook-form";
 import Loading from "../components/Loading";
 import logo from "../images/logo.webp";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Contact = () => {
   const [loading, setLoading] = React.useState(false);
@@ -180,7 +181,22 @@ const Contact = () => {
           )}
         </form>
       </div>
-      <footer className={style.copyrights}>Website created by C3sare</footer>
+      <footer className={style.copyrights}>
+        Website created by C3sare using
+        <br />
+        <StaticImage
+          placeholder="none"
+          height={32}
+          src="../images/icon.png"
+          alt="Gatsby"
+        />
+        <StaticImage
+          src="../images/cf.png"
+          placeholder="none"
+          height={32}
+          alt="Contentful"
+        />
+      </footer>
     </>
   );
 };

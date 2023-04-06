@@ -211,7 +211,12 @@ const Layout = (props: {
                 <button
                   key={index}
                   className={currentSlide === index ? style.activeSlide : ""}
-                  onClick={() => setCurrentSlide(index)}
+                  onClick={() => {
+                    if (index !== currentSlide) {
+                      setCurrentSlide(index);
+                      setOpenMenu(false);
+                    }
+                  }}
                 >
                   {page.icon} <span>{page.title}</span>
                 </button>
@@ -228,7 +233,7 @@ const Layout = (props: {
               </Link>
             </div>
           </div>
-          <button onClick={() => setOpenMenu(false)}>Zamknij</button>
+          <button onClick={() => setOpenMenu(false)}>Zamknij nawigację</button>
         </div>
       )}
     </>

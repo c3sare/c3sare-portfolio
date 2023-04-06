@@ -167,3 +167,7 @@ button:hover {
   padding: 8px;
   font-size: 12px;
 }
+
+.copyrights > * {
+  margin: 8px 4px;
+}
