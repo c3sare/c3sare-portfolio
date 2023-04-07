@@ -1,6 +1,6 @@
 import React from "react";
 import * as style from "../styles/services.module.css";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 interface Service {
   title: string;
@@ -46,12 +46,6 @@ const Services = () => {
           </span>
           <h3>{service.title}</h3>
           <p>{service.text}</p>
-          <Link
-            to={"/services/" + service.slug}
-            aria-label={`Read more about ${service.title} service`}
-          >
-            <button>More</button>
-          </Link>
         </div>
       ))}
     </div>

@@ -1,6 +1,10 @@
 .home {
   text-align: center;
-  width: 100%;
+  min-width: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home > div > * {

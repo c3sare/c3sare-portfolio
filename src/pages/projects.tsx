@@ -17,14 +17,6 @@ interface Project {
   }[];
 }
 
-interface Socials {
-  name: string;
-  url: string;
-  icon: {
-    url: string;
-  };
-}
-
 const ProjectsPage = () => {
   const query: any = useStaticQuery(graphql`
     {
@@ -51,19 +43,8 @@ const ProjectsPage = () => {
           slug
         }
       }
-      allContentfulSocials {
-        nodes {
-          icon {
-            url
-          }
-          name
-          url
-        }
-      }
     }
   `);
-
-  const socials: Socials[] = query.allContentfulSocials.nodes;
 
   const projects: Project[] = query.allContentfulProjects.nodes.map(
     (item: any) => ({
@@ -79,7 +60,8 @@ const ProjectsPage = () => {
   );
 
   return (
-    <Layout socials={socials}>
+    <Layout>
+      <h1 className={style.heading}>My Projects</h1>
       <div className={style.projects}>
         {projects.map((project, i) => (
           <div className={style.project} key={i}>

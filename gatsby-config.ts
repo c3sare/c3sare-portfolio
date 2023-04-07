@@ -26,7 +26,6 @@ const config: GatsbyConfig = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-use-query-params",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

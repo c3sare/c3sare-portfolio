@@ -36,7 +36,7 @@
 .langSoftwareBox h3 {
   font-size: 22px;
   padding: 0 25px;
-  margin: 10px 0 0 0;
+  margin: 10px 0;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -61,7 +61,7 @@
   background-color: white;
   height: 2px;
   position: absolute;
-  bottom: 12px;
+  bottom: 0;
   left: 0;
   transform: skewX(-60deg);
 }

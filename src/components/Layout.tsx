@@ -34,7 +34,6 @@ const Layout = (props: {
   const [currentWidth, setcurrentWidth] = React.useState<number>(0);
   const [mobile, setMobile] = React.useState(false);
   const [openMenu, setOpenMenu] = React.useState(false);
-  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const blockScroll = React.useRef<boolean>(false);
   const sliderMain = React.useRef<HTMLDivElement>(null);
   const before = React.useRef(0);
@@ -188,10 +187,7 @@ const Layout = (props: {
             <main className={style.main}>{props.children}</main>
           )}
           {pages && (
-            <div
-              className={style.rightBar}
-              style={showMobileMenu ? { right: "8px" } : {}}
-            >
+            <div className={style.rightBar}>
               <div className={style.slideButtons}>
                 {pages.map((page, index) => (
                   <div
@@ -202,17 +198,6 @@ const Layout = (props: {
                     {page.icon} <span>{page.title}</span>
                   </div>
                 ))}
-              </div>
-              <div
-                className={style.btnShowHideMenu}
-                style={
-                  showMobileMenu
-                    ? { transform: "rotate(270deg)", right: "100%" }
-                    : {}
-                }
-                onClick={() => setShowMobileMenu(!showMobileMenu)}
-              >
-                <FaAngleDoubleDown />
               </div>
             </div>
           )}

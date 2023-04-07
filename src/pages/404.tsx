@@ -1,7 +1,6 @@
 import * as React from "react";
-import { Link, HeadFC, graphql } from "gatsby";
+import { Link, HeadFC } from "gatsby";
 import Layout from "../components/Layout";
-import get from "lodash/get";
 
 const headingStyles = {
   marginTop: 0,
@@ -14,10 +13,8 @@ const paragraphStyles = {
 };
 
 const NotFoundPage = (props: any) => {
-  const socials = get(props, "data.allContentfulSocials.nodes");
-
   return (
-    <Layout socials={socials}>
+    <Layout>
       <>
         <h1 style={headingStyles}>Strony nie znaleziono</h1>
         <p style={paragraphStyles}>
@@ -37,17 +34,3 @@ const NotFoundPage = (props: any) => {
 export default NotFoundPage;
 
 export const Head: HeadFC = () => <title>Not found</title>;
-
-export const query = graphql`
-  {
-    allContentfulSocials {
-      nodes {
-        icon {
-          url
-        }
-        name
-        url
-      }
-    }
-  }
-`;

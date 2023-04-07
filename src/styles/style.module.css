@@ -188,17 +188,18 @@ body {
   }
 
   .page > h2 {
-    position: absolute;
+    position: sticky;
     left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-writing-mode: vertical-rl;
+    top: 35%;
+    transform: translateY(-100%);
     writing-mode: vertical-rl;
     text-transform: uppercase;
     font-size: 60px;
     margin: 0;
     padding: 0;
     opacity: 0.25;
+    height: 0;
+    white-space: nowrap;
   }
 }
 
@@ -268,13 +269,13 @@ body {
   right: 100%;
   top: 50%;
   font-size: 10px;
-  min-width: 70px;
   -webkit-transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 25px 0 0 25px;
   transform: translateY(-50%);
   padding: 14px 0 14px 14px;
   height: 100%;
+  white-space: nowrap;
 }
 
 .slideButtons > div.activeSlide > span {
@@ -292,22 +293,6 @@ body {
 
 .slideButtons > div.activeSlide {
   background-color: rgba(0, 0, 0, 0.8);
-}
-
-.btnShowHideMenu {
-  display: none;
-  position: absolute;
-  top: calc(50% - 16px);
-  right: calc(100% + 18px);
-  transform: rotate(90deg);
-  font-size: 32px;
-  cursor: pointer;
-  opacity: 0.5;
-  transition: 0.3s opacity;
-}
-
-.btnShowHideMenu:hover {
-  opacity: 0.8;
 }
 
 @media screen and (max-width: 799.99px) {
@@ -357,6 +342,7 @@ body {
   left: 0;
   z-index: 99;
   max-height: 100vh;
+  min-height: 100vh;
   transition: transform 0.5s;
   text-align: center;
   background: linear-gradient(

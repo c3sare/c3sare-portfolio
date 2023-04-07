@@ -10,9 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   margin: 15px;
-  padding: 35px 15px;
+  padding: 35px 45px 35px 35px;
   text-align: center;
   background: linear-gradient(
     to left,
