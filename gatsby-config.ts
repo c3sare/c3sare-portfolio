@@ -32,10 +32,14 @@ const config: GatsbyConfig = {
         name: `C3sare - Portfolio`,
         short_name: `C3sare`,
         start_url: `/`,
+        lang: `en`,
         icon: "src/images/icon.png",
         background_color: `#000`,
         theme_color: `#ffffff`,
         display: `standalone`,
+        icon_options: {
+          purpose: `any maskable`,
+        },
       },
     },
     {

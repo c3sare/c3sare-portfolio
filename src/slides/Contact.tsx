@@ -42,7 +42,7 @@ const Contact = () => {
     <>
       <div className={style.contactContainer}>
         <div className={style.imageContainer}>
-          <img src={logo} alt="logo" width="160px" height="auto" />
+          <img src={logo} alt="C3sare logo" width="120px" height="30px" />
           <div className={style.contactMailPhone}>
             <div className={style.contactBoxes}>
               <a

@@ -62,10 +62,17 @@ const Projects = () => {
             <GatsbyImage image={project.img} alt={project.title} />
           </div>
           <div className={style.contentMenu}>
-            <Link to={"/projects/" + project.slug}>
+            <Link
+              to={"/projects/" + project.slug}
+              aria-label="Look details about this project"
+            >
               <FaInfo />
             </Link>
-            <a target="_blank" href={project.demo}>
+            <a
+              target="_blank"
+              href={project.demo}
+              aria-label="Show demo of this project"
+            >
               <FaLink />
             </a>
           </div>
@@ -77,7 +84,7 @@ const Projects = () => {
         </div>
       ))}
       <div className={style.more}>
-        <Link to="/projects/">
+        <Link to="/projects/" aria-label="Look all projects">
           <button>All projects</button>
         </Link>
       </div>

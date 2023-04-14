@@ -334,7 +334,7 @@ const Aboutme = () => {
                   src={item.flag.url}
                   alt={item.title}
                   height="32px"
-                  width="auto"
+                  width="32px"
                 />
               </span>
               <span>{item.title}</span>
@@ -473,7 +473,7 @@ const Aboutme = () => {
               <img
                 src={item.icon.url}
                 alt={item.title}
-                width="auto"
+                width="32px"
                 height="32px"
               />
             </span>

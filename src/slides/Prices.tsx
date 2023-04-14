@@ -210,7 +210,7 @@ const Prices = () => {
                 to={`/prices/${box.slug}`}
                 aria-label={`Read more about ${box.title} offer`}
               >
-                <button>More</button>
+                <button>{`Read more about ${box.title} offer`}</button>
               </Link>
             </div>
           </div>
