@@ -41,7 +41,7 @@ const Services = () => {
               src={service.icon}
               alt={service.title}
               width="72px"
-              height="auto"
+              height="72px"
             />
           </span>
           <h3>{service.title}</h3>
