@@ -78,7 +78,13 @@ const Projects = () => {
           </div>
           <div className={style.techs}>
             {project.technologies.map((tech) => (
-              <img src={tech.img} alt={tech.name} key={tech.name} />
+              <img
+                src={tech.img}
+                alt={tech.name}
+                key={tech.name}
+                width="32px"
+                height="32px"
+              />
             ))}
           </div>
         </div>
