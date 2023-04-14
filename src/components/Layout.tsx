@@ -139,10 +139,10 @@ const Layout = (props: {
           </Link>
           <div className={style.menu}>
             <Link activeClassName={style.active} to="/">
-              Strona Główna
+              Home
             </Link>
             <Link activeClassName={style.active} to="/projects">
-              Projekty
+              Projects
             </Link>
             <div className={style.navButton} onClick={() => setOpenMenu(true)}>
               <FaBars />
@@ -207,7 +207,7 @@ const Layout = (props: {
         <div className={style.menuMobile}>
           {pages && (
             <div>
-              <h2>Szybkie odnośniki</h2>
+              <h2>Fast links</h2>
               {pages.map((page, index) => (
                 <Link to={`/?page=${index}`}>
                   <button
@@ -227,17 +227,17 @@ const Layout = (props: {
             </div>
           )}
           <div>
-            <h2>Nawigacja</h2>
+            <h2>Navigation</h2>
             <div>
               <Link activeClassName={style.active} to="/">
-                <button>Strona Główna</button>
+                <button>Home</button>
               </Link>
               <Link activeClassName={style.active} to="/projects">
-                <button>Projekty</button>
+                <button>Projects</button>
               </Link>
             </div>
           </div>
-          <button onClick={() => setOpenMenu(false)}>Zamknij nawigację</button>
+          <button onClick={() => setOpenMenu(false)}>Close</button>
         </div>
       )}
     </>
