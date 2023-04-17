@@ -53,7 +53,7 @@ const PricesPage = (props: any) => {
         })}
       </Swiper>
       <div className={style.techUsed}>
-        <h3>Technologies used to build</h3>
+        <h2>Technologies used to build</h2>
         <div className={style.techs}>
           {page.technologies.map((tech: any, i: number) => (
             <div className={style.tech} key={i}>
@@ -65,7 +65,7 @@ const PricesPage = (props: any) => {
           ))}
         </div>
         <div className={style.siteUrl}>
-          <h3>Site URL</h3>
+          <h2>Site URL</h2>
           <a
             target="_blank"
             href={page.demo}
