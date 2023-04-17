@@ -33,9 +33,14 @@ const Projects = () => {
           technologies {
             name
             img {
-              localFile {
-                publicURL
-              }
+              gatsbyImage(
+                height: 32
+                width: 32
+                formats: WEBP
+                placeholder: NONE
+                quality: 100
+                fit: CONTAIN
+              )
             }
           }
           demo
@@ -48,7 +53,7 @@ const Projects = () => {
     img: getImage(item.images[0]),
     technologies: item.technologies.slice(0, 3).map((item: any) => ({
       name: item.name,
-      img: item.img.localFile.publicURL,
+      img: item.img.gatsbyImage,
     })),
     demo: item.demo,
     slug: item.slug,
@@ -78,12 +83,11 @@ const Projects = () => {
           </div>
           <div className={style.techs}>
             {project.technologies.map((tech) => (
-              <img
-                src={tech.img}
+              <GatsbyImage
+                style={{ margin: "4px" }}
+                image={tech.img as any}
                 alt={tech.name}
                 key={tech.name}
-                width="32px"
-                height="32px"
               />
             ))}
           </div>

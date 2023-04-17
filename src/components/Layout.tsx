@@ -156,20 +156,18 @@ const Layout = (props: {
             <div>
               <h2>Fast links</h2>
               {pages.map((page, index) => (
-                <Link to={`/?page=${index}`}>
-                  <button
-                    key={index}
-                    className={currentSlide === index ? style.activeSlide : ""}
-                    onClick={() => {
-                      if (index !== currentSlide) {
-                        setCurrentSlide(index);
-                        setOpenMenu(false);
-                      }
-                    }}
-                  >
-                    {page.icon} <span>{page.title}</span>
-                  </button>
-                </Link>
+                <button
+                  key={index}
+                  className={currentSlide === index ? style.activeSlide : ""}
+                  onClick={() => {
+                    if (index !== currentSlide) {
+                      setCurrentSlide(index);
+                      setOpenMenu(false);
+                    }
+                  }}
+                >
+                  {page.icon} <span>{page.title}</span>
+                </button>
               ))}
             </div>
           )}
