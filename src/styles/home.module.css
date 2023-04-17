@@ -51,5 +51,7 @@
 }
 
 .typing {
+  display: inline-block;
+  width: 100%;
   font-weight: 700;
 }
