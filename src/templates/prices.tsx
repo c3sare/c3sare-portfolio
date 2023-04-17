@@ -7,14 +7,13 @@ import * as style from "./prices.module.css";
 
 const PricesPage = (props: any) => {
   const page = get(props, "data.contentfulPrices");
-  const socials = get(props, "data.allContentfulSocials.nodes");
 
   return (
-    <Layout socials={socials}>
+    <Layout>
       <h1 style={{ textAlign: "center" }}>{page.name}</h1>
       <div className={style.consPros}>
         <div className={style.haveList}>
-          <h5>Zawiera</h5>
+          <h5>Contain</h5>
           <ul>
             {page.pros.map((pro: string, i: number) => (
               <li key={i}>{pro}</li>
@@ -23,7 +22,7 @@ const PricesPage = (props: any) => {
         </div>
         {page.cons && (
           <div className={style.notHaveList}>
-            <h5>Nie zawiera</h5>
+            <h5>Do not contain</h5>
             <ul>
               {page.cons.map((con: string, i: number) => (
                 <li key={i}>{con}</li>

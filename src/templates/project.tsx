@@ -1,97 +1,61 @@
 import { graphql } from "gatsby";
 import get from "lodash/get";
 import React from "react";
-import Layout from "../components/Layout";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import * as style from "./project.module.css";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import FaArrowCircleLeft from "../icons/FaArrowCircleLeft";
-import FaArrowCircleRight from "../icons/FaArrowCircleRight";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Zoom, Navigation, Pagination } from "swiper";
+
+import Layout from "../components/Layout";
+
+import * as style from "./project.module.css";
+import "swiper/css";
+import "swiper/css/zoom";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const PricesPage = (props: any) => {
-  const slideShow = React.useRef<HTMLDivElement>(null);
-  const [currentSlide, setCurrentSlide] = React.useState<number>(0);
-  const [currentWidth, setCurrentWidth] = React.useState<number>(0);
   const page = get(props, "data.contentfulProjects");
-  const socials = get(props, "data.allContentfulSocials.nodes");
-
-  const handleNextSlide = () => {
-    setCurrentSlide((state) => {
-      if (state + 1 >= page.images.length) return 0;
-      else return state + 1;
-    });
-  };
-
-  const handlePrevSlide = () => {
-    setCurrentSlide((state) => {
-      if (state - 1 >= 0) return state - 1;
-      else return page.images.length - 1;
-    });
-  };
-
-  React.useEffect(() => {
-    setCurrentWidth(slideShow.current!.clientWidth);
-
-    function setWidth() {
-      setCurrentWidth(slideShow.current!.clientWidth);
-    }
-
-    window.addEventListener("resize", setWidth, true);
-
-    return () => window.removeEventListener("resize", setWidth, true);
-  }, [slideShow]);
 
   return (
-    <Layout socials={socials}>
+    <Layout>
       <h1 style={{ textAlign: "center" }}>{page.title}</h1>
-      <div
-        style={{
-          padding: "5px",
-          borderRadius: "5px",
-          boxShadow: "0 0 3px black",
-          background:
-            "linear-gradient( to left, rgba(54, 0, 42, 0.6), rgba(51, 0, 118, 0.6) )",
-          overflow: "hidden",
-          position: "relative",
-          margin: "25px",
-        }}
+      <Swiper
+        style={
+          {
+            "--swiper-navigation-color": "#000",
+            "--swiper-pagination-color": "#000",
+            margin: "25px",
+          } as any
+        }
+        zoom={true}
+        autoHeight={true}
+        navigation={true}
+        modules={[Zoom, Navigation, Pagination]}
+        className="mySwiper"
       >
-        <div className={style.slider} ref={slideShow}>
-          <div
-            className={style.sliderContainer}
-            style={{
-              width: page.images.length * currentWidth + "px",
-              transform: `translate3d(${
-                -currentWidth * currentSlide
-              }px, 0px, 0px)`,
-            }}
-          >
-            {page.images.map((screen: any, i: number) => {
-              const gimg: any = getImage(screen);
-              return (
+        {page.images.map((screen: any, i: number) => {
+          const gimg: any = getImage(screen);
+          return (
+            <SwiperSlide key={i}>
+              <div style={{ maxHeight: "calc(100vh - 200px)" }}>
                 <GatsbyImage
-                  key={i}
-                  style={{ width: currentWidth + "px" }}
+                  style={{ maxHeight: "calc(100vh - 200px)" }}
+                  imgStyle={{
+                    maxHeight: "100%",
+                    width: "auto",
+                    margin: "0 auto",
+                  }}
                   image={gimg}
                   alt={screen.title}
                 />
-              );
-            })}
-          </div>
-          {page.images.length > 1 && (
-            <>
-              <div className={style.slideBtnLeft} onClick={handlePrevSlide}>
-                <FaArrowCircleLeft />
               </div>
-              <div className={style.slideBtnRight} onClick={handleNextSlide}>
-                <FaArrowCircleRight />
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
       <div className={style.techUsed}>
-        <h3>Technologie użyte do budowy projektu</h3>
+        <h3>Technologies used to build</h3>
         <div className={style.techs}>
           {page.technologies.map((tech: any, i: number) => (
             <div className={style.tech} key={i}>
@@ -99,14 +63,14 @@ const PricesPage = (props: any) => {
                 src={tech.img.url}
                 alt={tech.name}
                 width="32px"
-                height="auto"
+                height="32px"
               />
               <span>{tech.name}</span>
             </div>
           ))}
         </div>
         <div className={style.siteUrl}>
-          <h3>Adres Strony</h3>
+          <h3>Site URL</h3>
           <a target="_blank" href={page.demo}>
             {page.demo}
           </a>

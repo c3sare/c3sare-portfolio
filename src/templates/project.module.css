@@ -1,36 +1,3 @@
-.slider {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.sliderContainer {
-  display: block;
-  transition: 0.3s transform;
-}
-
-.sliderContainer img {
-  display: inline-block;
-}
-
-.slideBtnLeft,
-.slideBtnRight {
-  position: absolute;
-  font-size: 35px;
-  top: 50%;
-  color: rgb(51, 70, 209);
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.slideBtnLeft {
-  left: 15px;
-}
-
-.slideBtnRight {
-  right: 15px;
-}
-
 .techUsed {
   display: block;
   margin: 25px;

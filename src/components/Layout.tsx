@@ -4,7 +4,6 @@ import FaAngleDoubleDown from "../icons/FaAngleDoubleDown";
 import FaBars from "../icons/FaBars";
 import { Link } from "gatsby";
 import logo from "../images/logo.webp";
-// import { navigate } from "gatsby";
 
 export interface Page {
   title: string;
@@ -13,26 +12,12 @@ export interface Page {
   hideTitle?: boolean;
 }
 
-// const getPage = (pages: any, location: any) => {
-//   if (!pages || !location) return 0;
-//   const q = location.search;
-//   if (q.indexOf("?page=") === 0) {
-//     const page = Number(q.slice(-1));
-//     if (page >= 0 && page < pages.length) return page;
-//     else return 0;
-//   } else return 0;
-// };
-
 const Layout = (props: {
   pages?: Page[];
-  // location?: any;
   children?: JSX.Element | JSX.Element[] | React.ReactNode;
 }) => {
   const { pages } = props;
   const [currentSlide, setCurrentSlide] = React.useState<number>(0);
-  const [currentHeight, setCurrentHeight] = React.useState<number>(0);
-  const [currentWidth, setcurrentWidth] = React.useState<number>(0);
-  const [mobile, setMobile] = React.useState(false);
   const [openMenu, setOpenMenu] = React.useState(false);
   const blockScroll = React.useRef<boolean>(false);
   const sliderMain = React.useRef<HTMLDivElement>(null);
@@ -66,35 +51,6 @@ const Layout = (props: {
     }
   };
 
-  React.useEffect(() => {
-    if (currentWidth < 800 && mobile === false) {
-      setMobile(true);
-    } else if (currentWidth > 800 && mobile === true) {
-      if (pages) sliderMain.current!.scrollTop = 0;
-      setMobile(false);
-    }
-  }, [currentHeight, currentWidth]);
-
-  React.useEffect(() => {
-    const setHeightWidth = () => {
-      setCurrentHeight(window.innerHeight);
-      setcurrentWidth(window.innerWidth);
-    };
-    setHeightWidth();
-
-    window.addEventListener("resize", setHeightWidth, true);
-
-    return () => {
-      window.removeEventListener("resize", setHeightWidth, true);
-    };
-  }, [currentSlide, mobile]);
-
-  // React.useEffect(() => {
-  //   if (location) {
-  //     if (location.pathname === "/") navigate(`/?page=${currentSlide}`);
-  //   }
-  // }, [currentSlide]);
-
   const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
     if (!blockScroll.current) {
       if (e.deltaY > 0) {
@@ -121,14 +77,6 @@ const Layout = (props: {
       }
     }
   };
-
-  function bgColor(index: number) {
-    return index % 2 === 1
-      ? {
-          backgroundColor: "rgba(0, 0, 0, 0.1)",
-        }
-      : {};
-  }
 
   return (
     <>
@@ -161,7 +109,6 @@ const Layout = (props: {
                   <div
                     className={style.page}
                     key={index}
-                    style={mobile ? { ...bgColor(index) } : {}}
                     onWheel={handleScroll}
                     onTouchStart={changeSlideTouchStart}
                     onTouchEnd={changeSlideTouchEnd}
