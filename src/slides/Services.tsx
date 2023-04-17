@@ -16,7 +16,9 @@ const Services = () => {
         nodes {
           title
           icon {
-            url
+            svg {
+              content
+            }
           }
           slug
           description {
@@ -27,7 +29,7 @@ const Services = () => {
     }
   `).allContentfulServices.nodes.map((item: any) => ({
     title: item.title,
-    icon: item.icon.url,
+    icon: item.icon.svg.content,
     text: item.description.description,
     slug: item.slug,
   }));
@@ -36,14 +38,7 @@ const Services = () => {
     <div className={style.services}>
       {services.map((service, index) => (
         <div key={index} className={style.service}>
-          <span>
-            <img
-              src={service.icon}
-              alt={service.title}
-              width="72px"
-              height="72px"
-            />
-          </span>
+          <span dangerouslySetInnerHTML={{ __html: service.icon }} />
           <h3>{service.title}</h3>
           <p>{service.text}</p>
         </div>

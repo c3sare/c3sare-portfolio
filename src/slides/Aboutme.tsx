@@ -176,7 +176,9 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            url
+            svg {
+              content
+            }
           }
         }
       }
@@ -469,14 +471,7 @@ const Aboutme = () => {
         </h3>
         {hobby.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
-            <span>
-              <img
-                src={item.icon.url}
-                alt={item.title}
-                width="32px"
-                height="32px"
-              />
-            </span>
+            <span dangerouslySetInnerHTML={{ __html: item.icon.svg.content }} />
             <span>{item.title}</span>
           </div>
         ))}
