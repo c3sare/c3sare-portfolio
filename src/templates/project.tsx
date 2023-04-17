@@ -10,9 +10,7 @@ import Layout from "../components/Layout";
 
 import * as style from "./project.module.css";
 import "swiper/css";
-import "swiper/css/zoom";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 const PricesPage = (props: any) => {
   const page = get(props, "data.contentfulProjects");
@@ -28,7 +26,6 @@ const PricesPage = (props: any) => {
             margin: "25px",
           } as any
         }
-        zoom={true}
         autoHeight={true}
         navigation={true}
         modules={[Zoom, Navigation, Pagination]}
@@ -40,6 +37,7 @@ const PricesPage = (props: any) => {
             <SwiperSlide key={i}>
               <div style={{ maxHeight: "calc(100vh - 200px)" }}>
                 <GatsbyImage
+                  className={style.gatsbyimg}
                   style={{ maxHeight: "calc(100vh - 200px)" }}
                   imgStyle={{
                     maxHeight: "100%",
@@ -59,11 +57,8 @@ const PricesPage = (props: any) => {
         <div className={style.techs}>
           {page.technologies.map((tech: any, i: number) => (
             <div className={style.tech} key={i}>
-              <img
-                src={tech.img.url}
-                alt={tech.name}
-                width="32px"
-                height="32px"
+              <span
+                dangerouslySetInnerHTML={{ __html: tech.img.svg.content }}
               />
               <span>{tech.name}</span>
             </div>
@@ -71,7 +66,11 @@ const PricesPage = (props: any) => {
         </div>
         <div className={style.siteUrl}>
           <h3>Site URL</h3>
-          <a target="_blank" href={page.demo}>
+          <a
+            target="_blank"
+            href={page.demo}
+            aria-label="Open demo of this project"
+          >
             {page.demo}
           </a>
         </div>
@@ -103,21 +102,14 @@ export const pageQuery = graphql`
       }
       technologies {
         img {
-          url
+          svg {
+            content
+          }
         }
         name
       }
       content {
         raw
-      }
-    }
-    allContentfulSocials {
-      nodes {
-        icon {
-          url
-        }
-        name
-        url
       }
     }
   }

@@ -31,4 +31,4 @@ const NotFoundPage = () => {
 
 export default NotFoundPage;
 
-export const Head: HeadFC = () => <title>Nie znaleziono strony</title>;
+export const Head: HeadFC = () => <title>C3sare | Nie znaleziono strony</title>;

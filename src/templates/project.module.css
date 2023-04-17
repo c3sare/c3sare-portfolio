@@ -19,11 +19,16 @@
   margin: 10px 25px;
 }
 
+.tech svg {
+  display: block;
+  margin: 0 auto;
+  height: 32px;
+  width: 32px;
+}
+
 .tech span {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  text-align: center;
 }
 
 .siteUrl {
@@ -38,4 +43,10 @@
 
 .siteUrl a:hover {
   text-decoration: underline;
+}
+
+.gatsbyimg img {
+  width: auto !important;
+  max-height: inherit;
+  margin: 0 auto !important;
 }

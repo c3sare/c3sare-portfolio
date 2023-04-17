@@ -20,7 +20,7 @@ interface Project {
 const ProjectsPage = () => {
   const query: any = useStaticQuery(graphql`
     {
-      allContentfulProjects {
+      allContentfulProjects(limit: 6) {
         nodes {
           title
           images {
@@ -34,8 +34,8 @@ const ProjectsPage = () => {
           technologies {
             name
             img {
-              localFile {
-                publicURL
+              svg {
+                content
               }
             }
           }
@@ -52,7 +52,7 @@ const ProjectsPage = () => {
       img: getImage(item.images[0]),
       technologies: item.technologies.slice(0, 3).map((item: any) => ({
         name: item.name,
-        img: item.img.localFile.publicURL,
+        img: item.img.svg.content,
       })),
       demo: item.demo,
       slug: item.slug,
@@ -69,16 +69,27 @@ const ProjectsPage = () => {
               <GatsbyImage image={project.img} alt={project.title} />
             </div>
             <div className={style.contentMenu}>
-              <Link to={"/projects/" + project.slug}>
+              <Link
+                to={"/projects/" + project.slug}
+                aria-label="Look details about this project"
+              >
                 <FaInfo />
               </Link>
-              <a target="_blank" href={project.demo}>
+              <a
+                target="_blank"
+                href={project.demo}
+                aria-label="Show demo of this project"
+              >
                 <FaLink />
               </a>
             </div>
             <div className={style.techs}>
               {project.technologies.map((tech, techi) => (
-                <img src={tech.img} alt={tech.name} key={techi} />
+                <span
+                  style={{ margin: "4px" }}
+                  dangerouslySetInnerHTML={{ __html: tech.img }}
+                  key={techi}
+                />
               ))}
             </div>
           </div>

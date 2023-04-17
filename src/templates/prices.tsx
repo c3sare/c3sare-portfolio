@@ -54,14 +54,5 @@ export const pageQuery = graphql`
         raw
       }
     }
-    allContentfulSocials {
-      nodes {
-        icon {
-          url
-        }
-        name
-        url
-      }
-    }
   }
 `;

@@ -81,7 +81,7 @@
   position: fixed;
   left: 25px;
   top: 25px;
-  z-index: 1;
+  z-index: 999;
   width: calc(100% - 50px);
   display: flex;
   justify-content: space-between;

@@ -42,7 +42,9 @@ interface Language {
   title: string;
   knowledge: 0 | 1 | 2 | 3 | 4 | 5;
   flag: {
-    url: string;
+    svg: {
+      content: string;
+    };
   };
 }
 
@@ -50,7 +52,9 @@ interface Software {
   title: string;
   knowledge: 0 | 1 | 2 | 3 | 4 | 5;
   icon: {
-    gatsbyImage: any;
+    svg: {
+      content: string;
+    };
   };
 }
 
@@ -58,14 +62,18 @@ interface ProgLang {
   title: string;
   knowledge: 0 | 1 | 2 | 3 | 4 | 5;
   icon: {
-    gatsbyImage: any;
+    svg: {
+      content: string;
+    };
   };
 }
 
 interface AddTech {
   title: string;
   icon: {
-    gatsbyImage: any;
+    svg: {
+      content: string;
+    };
   };
 }
 
@@ -79,7 +87,11 @@ interface PersonalAdv {
 
 interface Interested {
   title: string;
-  icon: any;
+  icon: {
+    svg: {
+      content: string;
+    };
+  };
 }
 
 interface Personal {
@@ -117,7 +129,9 @@ const Aboutme = () => {
           title
           knowledge
           flag {
-            url
+            svg {
+              content
+            }
           }
         }
       }
@@ -126,12 +140,9 @@ const Aboutme = () => {
           knowledge
           title
           icon {
-            gatsbyImage(
-              formats: WEBP
-              placeholder: NONE
-              quality: 100
-              height: 32
-            )
+            svg {
+              content
+            }
           }
         }
       }
@@ -139,12 +150,9 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            gatsbyImage(
-              formats: WEBP
-              placeholder: NONE
-              quality: 100
-              height: 32
-            )
+            svg {
+              content
+            }
           }
           knowledge
         }
@@ -153,12 +161,9 @@ const Aboutme = () => {
         nodes {
           title
           icon {
-            gatsbyImage(
-              formats: WEBP
-              placeholder: NONE
-              quality: 100
-              height: 32
-            )
+            svg {
+              content
+            }
           }
         }
       }
@@ -331,14 +336,9 @@ const Aboutme = () => {
           </h3>
           {langugages.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
-              <span>
-                <img
-                  src={item.flag.url}
-                  alt={item.title}
-                  height="32px"
-                  width="32px"
-                />
-              </span>
+              <span
+                dangerouslySetInnerHTML={{ __html: item.flag.svg.content }}
+              />
               <span>{item.title}</span>
               <div className={style.knowledge}>
                 <div className={style.percentBar}>
@@ -362,13 +362,9 @@ const Aboutme = () => {
           </h3>
           {software.map((item) => (
             <div className={style.langSoftwareItem} key={item.title}>
-              <span>
-                <GatsbyImage
-                  loading="eager"
-                  image={item.icon.gatsbyImage}
-                  alt={item.title}
-                />
-              </span>
+              <span
+                dangerouslySetInnerHTML={{ __html: item.icon.svg.content }}
+              />
               <span>{item.title}</span>
               <div className={style.knowledge}>
                 <div className={style.percentBar}>
@@ -393,13 +389,7 @@ const Aboutme = () => {
         </h3>
         {programming.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
-            <span>
-              <GatsbyImage
-                loading="eager"
-                image={item.icon.gatsbyImage}
-                alt={item.title}
-              />
-            </span>
+            <span dangerouslySetInnerHTML={{ __html: item.icon.svg.content }} />
             <span>{item.title}</span>
             <div className={style.knowledge}>
               <div className={style.percentBar}>
@@ -423,13 +413,7 @@ const Aboutme = () => {
         </h3>
         {additionalTechs.map((item) => (
           <div className={style.langSoftwareItem} key={item.title}>
-            <span>
-              <GatsbyImage
-                loading="eager"
-                image={item.icon.gatsbyImage}
-                alt={item.title}
-              />
-            </span>
+            <span dangerouslySetInnerHTML={{ __html: item.icon.svg.content }} />
             <span>{item.title}</span>
           </div>
         ))}

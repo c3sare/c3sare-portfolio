@@ -108,10 +108,10 @@
   padding-right: 8px;
 }
 
-.techs img {
+.techs svg {
   height: 32px;
+  width: 32px;
   margin: 4px;
-  width: auto;
 }
 
 .more {
