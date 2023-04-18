@@ -55,10 +55,6 @@
   text-transform: uppercase;
 }
 
-.active {
-  text-decoration: underline !important;
-}
-
 .closeMenu {
   position: absolute;
   right: 25px;
@@ -335,6 +331,10 @@ body {
   margin: 8px;
 }
 
+.menu > a.active {
+  text-decoration: underline;
+}
+
 .menuMobile {
   width: 100%;
   position: absolute;
@@ -368,4 +368,11 @@ body {
   font-size: 18px;
   max-width: 250px;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.scrollFix {
+  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
+  overflow-y: scroll;
 }

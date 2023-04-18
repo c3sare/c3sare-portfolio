@@ -1,6 +1,6 @@
 import * as React from "react";
 import { HeadFC } from "gatsby";
-import Layout, { Page } from "../components/Layout";
+import Layout, { Page } from "../components/LayoutHome";
 import Home from "../slides/Home";
 
 import FaHome from "../icons/FaHome";
