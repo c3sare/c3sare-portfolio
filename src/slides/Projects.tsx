@@ -72,6 +72,7 @@ const Projects = () => {
               target="_blank"
               href={project.demo}
               aria-label="Show demo of this project"
+              rel="nofollow"
             >
               <FaLink />
             </a>

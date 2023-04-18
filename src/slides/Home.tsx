@@ -124,6 +124,7 @@ const Home = (props: any) => {
               target="_blank"
               href={node.url}
               aria-label={node.name}
+              rel="nofollow"
             >
               <img
                 src={node.icon.url}

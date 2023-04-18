@@ -5,6 +5,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import * as style from "../styles/projects.module.css";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Seo from "../components/Seo";
 
 interface Project {
   img: any;
@@ -99,20 +100,6 @@ const ProjectsPage = () => {
   );
 };
 
-export const Head = () => {
-  return (
-    <>
-      <title>C3sare | Projekty</title>
-      <meta
-        name="description"
-        content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"
-      />
-      <meta
-        name="keywords"
-        content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"
-      />
-    </>
-  );
-};
+export const Head = () => <Seo title="Projects" />;
 
 export default ProjectsPage;

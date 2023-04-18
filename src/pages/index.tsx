@@ -14,6 +14,7 @@ import Services from "../slides/Services";
 import Projects from "../slides/Projects";
 import Prices from "../slides/Prices";
 import Contact from "../slides/Contact";
+import Seo from "../components/Seo";
 
 const pages: Page[] = [
   {
@@ -55,16 +56,4 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => (
-  <>
-    <title>C3sare | Strona Główna</title>
-    <meta
-      name="description"
-      content="Portfolio C3sare - Strony internetowe, prace graficzne, systemy dla firm"
-    />
-    <meta
-      name="keywords"
-      content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"
-    />
-  </>
-);
+export const Head: HeadFC = () => <Seo title="Home" />;

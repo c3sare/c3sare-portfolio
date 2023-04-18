@@ -11,6 +11,7 @@ import Layout from "../components/Layout";
 import * as style from "./project.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
+import Seo from "../components/Seo";
 
 const PricesPage = (props: any) => {
   const page = get(props, "data.contentfulProjects");
@@ -70,6 +71,7 @@ const PricesPage = (props: any) => {
             target="_blank"
             href={page.demo}
             aria-label="Open demo of this project"
+            rel="nofollow"
           >
             {page.demo}
           </a>
@@ -85,7 +87,7 @@ export default PricesPage;
 export const Head = (props: any) => {
   const page = get(props, "data.contentfulProjects");
 
-  return <title>C3sare | {page.title}</title>;
+  return <Seo title={page.title} />;
 };
 
 export const pageQuery = graphql`

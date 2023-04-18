@@ -4,6 +4,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import * as style from "./prices.module.css";
+import Seo from "../components/Seo";
 
 const PricesPage = (props: any) => {
   const page = get(props, "data.contentfulPrices");
@@ -41,7 +42,7 @@ export default PricesPage;
 export const Head = (props: any) => {
   const page = get(props, "data.contentfulPrices");
 
-  return <title>C3sare | {page.name}</title>;
+  return <Seo title={page.name} />;
 };
 
 export const pageQuery = graphql`

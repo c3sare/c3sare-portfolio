@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, HeadFC } from "gatsby";
 import Layout from "../components/Layout";
+import Seo from "../components/Seo";
 
 const NotFoundPage = () => {
   return (
@@ -13,13 +14,13 @@ const NotFoundPage = () => {
         }}
       >
         <div>
-          <h1>Strony nie znaleziono</h1>
+          <h1>Page not found</h1>
           <p>
-            Przepraszam 😔, nie mogę znaleźć strony której szukasz.
+            Sorry 😔, i can't find this page.
             <br />
             <br />
             <Link style={{ color: "grey" }} to="/">
-              Wróć na stronę główną
+              Back to home page
             </Link>
             .
           </p>
@@ -31,4 +32,4 @@ const NotFoundPage = () => {
 
 export default NotFoundPage;
 
-export const Head: HeadFC = () => <title>C3sare | Nie znaleziono strony</title>;
+export const Head: HeadFC = () => <Seo title="404" />;
