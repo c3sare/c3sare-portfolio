@@ -8,25 +8,22 @@ export default function Seo({ title }: { title: string }) {
         name="robots"
         content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
       />
-      <meta
-        name="title"
-        content="C3sare Portfolio - Tworzenie stron internetowych"
-      />
+      <meta name="title" content="C3sare Portfolio - Website Development" />
       <meta
         name="description"
-        content="C3sare - Strony internetowe, prace graficzne, systemy dla firm, rozwiązania techniczne, wsparcie IT, systemy CMS"
+        content="C3sare - websites, grahics projects, company systems, tech solutions, IT support, CMS systems"
       />
       <meta
         name="keywords"
-        content="portfolio, c3sare, website, tworzenie, stron, internetowych, systemy, rozwiązania, firmy, firm"
+        content="portfolio, c3sare, website, developer, websites, systems, solutions, company"
       />
       <meta
         property="og:title"
-        content="C3sare Portfolio - Tworzenie stron internetowych"
+        content="C3sare Portfolio - Website Development"
       />
       <meta
         property="og:description"
-        content="C3sare - Strony internetowe, prace graficzne, systemy dla firm, rozwiązania techniczne, wsparcie IT, systemy CMS."
+        content="C3sare - websites, grahics projects, company systems, tech solutions, IT support, CMS systems"
       />
       <meta property="og:type" content="website" />
       <meta
