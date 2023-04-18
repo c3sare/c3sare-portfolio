@@ -189,11 +189,11 @@ const Contact = () => {
           loading="eager"
           height={32}
           quality={100}
-          src="../images/icon.png"
+          src="../images/gb.svg"
           alt="Gatsby"
         />
         <StaticImage
-          src="../images/cf.png"
+          src="../images/cf.svg"
           placeholder="none"
           loading="eager"
           height={32}
