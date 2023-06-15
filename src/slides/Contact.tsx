@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import * as style from "../styles/contact.module.css";
 import FaPhoneAlt from "../icons/FaPhoneAlt";
 import FaAt from "../icons/FaAt";
@@ -6,9 +6,21 @@ import { useForm } from "react-hook-form";
 import Loading from "../components/Loading";
 import logo from "../images/logo.webp";
 import { StaticImage } from "gatsby-plugin-image";
+import Checkmark from "../components/Checkmark";
+import Crossmark from "../components/Crossmark";
+
+interface MessageInterface {
+  message: string;
+  component: React.FC | null;
+}
 
 const Contact = () => {
   const [loading, setLoading] = React.useState(false);
+  const [message, setMessage] = React.useState<MessageInterface>({
+    message: "",
+    component: null,
+  });
+
   const {
     register,
     formState: { errors },
@@ -16,26 +28,38 @@ const Contact = () => {
     handleSubmit,
   } = useForm();
 
-  const sendData = (data: any) => {
+  const clearForm = () => {
+    setValue("mail", "");
+    setValue("firstname", "");
+    setValue("mailTitle", "");
+    setValue("message", "");
+  };
+
+  const sendData = async (data: any) => {
     setLoading(true);
-    fetch("/api/sendmail", {
+    const req = await fetch("/api/sendmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success) {
-          setValue("mail", "");
-          setValue("firstname", "");
-          setValue("mailTitle", "");
-          setValue("message", "");
-        }
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+    });
+
+    const res = await req.json();
+
+    if (req.status === 200) {
+      setMessage({ message: res.message, component: Checkmark });
+      clearForm();
+    } else {
+      setMessage({ message: res.message, component: Crossmark });
+    }
+    setLoading(false);
+  };
+
+  const colors = {
+    "": "white",
+    SUCCESS: "green",
+    ERROR: "red",
   };
 
   return (
@@ -177,6 +201,16 @@ const Contact = () => {
           {loading && (
             <div className={style.loadingBox}>
               <Loading />
+            </div>
+          )}
+          {message.message.length > 0 && (
+            <div className={style.afterSendContainer}>
+              {React.createElement(
+                message.component as React.FC<PropsWithChildren>,
+                {
+                  children: message.message,
+                }
+              )}
             </div>
           )}
         </form>
