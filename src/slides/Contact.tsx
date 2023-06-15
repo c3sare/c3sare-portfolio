@@ -14,7 +14,12 @@ interface MessageInterface {
   component: React.FC | null;
 }
 
-const Contact = () => {
+interface PageProps {
+  setIsScrolling: (param: boolean) => void;
+  setCurrentSlide: (param: number) => void;
+}
+
+const Contact: React.FC<PageProps> = ({ setIsScrolling, setCurrentSlide }) => {
   const [loading, setLoading] = React.useState(false);
   const [message, setMessage] = React.useState<MessageInterface>({
     message: "",
