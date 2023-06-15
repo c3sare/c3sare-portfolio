@@ -85,7 +85,7 @@ const Layout = (props: {
           <Link to="/">
             <img src={logo} alt="C3sare logo" width="120px" height="30px" />
           </Link>
-          <div className={style.menu}>
+          <nav className={style.menu}>
             <Link activeClassName={style.active} to="/">
               Home
             </Link>
@@ -95,7 +95,7 @@ const Layout = (props: {
             <div className={style.navButton} onClick={() => setOpenMenu(true)}>
               <FaBars />
             </div>
-          </div>
+          </nav>
         </header>
         <div className={style.backgroundGradient}>
           {pages ? (
@@ -134,8 +134,8 @@ const Layout = (props: {
             <main className={style.main}>{props.children}</main>
           )}
           {pages && (
-            <div className={style.rightBar}>
-              <div className={style.slideButtons}>
+            <aside className={style.rightBar}>
+              <nav className={style.slideButtons}>
                 {pages.map((page, index) => (
                   <div
                     key={index}
@@ -145,13 +145,13 @@ const Layout = (props: {
                     {page.icon} <span>{page.title}</span>
                   </div>
                 ))}
-              </div>
-            </div>
+              </nav>
+            </aside>
           )}
         </div>
       </div>
       {openMenu && (
-        <div className={style.menuMobile}>
+        <aside className={style.menuMobile}>
           {pages && (
             <div>
               <h2>Fast links</h2>
@@ -173,17 +173,17 @@ const Layout = (props: {
           )}
           <div>
             <h2>Navigation</h2>
-            <div>
+            <nav>
               <Link activeClassName={style.active} to="/">
                 <button>Home</button>
               </Link>
               <Link activeClassName={style.active} to="/projects">
                 <button>Projects</button>
               </Link>
-            </div>
+            </nav>
           </div>
           <button onClick={() => setOpenMenu(false)}>Close</button>
-        </div>
+        </aside>
       )}
     </>
   );

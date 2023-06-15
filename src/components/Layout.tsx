@@ -16,7 +16,7 @@ const Layout = (props: {
           <Link to="/">
             <img src={logo} alt="C3sare logo" width="120px" height="30px" />
           </Link>
-          <div className={style.menu}>
+          <nav className={style.menu}>
             <Link activeClassName={style.active} to="/">
               Home
             </Link>
@@ -26,15 +26,15 @@ const Layout = (props: {
             <div className={style.navButton} onClick={() => setOpenMenu(true)}>
               <FaBars />
             </div>
-          </div>
+          </nav>
         </header>
         <div className={style.backgroundGradient + " " + style.scrollFix}>
           <main className={style.main}>{props.children}</main>
         </div>
       </div>
       {openMenu && (
-        <div className={style.menuMobile}>
-          <div>
+        <aside className={style.menuMobile}>
+          <nav>
             <h2>Navigation</h2>
             <div>
               <Link activeClassName={style.active} to="/">
@@ -44,9 +44,9 @@ const Layout = (props: {
                 <button>Projects</button>
               </Link>
             </div>
-          </div>
+          </nav>
           <button onClick={() => setOpenMenu(false)}>Close</button>
-        </div>
+        </aside>
       )}
     </>
   );
