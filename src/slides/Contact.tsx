@@ -19,7 +19,7 @@ interface PageProps {
   setCurrentSlide: (param: number) => void;
 }
 
-const Contact: React.FC<PageProps> = ({ setIsScrolling, setCurrentSlide }) => {
+const Contact: React.FC<PageProps> = () => {
   const [loading, setLoading] = React.useState(false);
   const [message, setMessage] = React.useState<MessageInterface>({
     message: "",

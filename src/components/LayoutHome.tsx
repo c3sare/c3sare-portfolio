@@ -23,7 +23,6 @@ const Layout = (props: {
   const sliderMain = React.useRef<HTMLDivElement>(null);
   const before = React.useRef(0);
   const scrollTopBefore = React.useRef(0);
-  const [isScrolling, setIsScrolling] = React.useState<boolean>(false);
 
   const changeSlideTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     before.current = event.touches[0].clientY;
@@ -36,8 +35,6 @@ const Layout = (props: {
       if (event.currentTarget.scrollTop !== 0) return;
       if (event.currentTarget.scrollTop === scrollTopBefore.current) {
         if (currentSlide > 0) {
-          setIsScrolling(true);
-          setTimeout(() => setIsScrolling(false), 900);
           setCurrentSlide(currentSlide - 1);
         }
       }
@@ -52,8 +49,6 @@ const Layout = (props: {
       }
       if (event.currentTarget.scrollTop === scrollTopBefore.current) {
         if (currentSlide < pages!.length - 1) {
-          setIsScrolling(true);
-          setTimeout(() => setIsScrolling(false), 900);
           setCurrentSlide(currentSlide + 1);
         }
       }
@@ -70,8 +65,6 @@ const Layout = (props: {
           return;
         }
         if (pages!.length - 1 > currentSlide) {
-          setIsScrolling(true);
-          setTimeout(() => setIsScrolling(false), 900);
           setCurrentSlide(currentSlide + 1);
           blockScroll.current = true;
           setTimeout(() => (blockScroll.current = false), 900);
@@ -81,8 +74,6 @@ const Layout = (props: {
           return;
         }
         if (currentSlide > 0) {
-          setIsScrolling(true);
-          setTimeout(() => setIsScrolling(false), 900);
           setCurrentSlide(currentSlide - 1);
           blockScroll.current = true;
           setTimeout(() => (blockScroll.current = false), 900);
@@ -128,19 +119,12 @@ const Layout = (props: {
                   >
                     {page.hideTitle ? null : <h2>{page.title}</h2>}
                     <div className={style.pageContent}>
-                      {(index === currentSlide || isScrolling) && (
-                        <page.component
-                          setCurrentSlide={setCurrentSlide}
-                          setIsScrolling={setIsScrolling}
-                        />
-                      )}
+                      <page.component setCurrentSlide={setCurrentSlide} />
                     </div>
                     {index < pages.length - 1 && (
                       <footer
                         className={style.nextSlide}
                         onClick={() => {
-                          setIsScrolling(true);
-                          setTimeout(() => setIsScrolling(false), 900);
                           setCurrentSlide(currentSlide + 1);
                         }}
                       >
@@ -165,8 +149,6 @@ const Layout = (props: {
                     onClick={() => {
                       if (currentSlide === index) return;
 
-                      setIsScrolling(true);
-                      setTimeout(() => setIsScrolling(false), 900);
                       setCurrentSlide(index);
                     }}
                   >
@@ -189,8 +171,6 @@ const Layout = (props: {
                   className={currentSlide === index ? style.activeSlide : ""}
                   onClick={() => {
                     if (index !== currentSlide) {
-                      setIsScrolling(true);
-                      setTimeout(() => setIsScrolling(false), 900);
                       setCurrentSlide(index);
                       setOpenMenu(false);
                     }
