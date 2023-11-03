@@ -4,7 +4,7 @@ import React from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Zoom, Navigation, Pagination } from "swiper";
+import { Zoom, Navigation, Pagination } from "swiper/modules";
 
 import Layout from "../components/Layout";
 

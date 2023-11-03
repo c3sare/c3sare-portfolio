@@ -9,7 +9,6 @@
 
 This site was created with Gatsby, Contentful and TypeScript
 
-<a href="https://c3sareportfoliomain.gatsbyjs.io/">
+<a href="https://c3sare-portfolio.vercel.app/">
   Show Live Preview
 </a>
-
